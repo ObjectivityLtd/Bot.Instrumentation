@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
 
     <IsPackable>false</IsPackable>
-    <CodeAnalysisRuleSet>..\Analysers.Tests.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Analysers.Tests.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
@@ -13,12 +13,12 @@
     <!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. -->
     <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
     <!-- Set StrongNameKeyPath to a default value when not defined by a build server. -->
-    <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\public.snk</StrongNameKeyPath>
+    <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
     <AssemblyOriginatorKeyFile>$(StrongNameKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\public.snk" Link="public.snk" />
+    <None Include="..\..\public.snk" Link="public.snk" />
   </ItemGroup>
 
   <ItemGroup>
