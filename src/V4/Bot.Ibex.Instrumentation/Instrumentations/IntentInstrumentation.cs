@@ -7,6 +7,8 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Telemetry;
 
     public class IntentInstrumentation : IIntentInstrumentation

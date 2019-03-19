@@ -15,6 +15,7 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
     using Xunit;
 
     [Collection("SentimentInstrumentationMiddleware")]

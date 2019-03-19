@@ -6,6 +6,9 @@
     using Bot.Ibex.Instrumentation.Extensions;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class EventTelemetryBuilder
     {

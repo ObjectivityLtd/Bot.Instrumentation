@@ -5,6 +5,8 @@
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Telemetry;
 
     public class CustomInstrumentation : ICustomInstrumentation

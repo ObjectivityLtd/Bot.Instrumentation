@@ -4,6 +4,7 @@
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Middleware;
     using Bot.Ibex.Instrumentation.Sentiments;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
     using Xunit;
 
     [Collection("SentimentInstrumentationMiddlewareSettings")]

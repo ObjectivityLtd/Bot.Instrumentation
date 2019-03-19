@@ -8,6 +8,8 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class QnAInstrumentation : IQnAInstrumentation
     {

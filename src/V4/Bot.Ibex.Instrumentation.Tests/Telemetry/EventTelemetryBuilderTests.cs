@@ -9,6 +9,9 @@
     using FluentAssertions;
     using Microsoft.Bot.Schema;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Xunit;
 
     [Collection("EventTelemetryBuilder")]

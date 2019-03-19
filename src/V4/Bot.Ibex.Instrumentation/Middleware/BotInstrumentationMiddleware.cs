@@ -8,6 +8,7 @@
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
 
     public class BotInstrumentationMiddleware : IMiddleware
     {

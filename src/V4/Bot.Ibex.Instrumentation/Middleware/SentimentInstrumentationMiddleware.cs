@@ -10,6 +10,7 @@
     using Microsoft.ApplicationInsights;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Bot.Builder;
+    using Objectivity.Bot.Ibex.Instrumentation.Common;
 
     public class SentimentInstrumentationMiddleware : IMiddleware, IDisposable
     {

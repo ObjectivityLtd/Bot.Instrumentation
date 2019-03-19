@@ -5,8 +5,8 @@
     using System.Net.Http;
     using System.Threading;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Rest;
     using FluentAssertions;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Rest;
     using Xunit;
 
     [Collection("ApiKeyServiceClientCredentials")]

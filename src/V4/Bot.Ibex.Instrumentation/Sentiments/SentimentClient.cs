@@ -4,10 +4,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using Bot.Ibex.Instrumentation.Extensions;
-    using Bot.Ibex.Instrumentation.Rest;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Rest;
 
     public class SentimentClient : ISentimentClient
     {

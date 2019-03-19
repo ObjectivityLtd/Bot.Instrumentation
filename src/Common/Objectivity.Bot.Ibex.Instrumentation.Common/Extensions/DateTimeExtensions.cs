@@ -1,8 +1,7 @@
-﻿namespace Bot.Ibex.Instrumentation.Extensions
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Extensions
 {
     using System;
     using Newtonsoft.Json;
-
     public static class DateTimeExtensions
     {
         public static string AsIso8601(this DateTimeOffset activity)

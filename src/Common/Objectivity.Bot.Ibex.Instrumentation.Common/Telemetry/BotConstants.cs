@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Telemetry
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry
 {
     public static class BotConstants
     {

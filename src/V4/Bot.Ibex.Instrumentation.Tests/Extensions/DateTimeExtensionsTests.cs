@@ -4,6 +4,7 @@ namespace Bot.Ibex.Instrumentation.Tests.Extensions
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Extensions;
     using FluentAssertions;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
     using Xunit;
 
     [Collection("DateTimeExtensions")]

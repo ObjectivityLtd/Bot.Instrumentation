@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common
 {
     public class InstrumentationSettings
     {
