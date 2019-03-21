@@ -11,5 +11,6 @@
         public const string MessageSentiment = "MBFEvent.Sentiment";
         public const string OtherActivity = "MBFEvent.Other";
         public const string QnaEvent = "MBFEvent.QNAEvent";
+        public const string GoalTriggeredEvent = "MBFEvent.GoalEvent";
     }
 }
