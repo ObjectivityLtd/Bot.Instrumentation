@@ -1,10 +1,8 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Instrumentations
 {
     using System;
     using System.Globalization;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Instrumentations;
-    using Bot.Ibex.Instrumentation.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -13,8 +11,9 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
+    using V4.Instrumentations;
     using Xunit;
 
     [Collection("QnAInstrumentation")]

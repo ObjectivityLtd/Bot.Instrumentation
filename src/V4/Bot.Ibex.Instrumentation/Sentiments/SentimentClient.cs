@@ -1,13 +1,14 @@
-﻿namespace Bot.Ibex.Instrumentation.Sentiments
+﻿namespace Bot.Ibex.Instrumentation.V4.Sentiments
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Bot.Ibex.Instrumentation.Extensions;
+    using Extensions;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Rest;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class SentimentClient : ISentimentClient
     {

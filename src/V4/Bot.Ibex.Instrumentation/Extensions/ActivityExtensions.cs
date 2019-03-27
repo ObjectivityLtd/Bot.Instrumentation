@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Extensions
+﻿namespace Bot.Ibex.Instrumentation.V4.Extensions
 {
     using System.Collections.Generic;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;

@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Sentiments
+﻿namespace Bot.Ibex.Instrumentation.V4.Sentiments
 {
     using System;
     using System.Threading.Tasks;

@@ -1,16 +1,16 @@
-﻿namespace Bot.Ibex.Instrumentation.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Middleware
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
-    using Bot.Ibex.Instrumentation.Extensions;
-    using Bot.Ibex.Instrumentation.Instrumentations;
-    using Bot.Ibex.Instrumentation.Sentiments;
+    using Extensions;
+    using Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Bot.Builder;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using Sentiments;
 
     public class SentimentInstrumentationMiddleware : IMiddleware, IDisposable
     {

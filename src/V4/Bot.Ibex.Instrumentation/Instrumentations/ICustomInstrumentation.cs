@@ -1,7 +1,6 @@
-﻿namespace Bot.Ibex.Instrumentation.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.V4.Instrumentations
 {
     using System.Collections.Generic;
-    using Bot.Ibex.Instrumentation.Telemetry;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 

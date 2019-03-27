@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.V4.Instrumentations
 {
     using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;

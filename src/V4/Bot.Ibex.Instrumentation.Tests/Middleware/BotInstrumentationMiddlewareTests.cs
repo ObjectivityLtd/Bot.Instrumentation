@@ -1,12 +1,10 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using AutoFixture;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Middleware;
-    using Bot.Ibex.Instrumentation.Telemetry;
     using FluentAssertions;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -16,8 +14,9 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
+    using V4.Middleware;
     using Xunit;
 
     [Collection("BotInstrumentationMiddleware")]

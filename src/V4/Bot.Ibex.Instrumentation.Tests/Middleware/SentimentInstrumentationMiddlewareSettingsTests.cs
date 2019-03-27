@@ -1,11 +1,10 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
 {
     using System;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Middleware;
-    using Bot.Ibex.Instrumentation.Sentiments;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Xunit;
+    using SentimentInstrumentationMiddlewareSettings = V4.Middleware.SentimentInstrumentationMiddlewareSettings;
 
     [Collection("SentimentInstrumentationMiddlewareSettings")]
     [Trait("Category", "Middleware")]

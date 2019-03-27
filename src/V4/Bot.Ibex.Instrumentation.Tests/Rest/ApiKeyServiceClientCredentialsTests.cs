@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Rest
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Rest
 {
     using System;
     using System.Linq;

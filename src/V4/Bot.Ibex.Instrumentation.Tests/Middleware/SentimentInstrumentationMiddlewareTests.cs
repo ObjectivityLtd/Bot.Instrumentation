@@ -1,10 +1,8 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
 {
     using System;
     using System.Threading.Tasks;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Middleware;
-    using Bot.Ibex.Instrumentation.Sentiments;
     using FluentAssertions;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -15,8 +13,11 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using V4.Middleware;
+    using V4.Sentiments;
     using Xunit;
+    using SentimentInstrumentationMiddlewareSettings = V4.Middleware.SentimentInstrumentationMiddlewareSettings;
 
     [Collection("SentimentInstrumentationMiddleware")]
     [Trait("Category", "Middleware")]

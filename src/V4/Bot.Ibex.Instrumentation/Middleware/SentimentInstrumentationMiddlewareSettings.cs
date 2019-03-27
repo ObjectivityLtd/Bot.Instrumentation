@@ -1,7 +1,6 @@
-﻿namespace Bot.Ibex.Instrumentation.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Middleware
 {
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
-    using Sentiments;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class SentimentInstrumentationMiddlewareSettings
     {

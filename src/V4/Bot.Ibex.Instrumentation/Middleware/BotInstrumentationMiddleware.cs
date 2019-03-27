@@ -1,14 +1,14 @@
-﻿namespace Bot.Ibex.Instrumentation.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Middleware
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Bot.Ibex.Instrumentation.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using Telemetry;
 
     public class BotInstrumentationMiddleware : IMiddleware
     {

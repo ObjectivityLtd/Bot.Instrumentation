@@ -1,13 +1,12 @@
-﻿namespace Bot.Ibex.Instrumentation.Telemetry
+﻿namespace Bot.Ibex.Instrumentation.V4.Telemetry
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Bot.Ibex.Instrumentation.Extensions;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class EventTelemetryBuilder

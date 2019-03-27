@@ -1,17 +1,18 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Sentiments
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Sentiments
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using FluentAssertions;
-    using Instrumentation.Sentiments;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
     using Microsoft.Bot.Schema;
     using Microsoft.Rest;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using V4.Sentiments;
     using Xunit;
 
     [Collection("SentimentClient")]

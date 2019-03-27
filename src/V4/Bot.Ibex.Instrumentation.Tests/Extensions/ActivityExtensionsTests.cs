@@ -1,9 +1,9 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Extensions
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Extensions
 {
     using FluentAssertions;
-    using Instrumentation.Extensions;
     using Microsoft.Bot.Schema;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using V4.Extensions;
     using Xunit;
 
     [Collection("ActivityExtensions")]

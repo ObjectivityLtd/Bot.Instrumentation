@@ -1,17 +1,16 @@
-﻿namespace Bot.Ibex.Instrumentation.Tests.Telemetry
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Telemetry
 {
     using System;
     using System.Collections.Generic;
     using AutoFixture;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Extensions;
-    using Bot.Ibex.Instrumentation.Telemetry;
     using FluentAssertions;
     using Microsoft.Bot.Schema;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
+    using V4.Telemetry;
     using Xunit;
 
     [Collection("EventTelemetryBuilder")]

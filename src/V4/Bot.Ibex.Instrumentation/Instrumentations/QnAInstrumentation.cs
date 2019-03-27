@@ -1,15 +1,15 @@
-﻿namespace Bot.Ibex.Instrumentation.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.V4.Instrumentations
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Bot.Ibex.Instrumentation.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Telemetry;
 
     public class QnAInstrumentation : IQnAInstrumentation
     {

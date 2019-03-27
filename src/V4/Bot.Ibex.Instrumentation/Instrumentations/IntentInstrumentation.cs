@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.V4.Instrumentations
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
-    using Objectivity.Bot.Ibex.Instrumentation.Common;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Telemetry;
 
