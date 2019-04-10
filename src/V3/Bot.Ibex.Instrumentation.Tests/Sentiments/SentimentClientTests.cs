@@ -21,7 +21,7 @@
     {
         [Theory(DisplayName = "GIVEN any message activity WHEN GetSentiment is invoked THEN score is being returned")]
         [AutoMockData]
-        public async void GivenAnyMessageActivity_WhenGetSentimentIsInvoked_ThenScoreIsBeingReturned(
+        public async void GivenAnyMessageActivityWhenGetSentimentIsInvokedThenScoreIsBeingReturned(
             ITextAnalyticsClient textAnalyticsClient,
             IActivity activity,
             double sentiment)
@@ -30,7 +30,7 @@
             var instrumentation = new SentimentClient(textAnalyticsClient);
             var response = new HttpOperationResponse<SentimentBatchResult>
             {
-                Body = new SentimentBatchResult(new[] {new SentimentBatchResultItem(sentiment)})
+                Body = new SentimentBatchResult(new[] { new SentimentBatchResultItem(sentiment) })
             };
             Mock.Get(textAnalyticsClient)
                 .Setup(tac => tac.SentimentWithHttpMessagesAsync(
@@ -50,7 +50,7 @@
         [Theory(DisplayName =
             "GIVEN empty message activity WHEN GetSentiment is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public async void GivenEmptyMessageActivity_WhenGetSentimentIsInvoked_ThenExceptionIsBeingThrown(
+        public async void GivenEmptyMessageActivityWhenGetSentimentIsInvokedThenExceptionIsBeingThrown(
             ITextAnalyticsClient textAnalyticsClient)
         {
             // Arrange
@@ -66,7 +66,7 @@
         [Theory(DisplayName =
             "GIVEN disposed SentimentClient WHEN GetSentiment is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public async void GivenDisposedSentimentClient_WhenGetSentimentIsInvoked_ThenExceptionIsBeingThrown(
+        public async void GivenDisposedSentimentClientWhenGetSentimentIsInvokedThenExceptionIsBeingThrown(
             ITextAnalyticsClient textAnalyticsClient,
             IActivity activity)
         {
@@ -83,7 +83,7 @@
         [Theory(DisplayName =
             "GIVEN SentimentClient WHEN Dispose is invoked THEN other resources are being disposed as well")]
         [AutoMockData]
-        public void GivenSentimentClient_WhenDisposeIsInvoked_ThenOtherResourcesAreBeingDisposedAsWell(
+        public void GivenSentimentClientWhenDisposeIsInvokedThenOtherResourcesAreBeingDisposedAsWell(
             ITextAnalyticsClient textAnalyticsClient)
         {
             // Arrange
@@ -98,7 +98,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty sentiment client settings WHEN SentimentClient is created THEN exception is being thrown")]
-        public void GivenEmptySentimentClientSettings_WhenSentimentClientIsCreated_ThenExceptionIsBeingThrown()
+        public void GivenEmptySentimentClientSettingsWhenSentimentClientIsCreatedThenExceptionIsBeingThrown()
         {
             // Arrange
             const SentimentClientSettings emptySentimentClientSettings = null;
@@ -110,7 +110,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty text analytics client WHEN SentimentClient is created THEN exception is being thrown")]
-        public void GivenEmptyTextAnalyticsClient_WhenSentimentClientIsCreated_ThenExceptionIsBeingThrown()
+        public void GivenEmptyTextAnalyticsClientWhenSentimentClientIsCreatedThenExceptionIsBeingThrown()
         {
             // Arrange
             const ITextAnalyticsClient emptyTextAnalyticsClient = null;

@@ -17,7 +17,7 @@
             "GIVEN ApiKeyServiceClientCredentials WHEN ProcessHttpRequestAsync is invoked THEN request headers decorated with subscription keya")]
         [AutoData]
         public async void
-            GivenApiKeyServiceClientCredentials_WhenProcessHttpRequestAsyncIsInvoked_ThenRequestHeadersDecoratedWithSubscriptionKey(
+            GivenApiKeyServiceClientCredentialsWhenProcessHttpRequestAsyncIsInvokedThenRequestHeadersDecoratedWithSubscriptionKey(
                 ApiKeyServiceClientCredentials credentials)
         {
             // Arrange
@@ -39,7 +39,7 @@
             "GIVEN empty HttpRequestMessage WHEN ProcessHttpRequestAsync is invoked THEN exception is being throwna")]
         [AutoData]
         public async void
-            GivenEmptyHttpRequestMessage_WhenProcessHttpRequestAsyncIsInvoked_ThenExceptionIsBeingThrown(
+            GivenEmptyHttpRequestMessageWhenProcessHttpRequestAsyncIsInvokedThenExceptionIsBeingThrown(
                 ApiKeyServiceClientCredentials credentials)
         {
             // Arrange

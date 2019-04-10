@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using Telemetry;
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
@@ -40,7 +40,8 @@
                 { QnAConstants.Score, queryResult.Score.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
+            var objectivityActivity = new ActivityAdapter(activity);
+            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.QnaEvent;
             this.telemetryClient.TrackEvent(eventTelemetry);

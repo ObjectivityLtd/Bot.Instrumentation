@@ -79,7 +79,7 @@
         {
             // Arrange
             var instrumentation = new CustomInstrumentation(this.telemetryClient, settings);
-            const IActivity emptyActivity = null;
+            const Microsoft.Bot.Schema.IActivity emptyActivity = null;
 
             // Act
             // Assert

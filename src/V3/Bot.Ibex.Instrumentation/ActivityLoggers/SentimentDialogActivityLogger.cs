@@ -17,7 +17,8 @@
 
         public async Task LogAsync(IActivity activity)
         {
-            await this.sentimentInstrumentation.TrackMessageSentiment(activity);
+            await this.sentimentInstrumentation.TrackMessageSentiment(activity)
+                .ConfigureAwait(false);
         }
     }
 }

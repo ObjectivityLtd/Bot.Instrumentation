@@ -1,13 +1,11 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Telemetry
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using Microsoft.ApplicationInsights.DataContracts;
-    using Microsoft.Bot.Connector;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Settings;
 
     public class EventTelemetryBuilder
     {
@@ -25,9 +23,9 @@
         public EventTelemetry Build()
         {
             var et = new EventTelemetry();
-            if (this.activity.Timestamp != null)
+            if (this.activity.TimeStampIso8601 != null)
             {
-                et.Properties.Add(BotConstants.TimestampProperty, this.activity.Timestamp.Value.AsIso8601());
+                et.Properties.Add(BotConstants.TimestampProperty, this.activity.TimeStampIso8601);
             }
 
             et.Properties.Add(BotConstants.TypeProperty, this.activity.Type);
@@ -36,14 +34,13 @@
             switch (this.activity.Type)
             {
                 case ActivityTypes.Message:
-                    var messageActivity = this.activity.AsMessageActivity();
                     if (this.activity.ReplyToId == null)
                     {
                         et.Name = EventTypes.MessageReceived;
-                        et.Properties.Add(BotConstants.UserIdProperty, this.activity.From.Id);
+                        et.Properties.Add(BotConstants.UserIdProperty, this.activity.ChannelAccount.Id);
                         if (!this.settings.OmitUsernameFromTelemetry)
                         {
-                            et.Properties.Add(BotConstants.UserNameProperty, this.activity.From.Name);
+                            et.Properties.Add(BotConstants.UserNameProperty, this.activity.ChannelAccount.Name);
                         }
                     }
                     else
@@ -51,8 +48,8 @@
                         et.Name = EventTypes.MessageSent;
                     }
 
-                    et.Properties.Add(BotConstants.TextProperty, messageActivity.Text);
-                    et.Properties.Add(BotConstants.ConversationIdProperty, messageActivity.Conversation.Id);
+                    et.Properties.Add(BotConstants.TextProperty, this.activity.MessageActivity.Text);
+                    et.Properties.Add(BotConstants.ConversationIdProperty, this.activity.MessageActivity.Id);
                     break;
                 case ActivityTypes.ConversationUpdate:
                     et.Name = EventTypes.ConversationUpdate;

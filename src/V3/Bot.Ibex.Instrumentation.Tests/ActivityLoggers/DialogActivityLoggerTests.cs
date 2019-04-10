@@ -14,7 +14,7 @@
     {
         [Theory(DisplayName = "GIVEN activity WHEN LogAsync is invoked THEN TrackActivity is invoked")]
         [AutoMockData]
-        public async void GivenActivity_WhenLogAsyncIsInvoked_ThenTrackActivityIsInvoked(
+        public async void GivenActivityWhenLogAsyncIsInvokedThenTrackActivityIsInvoked(
             IActivity activity,
             IActivityInstrumentation activityInstrumentation)
         {
@@ -22,7 +22,7 @@
             var instrumentation = new DialogActivityLogger(activityInstrumentation);
 
             // Act
-            await instrumentation.LogAsync(activity);
+            await instrumentation.LogAsync(activity).ConfigureAwait(false);
 
             // Assert
             Mock.Get(activityInstrumentation).Verify(
@@ -31,7 +31,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty activity WHEN DialogActivityLogger is created THEN exception is being thrown")]
-        public void GivenEmptyActivity_WhenDialogActivityLoggerIsCreated_ThenExceptionIsBeingThrown()
+        public void GivenEmptyActivityWhenDialogActivityLoggerIsCreatedThenExceptionIsBeingThrown()
         {
             // Arrange
             const IActivityInstrumentation emptyActivityInstrumentation = null;

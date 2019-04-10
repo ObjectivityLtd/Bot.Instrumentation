@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V3", "V3", "{85103AF3-B26D-4797-BCE5-EB94416FFB8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Ibex.Instrumentation", "Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.csproj", "{05D3C30A-189A-44FA-BC34-5ECC49681489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3", "Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V3.csproj", "{05D3C30A-189A-44FA-BC34-5ECC49681489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Ibex.Instrumentation.Tests", "Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.Tests.csproj", "{AC1B22A9-C802-4066-8DA1-2FF48286F78C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3.Tests", "Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V3.Tests.csproj", "{AC1B22A9-C802-4066-8DA1-2FF48286F78C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,12 +2,11 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Adapters;
     using Microsoft.ApplicationInsights;
-    using Microsoft.Bot.Connector;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Telemetry;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
-    [Serializable]
     public class ActivityInstrumentation : IActivityInstrumentation
     {
         private readonly TelemetryClient telemetryClient;
@@ -19,11 +18,12 @@
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
-        public Task TrackActivity(IActivity activity)
+        public Task TrackActivity(Microsoft.Bot.Connector.IActivity activity)
         {
             return Task.Run(() =>
             {
-                var builder = new EventTelemetryBuilder(activity, this.settings);
+                var objectivityActivity = new ActivityAdapter(activity);
+                var builder = new EventTelemetryBuilder(objectivityActivity, this.settings);
                 var eventTelemetry = builder.Build();
                 this.telemetryClient.TrackEvent(eventTelemetry);
             });

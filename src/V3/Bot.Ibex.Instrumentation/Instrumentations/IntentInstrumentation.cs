@@ -2,15 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder.Luis.Models;
-    using Microsoft.Bot.Connector;
     using Newtonsoft.Json;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using Telemetry;
+    using IActivity = Microsoft.Bot.Connector.IActivity;
 
-    [Serializable]
     public class IntentInstrumentation : IIntentInstrumentation
     {
         private readonly TelemetryClient telemetryClient;
@@ -41,7 +40,8 @@
 
         private void TrackIntent(IActivity activity, IDictionary<string, string> properties)
         {
-            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
+            var objectivityActivity = new ActivityAdapter(activity);
+            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.Intent;
 

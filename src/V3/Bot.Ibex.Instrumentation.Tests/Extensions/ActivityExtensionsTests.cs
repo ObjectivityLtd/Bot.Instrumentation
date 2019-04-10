@@ -6,8 +6,6 @@
     using V3.Extensions;
     using Xunit;
 
-    //using ActivityTypes = Microsoft.Bot.Schema;
-
     [Collection("ActivityExtensions")]
     [Trait("Category", "Extensions")]
     public class ActivityExtensionsTests
@@ -20,7 +18,7 @@
         [InlineAutoMockData("MESSAGE", ValidReplyToId, false)] // Case insensitive
         [InlineAutoMockData(ActivityTypes.Message, null, true)]
         [InlineAutoMockData(ActivityTypes.Invoke, ValidReplyToId, false)]
-        public void Given_Activity_WhenIsIncomingMessageIsInvoked_ThenExpectedResultIsBeingReturned(
+        public void GivenActivityWhenIsIncomingMessageIsInvokedThenExpectedResultIsBeingReturned(
             string type,
             string replyToId,
             bool expectedResult,
@@ -39,7 +37,7 @@
 
         [Theory(DisplayName = "GIVEN Activity WHEN ToSentimentInput is invoked THEN SentimentInput is being returned")]
         [AutoMockData]
-        public void GivenActivity_WhenToSentimentInputIsInvoked_ThenSentimentInputIsBeingReturned(
+        public void GivenActivityWhenToSentimentInputIsInvokedThenSentimentInputIsBeingReturned(
             IActivity activity)
         {
             // Arrange
@@ -57,7 +55,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty Activity WHEN IsIncomingMessage is invoked THEN False is being returned")]
-        public void Given_EmptyActivity_WhenIsIncomingMessageIsInvoked_ThenFalseIsBeingReturned()
+        public void GivenEmptyActivityWhenIsIncomingMessageIsInvokedThenFalseIsBeingReturned()
         {
             // Arrange
             const IActivity activity = null;
@@ -72,7 +70,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty Activity WHEN ToSentimentInput is invoked THEN empty SentimentInput is being returned")]
-        public void GivenEmptyActivity_WhenToSentimentInputIsInvoked_ThenEmptySentimentInputIsBeingReturned()
+        public void GivenEmptyActivityWhenToSentimentInputIsInvokedThenEmptySentimentInputIsBeingReturned()
         {
             // Arrange
             const IActivity activity = null;

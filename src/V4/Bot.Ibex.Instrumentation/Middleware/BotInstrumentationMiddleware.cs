@@ -3,12 +3,13 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Builder;
-    using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Telemetry;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
+    using IActivity = Microsoft.Bot.Schema.IActivity;
 
     public class BotInstrumentationMiddleware : IMiddleware
     {
@@ -62,7 +63,8 @@
 
         private EventTelemetry BuildEventTelemetry(IActivity activity)
         {
-            var builder = new EventTelemetryBuilder(activity, this.settings);
+            var objectivityActivity = new ActivityAdapter(activity);
+            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings);
             return builder.Build();
         }
     }

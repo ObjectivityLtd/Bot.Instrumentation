@@ -20,32 +20,32 @@
     [Trait("Category", "Instrumentations")]
     public class IntentInstrumentationTests
     {
-        public IntentInstrumentationTests()
-        {
-            var telemetryConfiguration =
-                new TelemetryConfiguration(FakeInstrumentationKey, mockTelemetryChannel.Object);
-            telemetryClient = new TelemetryClient(telemetryConfiguration);
-        }
-
         private const string FakeInstrumentationKey = "FAKE-INSTRUMENTATION-KEY";
         private readonly Mock<ITelemetryChannel> mockTelemetryChannel = new Mock<ITelemetryChannel>();
         private readonly TelemetryClient telemetryClient;
 
+        public IntentInstrumentationTests()
+        {
+            var telemetryConfiguration =
+                new TelemetryConfiguration(FakeInstrumentationKey, this.mockTelemetryChannel.Object);
+            this.telemetryClient = new TelemetryClient(telemetryConfiguration);
+        }
+
         [Theory(DisplayName = "GIVEN any activity WHEN TrackIntent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivity_WhenTrackIntentIsInvoked_ThenEventTelemetryIsBeingSent(
+        public void GivenAnyActivityWhenTrackIntentIsInvokedThenEventTelemetryIsBeingSent(
             IMessageActivity activity,
             LuisResult luisResult,
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new IntentInstrumentation(telemetryClient, settings);
+            var instrumentation = new IntentInstrumentation(this.telemetryClient, settings);
 
             // Act
             instrumentation.TrackIntent(activity, luisResult);
 
             // Assert
-            mockTelemetryChannel.Verify(
+            this.mockTelemetryChannel.Verify(
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == EventTypes.Intent &&
                     t.Properties[IntentConstants.Intent] == luisResult.TopScoringIntent.Intent &&
@@ -56,12 +56,12 @@
 
         [Theory(DisplayName = "GIVEN empty activity result WHEN TrackIntent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivity_WhenTrackIntentIsInvoked_ThenExceptionIsBeingThrown(
+        public void GivenEmptyActivityWhenTrackIntentIsInvokedThenExceptionIsBeingThrown(
             LuisResult luisResult,
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new IntentInstrumentation(telemetryClient, settings);
+            var instrumentation = new IntentInstrumentation(this.telemetryClient, settings);
             const IMessageActivity emptyActivity = null;
 
             // Act
@@ -71,12 +71,12 @@
 
         [Theory(DisplayName = "GIVEN empty query result WHEN TrackIntent is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptyQueryResult_WhenTrackIntentIsInvoked_ThenExceptionIsBeingThrown(
+        public void GivenEmptyQueryResultWhenTrackIntentIsInvokedThenExceptionIsBeingThrown(
             IMessageActivity activity,
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new IntentInstrumentation(telemetryClient, settings);
+            var instrumentation = new IntentInstrumentation(this.telemetryClient, settings);
             const LuisResult emptyLuisResult = null;
 
             // Act
@@ -87,7 +87,7 @@
         [Theory(DisplayName =
             "GIVEN empty telemetry client WHEN IntentInstrumentation is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyTelemetryClient_WhenIntentInstrumentationIsConstructed_ThenExceptionIsBeingThrown(
+        public void GivenEmptyTelemetryClientWhenIntentInstrumentationIsConstructedThenExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -100,14 +100,14 @@
 
         [Fact(DisplayName =
             "GIVEN empty settings WHEN IntentInstrumentation is constructed THEN exception is being thrown")]
-        public void GivenEmptySettings_WhenIntentInstrumentationIsConstructed_ThenExceptionIsBeingThrown()
+        public void GivenEmptySettingsWhenIntentInstrumentationIsConstructedThenExceptionIsBeingThrown()
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new IntentInstrumentation(telemetryClient, emptySettings));
+            Assert.Throws<ArgumentNullException>(() => new IntentInstrumentation(this.telemetryClient, emptySettings));
         }
     }
 }

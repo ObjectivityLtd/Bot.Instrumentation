@@ -24,7 +24,7 @@
         [InlineAutoData(ActivityTypes.ConversationUpdate, EventTypes.ConversationUpdate)]
         [InlineAutoData(ActivityTypes.EndOfConversation, EventTypes.ConversationEnded)]
         [InlineAutoData(FakeActivityType, EventTypes.OtherActivity)]
-        public void GivenActivityTypeOtherThanMessage_WhenBuildIsInvoked_ThenEventTelemetryIsBeingCreated(
+        public void GivenActivityTypeOtherThanMessageWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
             string activityType,
             string expectedTelemetryName,
             InstrumentationSettings settings,
@@ -54,8 +54,8 @@
         [Theory(DisplayName =
             "GIVEN additional properties WHEN Build is invoked THEN event telemetry with properties is being created")]
         [AutoMockData]
-        public void GivenAdditionalProperties_WhenBuildIsInvoked_ThenEventTelemetryWithPropertiesIsBeingCreated(
-            IActivity activity,
+        public void GivenAdditionalPropertiesWhenBuildIsInvokedThenEventTelemetryWithPropertiesIsBeingCreated(
+            Microsoft.Bot.Connector.IActivity activity,
             InstrumentationSettings settings,
             IDictionary<string, string> properties)
         {
@@ -73,7 +73,7 @@
         [Theory(DisplayName =
             "GIVEN Message type activity and ReplyToId WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
-        public void GivenMessageTypeActivityAndReplyToId_WhenBuildIsInvoked_ThenEventTelemetryIsBeingCreated(
+        public void GivenMessageTypeActivityAndReplyToIdWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
             InstrumentationSettings settings,
             IFixture fixture)
         {
@@ -84,7 +84,7 @@
                 ChannelId = fixture.Create<string>(),
                 ReplyToId = fixture.Create<string>(),
                 Text = fixture.Create<string>(),
-                Conversation = new ConversationAccount {Id = fixture.Create<string>()}
+                Conversation = new ConversationAccount { Id = fixture.Create<string>() }
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 4;
@@ -106,18 +106,18 @@
             "GIVEN Message type activity and omit username setting WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
         public void
-            GivenMessageTypeActivityAndOmitUsernameSetting_WhenBuildIsInvoked_ThenEventTelemetryIsBeingCreated(
+            GivenMessageTypeActivityAndOmitUsernameSettingWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
                 IFixture fixture)
         {
             // Arrange
-            var settings = new InstrumentationSettings {OmitUsernameFromTelemetry = true};
+            var settings = new InstrumentationSettings { OmitUsernameFromTelemetry = true };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
                 Text = fixture.Create<string>(),
-                Conversation = new ConversationAccount {Id = fixture.Create<string>()},
-                From = new ChannelAccount {Id = fixture.Create<string>()}
+                Conversation = new ConversationAccount { Id = fixture.Create<string>() },
+                From = new Microsoft.Bot.Connector.ChannelAccount { Id = fixture.Create<string>() }
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 5;
@@ -140,18 +140,18 @@
             "GIVEN Message type activity and no omit username setting WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
         public void
-            GivenMessageTypeActivityAndNoOmitUsernameSetting_WhenBuildIsInvoked_ThenEventTelemetryIsBeingCreated(
+            GivenMessageTypeActivityAndNoOmitUsernameSettingWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
                 IFixture fixture)
         {
             // Arrange
-            var settings = new InstrumentationSettings {OmitUsernameFromTelemetry = false};
+            var settings = new InstrumentationSettings { OmitUsernameFromTelemetry = false };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
                 Text = fixture.Create<string>(),
-                Conversation = new ConversationAccount {Id = fixture.Create<string>()},
-                From = new ChannelAccount {Id = fixture.Create<string>()}
+                Conversation = new ConversationAccount { Id = fixture.Create<string>() },
+                From = new Microsoft.Bot.Connector.ChannelAccount { Id = fixture.Create<string>() }
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 6;
@@ -174,11 +174,11 @@
         [Theory(DisplayName =
             "GIVEN empty activity WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivity_WhenEventTelemetryBuilderIsConstructed_ThenExceptionIsBeingThrown(
+        public void GivenEmptyActivityWhenEventTelemetryBuilderIsConstructedThenExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
-            const IActivity emptyActivity = null;
+            const Microsoft.Bot.Connector.IActivity emptyActivity = null;
 
             // Act
             // Assert
@@ -188,8 +188,8 @@
         [Theory(DisplayName =
             "GIVEN empty settings WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptySettings_WhenEventTelemetryBuilderIsConstructed_ThenExceptionIsBeingThrown(
-            IActivity activity)
+        public void GivenEmptySettingsWhenEventTelemetryBuilderIsConstructedThenExceptionIsBeingThrown(
+            Microsoft.Bot.Connector.IActivity activity)
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

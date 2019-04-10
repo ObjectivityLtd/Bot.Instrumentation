@@ -2,24 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">$(TargetFrameworks);net46;net47</TargetFrameworks>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>public.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
-  <ItemGroup Condition="$(TargetFramework.Contains('net4'))">
-    <Reference Include="System" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
 
+  
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.10" />
   </ItemGroup>
+  
 
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\10.0.3\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 </Project>

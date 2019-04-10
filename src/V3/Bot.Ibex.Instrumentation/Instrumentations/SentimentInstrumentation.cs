@@ -4,14 +4,14 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
+    using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Connector;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Sentiments;
-    using Telemetry;
+    using IActivity = Microsoft.Bot.Connector.IActivity;
 
-    [Serializable]
     public class SentimentInstrumentation : ISentimentInstrumentation
     {
         private readonly TelemetryClient telemetryClient;
@@ -27,13 +27,15 @@
 
         public async Task TrackMessageSentiment(IActivity activity)
         {
-            var score = await this.sentimentClient.GetSentiment(activity);
+            var score = await this.sentimentClient.GetSentiment(activity)
+                .ConfigureAwait(false);
             var properties = new Dictionary<string, string>
             {
                 { SentimentConstants.Score, score.Value.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
+            var objectivityActivity = new ActivityAdapter(activity);
+            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.MessageSentiment;
             this.telemetryClient.TrackEvent(eventTelemetry);

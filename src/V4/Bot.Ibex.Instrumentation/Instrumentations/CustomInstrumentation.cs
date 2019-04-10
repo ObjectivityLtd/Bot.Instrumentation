@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using Telemetry;
 
     public class CustomInstrumentation : ICustomInstrumentation
     {
@@ -21,13 +21,14 @@
         }
 
         public void TrackCustomEvent(
-            IActivity activity,
+            Microsoft.Bot.Schema.IActivity activity,
             string eventName = EventTypes.CustomEvent,
             IDictionary<string, string> properties = null)
         {
             BotAssert.ActivityNotNull(activity);
 
-            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
+            var objectivityActivity = new ActivityAdapter(activity);
+            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = string.IsNullOrWhiteSpace(eventName) ? EventTypes.CustomEvent : eventName;
             this.telemetryClient.TrackEvent(eventTelemetry);

@@ -14,7 +14,7 @@
     {
         [Theory(DisplayName = "GIVEN activity WHEN LogAsync is invoked THEN TrackMessageSentiment is invoked")]
         [AutoMockData]
-        public async void GivenActivity_WhenLogAsyncIsInvoked_ThenTrackMessageSentimentIsInvoked(
+        public async void GivenActivityWhenLogAsyncIsInvokedThenTrackMessageSentimentIsInvoked(
             IActivity activity,
             ISentimentInstrumentation sentimentInstrumentation)
         {
@@ -22,7 +22,7 @@
             var instrumentation = new SentimentDialogActivityLogger(sentimentInstrumentation);
 
             // Act
-            await instrumentation.LogAsync(activity);
+            await instrumentation.LogAsync(activity).ConfigureAwait(false);
 
             // Assert
             Mock.Get(sentimentInstrumentation).Verify(
@@ -31,7 +31,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty activity WHEN SentimentDialogActivityLogger is created THEN exception is being thrown")]
-        public void GivenEmptyActivity_WhenSentimentDialogActivityLoggerIsCreated_ThenExceptionIsBeingThrown()
+        public void GivenEmptyActivityWhenSentimentDialogActivityLoggerIsCreatedThenExceptionIsBeingThrown()
         {
             // Arrange
             const ISentimentInstrumentation sentimentInstrumentation = null;

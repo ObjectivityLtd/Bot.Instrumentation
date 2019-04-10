@@ -19,31 +19,31 @@
     [Trait("Category", "Instrumentations")]
     public class CustomInstrumentationTests
     {
-        public CustomInstrumentationTests()
-        {
-            var telemetryConfiguration =
-                new TelemetryConfiguration(FakeInstrumentationKey, mockTelemetryChannel.Object);
-            telemetryClient = new TelemetryClient(telemetryConfiguration);
-        }
-
         private const string FakeInstrumentationKey = "FAKE-INSTRUMENTATION-KEY";
         private readonly Mock<ITelemetryChannel> mockTelemetryChannel = new Mock<ITelemetryChannel>();
         private readonly TelemetryClient telemetryClient;
 
+        public CustomInstrumentationTests()
+        {
+            var telemetryConfiguration =
+                new TelemetryConfiguration(FakeInstrumentationKey, this.mockTelemetryChannel.Object);
+            this.telemetryClient = new TelemetryClient(telemetryConfiguration);
+        }
+
         [Theory(DisplayName = "GIVEN any activity WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivity_WhenTrackCustomEventIsInvoked_ThenEventTelemetryIsBeingSent(
+        public void GivenAnyActivityWhenTrackCustomEventIsInvokedThenEventTelemetryIsBeingSent(
             IMessageActivity activity,
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new CustomInstrumentation(telemetryClient, settings);
+            var instrumentation = new CustomInstrumentation(this.telemetryClient, settings);
 
             // Act
             instrumentation.TrackCustomEvent(activity);
 
             // Assert
-            mockTelemetryChannel.Verify(
+            this.mockTelemetryChannel.Verify(
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == EventTypes.CustomEvent)),
                 Times.Once);
@@ -53,7 +53,7 @@
             "GIVEN any activity, any event name and any property WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public void
-            GivenAnyActivityAnyEventNameAndAnyProperty_WhenTrackCustomEventIsInvoked_ThenEventTelemetryIsBeingSent(
+            GivenAnyActivityAnyEventNameAndAnyPropertyWhenTrackCustomEventIsInvokedThenEventTelemetryIsBeingSent(
                 IMessageActivity activity,
                 string eventName,
                 string propertyKey,
@@ -61,14 +61,14 @@
                 InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new CustomInstrumentation(telemetryClient, settings);
-            var properties = new Dictionary<string, string> {{propertyKey, propertyValue}};
+            var instrumentation = new CustomInstrumentation(this.telemetryClient, settings);
+            var properties = new Dictionary<string, string> { { propertyKey, propertyValue } };
 
             // Act
             instrumentation.TrackCustomEvent(activity, eventName, properties);
 
             // Assert
-            mockTelemetryChannel.Verify(
+            this.mockTelemetryChannel.Verify(
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == eventName &&
                     t.Properties[propertyKey] == propertyValue)),
@@ -78,12 +78,12 @@
         [Theory(DisplayName =
             "GIVEN empty activity result WHEN TrackCustomEvent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivity_WhenTrackCustomEventIsInvoked_ThenExceptionIsBeingThrown(
+        public void GivenEmptyActivityWhenTrackCustomEventIsInvokedThenExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new CustomInstrumentation(telemetryClient, settings);
-            const IActivity emptyActivity = null;
+            var instrumentation = new CustomInstrumentation(this.telemetryClient, settings);
+            const Microsoft.Bot.Connector.IActivity emptyActivity = null;
 
             // Act
             // Assert
@@ -93,7 +93,7 @@
         [Theory(DisplayName =
             "GIVEN empty telemetry client WHEN CustomInstrumentation is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyTelemetryClient_WhenCustomInstrumentationIsConstructed_ThenExceptionIsBeingThrown(
+        public void GivenEmptyTelemetryClientWhenCustomInstrumentationIsConstructedThenExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -106,14 +106,14 @@
 
         [Fact(DisplayName =
             "GIVEN empty settings WHEN CustomInstrumentation is constructed THEN exception is being thrown")]
-        public void GivenEmptySettings_WhenCustomInstrumentationIsConstructed_ThenExceptionIsBeingThrown()
+        public void GivenEmptySettingsWhenCustomInstrumentationIsConstructedThenExceptionIsBeingThrown()
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new CustomInstrumentation(telemetryClient, emptySettings));
+            Assert.Throws<ArgumentNullException>(() => new CustomInstrumentation(this.telemetryClient, emptySettings));
         }
     }
 }

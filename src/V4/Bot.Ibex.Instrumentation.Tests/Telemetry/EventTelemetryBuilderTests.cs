@@ -53,7 +53,7 @@
         [Theory(DisplayName = "GIVEN additional properties WHEN Build is invoked THEN event telemetry with properties is being created")]
         [AutoMockData]
         public void GivenAdditionalProperties_WhenBuildIsInvoked_ThenEventTelemetryWithPropertiesIsBeingCreated(
-            IActivity activity,
+            Microsoft.Bot.Schema.IActivity activity,
             InstrumentationSettings settings,
             IDictionary<string, string> properties)
         {
@@ -112,7 +112,7 @@
                 ChannelId = fixture.Create<string>(),
                 Text = fixture.Create<string>(),
                 Conversation = new ConversationAccount { Id = fixture.Create<string>() },
-                From = new ChannelAccount { Id = fixture.Create<string>() }
+                From = new Microsoft.Bot.Schema.ChannelAccount { Id = fixture.Create<string>() }
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 5;
@@ -144,7 +144,7 @@
                 ChannelId = fixture.Create<string>(),
                 Text = fixture.Create<string>(),
                 Conversation = new ConversationAccount { Id = fixture.Create<string>() },
-                From = new ChannelAccount { Id = fixture.Create<string>() }
+                From = new Microsoft.Bot.Schema.ChannelAccount { Id = fixture.Create<string>() }
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 6;
@@ -170,7 +170,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const IActivity emptyActivity = null;
+            const Microsoft.Bot.Schema.IActivity emptyActivity = null;
 
             // Act
             // Assert
@@ -180,7 +180,7 @@
         [Theory(DisplayName = "GIVEN empty settings WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoMockData]
         public void GivenEmptySettings_WhenEventTelemetryBuilderIsConstructed_ThenExceptionIsBeingThrown(
-            IActivity activity)
+            Microsoft.Bot.Schema.IActivity activity)
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

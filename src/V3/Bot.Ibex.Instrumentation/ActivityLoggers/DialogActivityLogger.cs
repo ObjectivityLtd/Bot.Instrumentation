@@ -17,7 +17,8 @@
 
         public async Task LogAsync(IActivity activity)
         {
-            await this.activityInstrumentation.TrackActivity(activity);
+            await this.activityInstrumentation.TrackActivity(activity)
+                .ConfigureAwait(false);
         }
     }
 }

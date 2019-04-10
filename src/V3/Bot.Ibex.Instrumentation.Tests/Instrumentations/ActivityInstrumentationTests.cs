@@ -24,37 +24,36 @@
         public ActivityInstrumentationTests()
         {
             var telemetryConfiguration =
-                new TelemetryConfiguration(FakeInstrumentationKey, mockTelemetryChannel.Object);
-            telemetryClient = new TelemetryClient(telemetryConfiguration);
+                new TelemetryConfiguration(FakeInstrumentationKey, this.mockTelemetryChannel.Object);
+            this.telemetryClient = new TelemetryClient(telemetryConfiguration);
         }
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackActivity is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public async void GivenAnyActivity_WhenTrackActivityIsInvoked_ThenEventTelemetryIsBeingSent(
+        public async void GivenAnyActivityWhenTrackActivityIsInvokedThenEventTelemetryIsBeingSent(
             IMessageActivity activity,
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new ActivityInstrumentation(telemetryClient, settings);
+            var instrumentation = new ActivityInstrumentation(this.telemetryClient, settings);
 
             // Act
-            await instrumentation.TrackActivity(activity);
-            //.ConfigureAwait(false);
+            await instrumentation.TrackActivity(activity).ConfigureAwait(false);
 
             // Assert
-            mockTelemetryChannel.Verify(
-                tc => tc.Send(It.Is<EventTelemetry>(x => x.Name != string.Empty)),
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(x => x.Name.Length == 0)),
                 Times.Once);
         }
 
         [Theory(DisplayName =
             "GIVEN empty activity result WHEN TrackActivity is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivity_WhenTrackActivityIsInvoked_ThenExceptionIsBeingThrown(
+        public void GivenEmptyActivityWhenTrackActivityIsInvokedThenExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new ActivityInstrumentation(telemetryClient, settings);
+            var instrumentation = new ActivityInstrumentation(this.telemetryClient, settings);
             const IActivity emptyActivity = null;
 
             // Act
@@ -66,7 +65,7 @@
         [Theory(DisplayName =
             "GIVEN empty telemetry client WHEN ActivityInstrumentation is constructed THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptyTelemetryClient_WhenActivityInstrumentationIsConstructed_ThenExceptionIsBeingThrown(
+        public void GivenEmptyTelemetryClientWhenActivityInstrumentationIsConstructedThenExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -80,7 +79,7 @@
         [Theory(DisplayName =
             "GIVEN empty settings WHEN ActivityInstrumentation is constructed THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptySettings_WhenActivityInstrumentationIsConstructed_ThenExceptionIsBeingThrown(
+        public void GivenEmptySettingsWhenActivityInstrumentationIsConstructedThenExceptionIsBeingThrown(
             TelemetryClient emptyTelemetryClient)
         {
             // Arrange

@@ -7,7 +7,7 @@
     public interface ICustomInstrumentation
     {
         void TrackCustomEvent(
-            IActivity activity,
+            Microsoft.Bot.Schema.IActivity activity,
             string eventName = EventTypes.CustomEvent,
             IDictionary<string, string> properties = null);
     }
