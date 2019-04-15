@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Extensions
+﻿/*namespace Bot.Ibex.Instrumentation.V3.Tests.Extensions
 {
     using System;
     using AutoFixture.Xunit2;
@@ -35,4 +35,4 @@
             actual.Should().Be(expected);
         }
     }
-}
+}*/

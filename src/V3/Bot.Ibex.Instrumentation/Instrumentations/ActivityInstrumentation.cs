@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Adapters;
     using Microsoft.ApplicationInsights;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
@@ -25,6 +26,7 @@
                 var objectivityActivity = new ActivityAdapter(activity);
                 var builder = new EventTelemetryBuilder(objectivityActivity, this.settings);
                 var eventTelemetry = builder.Build();
+                eventTelemetry.Name = EventTypes.ActivityEvent;
                 this.telemetryClient.TrackEvent(eventTelemetry);
             });
         }

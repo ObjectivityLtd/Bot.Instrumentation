@@ -31,8 +31,6 @@
     <Description Condition="'$(Description)'==''">Custom Analytics for bot framework to leverage with ibex.</Description>
   </PropertyGroup>
 	
-
-	
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
 	<PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />

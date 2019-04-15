@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public interface ICustomInstrumentation

@@ -5,6 +5,7 @@
     using System.Globalization;
     using Adapters;
     using Microsoft.ApplicationInsights;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using IActivity = Microsoft.Bot.Connector.IActivity;

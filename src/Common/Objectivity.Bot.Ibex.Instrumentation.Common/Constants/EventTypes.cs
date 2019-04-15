@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Constants
 {
     public static class EventTypes
     {
@@ -12,5 +12,6 @@
         public const string OtherActivity = "MBFEvent.Other";
         public const string QnaEvent = "MBFEvent.QNAEvent";
         public const string GoalTriggeredEvent = "MBFEvent.GoalEvent";
+        public const string ActivityEvent = "MBFEvent.ActivityEvent";
     }
 }

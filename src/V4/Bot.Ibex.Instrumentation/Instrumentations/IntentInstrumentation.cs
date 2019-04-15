@@ -7,6 +7,7 @@
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 

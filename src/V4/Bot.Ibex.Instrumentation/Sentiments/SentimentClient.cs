@@ -3,10 +3,11 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Extensions;
+    using Adapters;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
     using Microsoft.Bot.Schema;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Rest;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
@@ -45,7 +46,8 @@
                 throw new ObjectDisposedException(this.GetType().FullName);
             }
 
-            MultiLanguageBatchInput input = activity.ToSentimentInput();
+            var objectivityActivity = new ActivityAdapter(activity);
+            MultiLanguageBatchInput input = objectivityActivity.ToSentimentInput();
             SentimentBatchResult result = await this.textAnalyticsClient.SentimentAsync(input)
                 .ConfigureAwait(false);
 

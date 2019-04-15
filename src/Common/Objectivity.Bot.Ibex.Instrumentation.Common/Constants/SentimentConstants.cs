@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Constants
 {
     public static class SentimentConstants
     {

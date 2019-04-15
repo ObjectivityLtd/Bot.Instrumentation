@@ -7,22 +7,22 @@
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   
-  <PropertyGroup>
+  <!--<PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. -->
+    --><!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. --><!--
     <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
-    <!-- Set StrongNameKeyPath to a default value when not defined by a build server. -->
+    --><!-- Set StrongNameKeyPath to a default value when not defined by a build server. --><!--
     <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
     <AssemblyOriginatorKeyFile>$(StrongNameKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
   <ItemGroup>
     <None Include="..\..\public.snk" Link="public.snk" />
-  </ItemGroup>
+  </ItemGroup>-->
   
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.8.0" />
-	<PackageReference Include="AutoFixture.AutoMoq" Version="4.5.0" />
+	<PackageReference Include="AutoFixture.AutoMoq" Version="4.8.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />	
 	<PackageReference Include="FluentAssertions" Version="5.6.0" />
 	<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />	

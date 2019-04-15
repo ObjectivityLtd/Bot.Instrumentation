@@ -7,6 +7,7 @@
     using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Connector;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Sentiments;

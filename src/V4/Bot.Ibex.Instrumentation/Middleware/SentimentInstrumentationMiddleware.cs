@@ -4,11 +4,12 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
-    using Extensions;
+    using Adapters;
     using Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Bot.Builder;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Sentiments;
 
@@ -60,7 +61,8 @@
 
             BotAssert.ContextNotNull(turnContext);
 
-            if (turnContext.Activity.IsIncomingMessage())
+            var objectivityActivity = new ActivityExtensionsAdapter(turnContext);
+            if (objectivityActivity.IsIncomingMessage())
             {
                 await this.sentimentInstrumentation.TrackMessageSentiment(turnContext.Activity)
                     .ConfigureAwait(false);

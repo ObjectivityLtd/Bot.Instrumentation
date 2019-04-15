@@ -1,16 +1,15 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Telemetry
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Telemetry
 {
     using System;
     using System.Collections.Generic;
-    using AutoFixture;
-    using AutoFixture.Xunit2;
+    using System.Globalization;
+    using AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Common.Telemetry;
+    using Constants;
     using FluentAssertions;
-    using Microsoft.Bot.Connector;
-    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using V3.Telemetry;
+    using global::AutoFixture;
+    using global::AutoFixture.Xunit2;
+    using Settings;
     using Xunit;
 
     [Collection("EventTelemetryBuilder")]
@@ -35,7 +34,7 @@
             {
                 Type = activityType,
                 ChannelId = fixture.Create<string>(),
-                Timestamp = DateTime.MinValue
+                TimeStampIso8601 = DateTime.MinValue.ToString(CultureInfo.CurrentCulture)
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 3;
@@ -47,7 +46,7 @@
             eventTelemetry.Name.Should().Be(expectedTelemetryName);
             eventTelemetry.Properties.Count.Should().Be(expectedNumberOfTelemetryProperties);
             eventTelemetry.Properties[BotConstants.TypeProperty].Should().Be(activity.Type);
-            eventTelemetry.Properties[BotConstants.TimestampProperty].Should().Be(activity.Timestamp.Value.AsIso8601());
+            eventTelemetry.Properties[BotConstants.TimestampProperty].Should().Be(activity.TimeStampIso8601);
             eventTelemetry.Properties[BotConstants.ChannelProperty].Should().Be(activity.ChannelId);
         }
 
@@ -55,7 +54,7 @@
             "GIVEN additional properties WHEN Build is invoked THEN event telemetry with properties is being created")]
         [AutoMockData]
         public void GivenAdditionalPropertiesWhenBuildIsInvokedThenEventTelemetryWithPropertiesIsBeingCreated(
-            Microsoft.Bot.Connector.IActivity activity,
+            IActivity activity,
             InstrumentationSettings settings,
             IDictionary<string, string> properties)
         {
@@ -78,16 +77,23 @@
             IFixture fixture)
         {
             // Arrange
+            var messageActivity = new MessageActivity { Text = fixture.Create<string>() };
+            var channelAccount = new ChannelAccount
+            {
+                Id = fixture.Create<string>(),
+                Name = fixture.Create<string>()
+            };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
                 ReplyToId = fixture.Create<string>(),
-                Text = fixture.Create<string>(),
-                Conversation = new ConversationAccount { Id = fixture.Create<string>() }
+                MessageActivity = messageActivity,
+                TimeStampIso8601 = DateTime.Now.ToString(CultureInfo.CurrentCulture),
+                ChannelAccount = channelAccount
             };
             var builder = new EventTelemetryBuilder(activity, settings);
-            const int expectedNumberOfTelemetryProperties = 4;
+            const int expectedNumberOfTelemetryProperties = 5;
             const string expectedTelemetryName = EventTypes.MessageSent;
 
             // Act
@@ -97,9 +103,9 @@
             eventTelemetry.Name.Should().Be(expectedTelemetryName);
             eventTelemetry.Properties.Count.Should().Be(expectedNumberOfTelemetryProperties);
             eventTelemetry.Properties[BotConstants.TypeProperty].Should().Be(activity.Type);
-            eventTelemetry.Properties[BotConstants.TextProperty].Should().Be(activity.Text);
-            eventTelemetry.Properties[BotConstants.ConversationIdProperty].Should().Be(activity.Conversation.Id);
+            eventTelemetry.Properties[BotConstants.TextProperty].Should().Be(activity.MessageActivity.Text);
             eventTelemetry.Properties[BotConstants.ChannelProperty].Should().Be(activity.ChannelId);
+            eventTelemetry.Properties[BotConstants.TimestampProperty].Should().Be(activity.TimeStampIso8601);
         }
 
         [Theory(DisplayName =
@@ -111,13 +117,18 @@
         {
             // Arrange
             var settings = new InstrumentationSettings { OmitUsernameFromTelemetry = true };
+            var messageActivity = new MessageActivity { Text = fixture.Create<string>() };
+            var channelAccount = new ChannelAccount
+            {
+                Id = fixture.Create<string>(),
+                Name = fixture.Create<string>()
+            };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
-                Text = fixture.Create<string>(),
-                Conversation = new ConversationAccount { Id = fixture.Create<string>() },
-                From = new Microsoft.Bot.Connector.ChannelAccount { Id = fixture.Create<string>() }
+                MessageActivity = messageActivity,
+                ChannelAccount = channelAccount
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 5;
@@ -130,9 +141,8 @@
             eventTelemetry.Name.Should().Be(expectedTelemetryName);
             eventTelemetry.Properties.Count.Should().Be(expectedNumberOfTelemetryProperties);
             eventTelemetry.Properties[BotConstants.TypeProperty].Should().Be(activity.Type);
-            eventTelemetry.Properties[BotConstants.TextProperty].Should().Be(activity.Text);
-            eventTelemetry.Properties[BotConstants.UserIdProperty].Should().Be(activity.From.Id);
-            eventTelemetry.Properties[BotConstants.ConversationIdProperty].Should().Be(activity.Conversation.Id);
+            eventTelemetry.Properties[BotConstants.TextProperty].Should().Be(activity.MessageActivity.Text);
+            eventTelemetry.Properties[BotConstants.UserIdProperty].Should().Be(activity.ChannelAccount.Id);
             eventTelemetry.Properties[BotConstants.ChannelProperty].Should().Be(activity.ChannelId);
         }
 
@@ -145,13 +155,18 @@
         {
             // Arrange
             var settings = new InstrumentationSettings { OmitUsernameFromTelemetry = false };
+            var messageActivity = new MessageActivity { Text = fixture.Create<string>() };
+            var channelAccount = new ChannelAccount
+            {
+                Id = fixture.Create<string>(),
+                Name = fixture.Create<string>()
+            };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
-                Text = fixture.Create<string>(),
-                Conversation = new ConversationAccount { Id = fixture.Create<string>() },
-                From = new Microsoft.Bot.Connector.ChannelAccount { Id = fixture.Create<string>() }
+                MessageActivity = messageActivity,
+                ChannelAccount = channelAccount
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 6;
@@ -164,10 +179,9 @@
             eventTelemetry.Name.Should().Be(expectedTelemetryName);
             eventTelemetry.Properties.Count.Should().Be(expectedNumberOfTelemetryProperties);
             eventTelemetry.Properties[BotConstants.TypeProperty].Should().Be(activity.Type);
-            eventTelemetry.Properties[BotConstants.TextProperty].Should().Be(activity.Text);
-            eventTelemetry.Properties[BotConstants.UserIdProperty].Should().Be(activity.From.Id);
-            eventTelemetry.Properties[BotConstants.UserNameProperty].Should().Be(activity.From.Name);
-            eventTelemetry.Properties[BotConstants.ConversationIdProperty].Should().Be(activity.Conversation.Id);
+            eventTelemetry.Properties[BotConstants.TextProperty].Should().Be(activity.MessageActivity.Text);
+            eventTelemetry.Properties[BotConstants.UserIdProperty].Should().Be(activity.ChannelAccount.Id);
+            eventTelemetry.Properties[BotConstants.UserNameProperty].Should().Be(activity.ChannelAccount.Name);
             eventTelemetry.Properties[BotConstants.ChannelProperty].Should().Be(activity.ChannelId);
         }
 
@@ -178,7 +192,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const Microsoft.Bot.Connector.IActivity emptyActivity = null;
+            const Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry.IActivity emptyActivity = null;
 
             // Act
             // Assert
@@ -189,7 +203,7 @@
             "GIVEN empty settings WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoMockData]
         public void GivenEmptySettingsWhenEventTelemetryBuilderIsConstructedThenExceptionIsBeingThrown(
-            Microsoft.Bot.Connector.IActivity activity)
+            IActivity activity)
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

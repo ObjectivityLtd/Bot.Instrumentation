@@ -6,6 +6,7 @@
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder.Luis.Models;
     using Newtonsoft.Json;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using IActivity = Microsoft.Bot.Connector.IActivity;

@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
+    using System;
     using Newtonsoft.Json;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
@@ -9,14 +10,14 @@
 
         public ActivityAdapter(Microsoft.Bot.Connector.IActivity activity)
         {
-            this.activity = activity;
+            this.activity = activity ?? throw new ArgumentNullException(nameof(activity));
         }
 
         public string TimeStampIso8601
         {
             get
             {
-                var s = JsonConvert.SerializeObject(this.activity.Timestamp.Value.ToUniversalTime());
+                var s = JsonConvert.SerializeObject(this.activity.Timestamp?.ToUniversalTime());
                 return s.Substring(1, s.Length - 2);
             }
         }

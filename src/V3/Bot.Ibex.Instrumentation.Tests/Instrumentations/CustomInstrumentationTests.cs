@@ -10,6 +10,7 @@
     using Microsoft.Bot.Connector;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using V3.Instrumentations;

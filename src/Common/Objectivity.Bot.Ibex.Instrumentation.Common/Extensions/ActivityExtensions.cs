@@ -1,8 +1,9 @@
-﻿namespace Bot.Ibex.Instrumentation.V4.Extensions
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Extensions
 {
     using System.Collections.Generic;
+    using Constants;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
-    using Microsoft.Bot.Schema;
+    using Telemetry;
 
     public static class ActivityExtensions
     {
@@ -11,7 +12,7 @@
             return activity?.Type == ActivityTypes.Message && activity?.ReplyToId == null;
         }
 
-        public static MultiLanguageBatchInput ToSentimentInput(this IMessageActivity activity)
+        public static MultiLanguageBatchInput ToSentimentInput(this IActivity activity)
         {
             return activity == null
                 ? null
@@ -22,7 +23,7 @@
                         {
                             // TODO: investigate the following Language = activity.Locale,
                             Id = "1",
-                            Text = activity.Text
+                            Text = activity.MessageActivity.Text
                         }
                     });
         }

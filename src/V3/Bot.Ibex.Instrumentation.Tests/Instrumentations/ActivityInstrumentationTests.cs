@@ -9,11 +9,12 @@
     using Microsoft.Bot.Connector;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using V3.Instrumentations;
     using Xunit;
 
-    [Collection("SentimentInstrumentation")]
+    [Collection("ActivityInstrumentation")]
     [Trait("Category", "Instrumentations")]
     public class ActivityInstrumentationTests
     {
@@ -31,7 +32,7 @@
         [Theory(DisplayName = "GIVEN any activity WHEN TrackActivity is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public async void GivenAnyActivityWhenTrackActivityIsInvokedThenEventTelemetryIsBeingSent(
-            IMessageActivity activity,
+            IActivity activity,
             InstrumentationSettings settings)
         {
             // Arrange
@@ -42,7 +43,7 @@
 
             // Assert
             this.mockTelemetryChannel.Verify(
-                tc => tc.Send(It.Is<EventTelemetry>(x => x.Name.Length == 0)),
+                tc => tc.Send(It.Is<EventTelemetry>(x => x.Name == EventTypes.ActivityEvent)),
                 Times.Once);
         }
 
