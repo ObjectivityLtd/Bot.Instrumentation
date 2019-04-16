@@ -1,19 +1,18 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
 {
     using System;
     using System.Globalization;
-    using AutoFixture.Xunit2;
+    using AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Common.Instrumentations;
+    using Common.Telemetry;
+    using Constants;
+    using global::AutoFixture.Xunit2;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.ApplicationInsights.Extensibility;
-    using Microsoft.Bot.Connector;
     using Moq;
-    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using V3.Instrumentations;
+    using Settings;
     using Xunit;
 
     [Collection("QnAInstrumentation")]
@@ -34,47 +33,41 @@
         [Theory(DisplayName = "GIVEN any activity WHEN TrackEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public void GivenAnyActivityWhenTrackEventIsInvokedThenEventTelemetryIsBeingSent(
-            IMessageActivity activity,
-            string userQuery,
-            string kbQuestion,
-            string kbAnswer,
-            double score,
+            IActivity activity,
+            QueryResult queryResult,
             InstrumentationSettings settings)
         {
             // Arrange
             var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
 
             // Act
-            instrumentation.TrackEvent(activity, userQuery, kbQuestion, kbAnswer, score);
+            instrumentation.TrackEvent(activity, queryResult);
 
             // Assert
             this.mockTelemetryChannel.Verify(
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == EventTypes.QnaEvent &&
-                    t.Properties[QnAConstants.UserQuery] == userQuery &&
-                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == kbQuestion &&
-                    t.Properties[QnAConstants.KnowledgeBaseAnswer] == kbAnswer &&
-                    t.Properties[QnAConstants.Score] == score.ToString(CultureInfo.InvariantCulture))),
+                    t.Properties[QnAConstants.UserQuery] == activity.MessageActivity.Text &&
+                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == queryResult.KnowledgeBaseQuestion &&
+                    t.Properties[QnAConstants.KnowledgeBaseAnswer] == queryResult.KnowledgeBaseAnswer &&
+                    t.Properties[QnAConstants.Score] == queryResult.Score.ToString(CultureInfo.InvariantCulture))),
                 Times.Once);
         }
 
         [Theory(DisplayName = "GIVEN empty activity result WHEN TrackEvent is invoked THEN exception is being thrown")]
         [AutoData]
         public void GivenEmptyActivityWhenTrackEventIsInvokedThenExceptionIsBeingThrown(
-            string userQuery,
-            string kbQuestion,
-            string kbAnswer,
-            double score,
+            QueryResult queryResult,
             InstrumentationSettings settings)
         {
             // Arrange
             var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
-            const IMessageActivity emptyActivity = null;
+            const IActivity emptyActivity = null;
 
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() =>
-                instrumentation.TrackEvent(emptyActivity, userQuery, kbQuestion, kbAnswer, score));
+                instrumentation.TrackEvent(emptyActivity, queryResult));
         }
 
         [Theory(DisplayName = "GIVEN empty query result WHEN TrackEvent is invoked THEN exception is being thrown")]
@@ -84,16 +77,13 @@
         {
             // Arrange
             var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
-            IMessageActivity activity = null;
-            const string userQuery = null;
-            const string kbQuestion = null;
-            const string kbAnswer = null;
-            const double score = 0;
+            IActivity activity = null;
+            QueryResult queryResult = null;
 
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() =>
-                instrumentation.TrackEvent(activity, userQuery, kbQuestion, kbAnswer, score));
+                instrumentation.TrackEvent(activity, queryResult));
         }
 
         [Theory(DisplayName =

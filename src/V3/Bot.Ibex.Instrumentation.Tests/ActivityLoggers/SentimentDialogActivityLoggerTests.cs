@@ -1,11 +1,12 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Tests.ActivityLoggers
 {
     using System;
+    using Adapters;
     using Microsoft.Bot.Connector;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
     using V3.ActivityLoggers;
-    using V3.Instrumentations;
     using Xunit;
 
     [Collection("SentimentDialogActivityLogger")]
@@ -22,11 +23,12 @@
             var instrumentation = new SentimentDialogActivityLogger(sentimentInstrumentation);
 
             // Act
+            var objectivityActivity = new ActivityAdapter(activity);
             await instrumentation.LogAsync(activity).ConfigureAwait(false);
 
             // Assert
             Mock.Get(sentimentInstrumentation).Verify(
-                ai => ai.TrackMessageSentiment(activity), Times.Once);
+                ai => ai.TrackMessageSentiment(It.IsAny<ActivityAdapter>()), Times.Once);
         }
 
         [Fact(DisplayName =

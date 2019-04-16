@@ -1,8 +1,8 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Sentiments
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments
 {
-    using System;
+    using System;   
     using System.Threading.Tasks;
-    using Microsoft.Bot.Connector;
+    using Telemetry;
 
     public interface ISentimentClient : IDisposable
     {

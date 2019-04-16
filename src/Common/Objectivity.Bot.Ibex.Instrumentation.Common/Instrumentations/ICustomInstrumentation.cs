@@ -1,9 +1,8 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System.Collections.Generic;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using IActivity = Microsoft.Bot.Connector.IActivity;
+    using Constants;
+    using Telemetry;
 
     public interface ICustomInstrumentation
     {

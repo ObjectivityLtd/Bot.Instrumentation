@@ -18,6 +18,12 @@ dotnet_csproj:
 environment:
   namespace: Bot.Ibex.Instrumentation
   cc: opencover
+    matrix:
+  - package_module: V3
+    package_suffix: .V3
+  - package_module: V4
+    package_suffix: .V4
+    
   StrongNameKeyName: key.snk
   StrongNameKeyPath: ''
   StrongNameKey:

@@ -1,15 +1,14 @@
-﻿namespace Bot.Ibex.Instrumentation.V4.Sentiments
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Adapters;
+    using Extensions;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
-    using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Rest;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using Rest;
+    using Settings;
+    using Telemetry;
 
     public class SentimentClient : ISentimentClient
     {
@@ -34,7 +33,7 @@
             this.textAnalyticsClient = textAnalyticsClient ?? throw new ArgumentNullException(nameof(textAnalyticsClient));
         }
 
-        public async Task<double?> GetSentiment(IMessageActivity activity)
+        public async Task<double?> GetSentiment(IActivity activity)
         {
             if (activity == null)
             {
@@ -46,10 +45,9 @@
                 throw new ObjectDisposedException(this.GetType().FullName);
             }
 
-            var objectivityActivity = new ActivityAdapter(activity);
-            MultiLanguageBatchInput input = objectivityActivity.ToSentimentInput();
+            MultiLanguageBatchInput input = activity.ToSentimentInput();
             SentimentBatchResult result = await this.textAnalyticsClient.SentimentAsync(input)
-                .ConfigureAwait(false);
+                                            .ConfigureAwait(false);
 
             return result?.Documents[0].Score;
         }

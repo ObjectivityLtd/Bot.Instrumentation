@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
+﻿/*namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
 {
     using System;
     using System.Threading.Tasks;
@@ -231,3 +231,4 @@
         }
     }
 }
+*/

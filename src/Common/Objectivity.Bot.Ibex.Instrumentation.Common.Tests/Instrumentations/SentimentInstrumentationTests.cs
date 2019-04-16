@@ -1,21 +1,20 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
 {
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-    using AutoFixture.Xunit2;
+    using AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Common.Instrumentations;
+    using Common.Sentiments;
+    using Common.Telemetry;
+    using Constants;
+    using global::AutoFixture.Xunit2;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.ApplicationInsights.Extensibility;
-    using Microsoft.Bot.Connector;
     using Moq;
-    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using V3.Instrumentations;
-    using V3.Sentiments;
+    using Settings;
     using Xunit;
 
     [Collection("SentimentInstrumentation")]
@@ -38,15 +37,16 @@
         [AutoMockData]
         public async void GivenAnyActivityWhenTrackEventIsInvokedThenEventTelemetryIsBeingSent(
             double sentimentScore,
-            IMessageActivity activity,
+            IActivity activity,
             ISentimentClient sentimentClient,
             InstrumentationSettings settings)
         {
             // Arrange
             var instrumentation = new SentimentInstrumentation(settings, this.telemetryClient, sentimentClient);
+
             Mock.Get(sentimentClient)
-                .Setup(s => s.GetSentiment(activity))
-                .Returns(Task.FromResult<double?>(sentimentScore));
+               .Setup(s => s.GetSentiment(activity))
+               .Returns(Task.FromResult<double?>(sentimentScore));
 
             // Act
             await instrumentation.TrackMessageSentiment(activity)
@@ -68,7 +68,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const IMessageActivity emptyActivity = null;
+            const IActivity emptyActivity = null;
             var instrumentation = new SentimentInstrumentation(settings, this.telemetryClient, sentimentClient);
 
             // Act

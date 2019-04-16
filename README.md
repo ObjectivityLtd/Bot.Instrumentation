@@ -2,9 +2,71 @@
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/ObjectivityLtd/Bot.Ibex.Instrumentation?branch=master&svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-ibex-instrumentation) [![Tests Status](https://img.shields.io/appveyor/tests/ObjectivityAdminsTeam/bot-ibex-instrumentation/master.svg)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-ibex-instrumentation) [![codecov](https://codecov.io/gh/ObjectivityLtd/Bot.Ibex.Instrumentation/branch/master/graph/badge.svg)](https://codecov.io/gh/ObjectivityLtd/Bot.Ibex.Instrumentation)   [![nuget](https://img.shields.io/nuget/v/Bot.Ibex.Instrumentation.svg) ![Downloads](https://img.shields.io/nuget/dt/Bot.Ibex.Instrumentation.svg)](https://www.nuget.org/packages/Bot.Ibex.Instrumentation/) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
+Simplifies adding custom analytics for bots built with [Microsoft Bot Framework V3](https://dev.botframework.com) to leverage it with [Ibex Dashboard](https://github.com/Azure/ibex-dashboard).
+
+## Instrumentations V3
+
+### QnAInstrumentation
+
+Provides QnA Maker instrumentation.
+
+#### Example
+
+##### Setup
+
+```csharp
+var telemetryClient = new TelemetryClient();
+var instrumentationSettings = new InstrumentationSettings();
+
+builder.Register(c => new QnAInstrumentation(telemetryClient, instrumentationSettings))
+	.Keyed<IQnAInstrumentation>(FiberModule.Key_DoNotSerialize)
+	.As<IQnAInstrumentation>();
+```
+
+##### Usage
+
+```csharp
+private async Task DispatchToQnAMakerAsync(
+    QnAMaker qnaMaker,
+    ITurnContext turnContext,
+    IQnAInstrumentation instrumentation,
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    if (!string.IsNullOrEmpty(turnContext.Activity.Text))
+    {
+        var results = await qnaMaker.GetAnswersAsync(turnContext)
+            .ConfigureAwait(false);
+
+        if (results.Any())
+        {
+            var result = results.First();
+            instrumentation.TrackEvent(turnContext.Activity, result);
+            await turnContext.SendActivityAsync(result.Answer, cancellationToken: cancellationToken);
+        }
+        else
+        {
+            var message = $"Couldn't find an answer.";
+            await turnContext.SendActivityAsync(message, cancellationToken: cancellationToken);
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 Simplifies adding custom analytics for bots built with [Microsoft Bot Framework V4](https://dev.botframework.com) to leverage it with [Ibex Dashboard](https://github.com/Azure/ibex-dashboard).
 
-## Instrumentations
+## Instrumentations V4
 
 ### QnAInstrumentation
 

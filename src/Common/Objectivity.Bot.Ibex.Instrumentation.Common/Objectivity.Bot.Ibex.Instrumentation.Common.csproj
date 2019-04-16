@@ -4,22 +4,28 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-   <PropertyGroup>
+   <!--<PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. -->
+    --><!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. --><!--
     <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
-    <!-- Set StrongNameKeyPath to a default value when not defined by a build server. -->
+    --><!-- Set StrongNameKeyPath to a default value when not defined by a build server. --><!--
     <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
     <AssemblyOriginatorKeyFile>..\..\public.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
     <ItemGroup>
     <None Include="..\..\public.snk" Link="public.snk" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Bot.Connector">
+      <HintPath>C:\Users\mchudzik2\.nuget\packages\microsoft.bot.connector\3.12.2.4\lib\net46\Microsoft.Bot.Connector.dll</HintPath>
+    </Reference>
   </ItemGroup>
   
 </Project>

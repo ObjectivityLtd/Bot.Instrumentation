@@ -1,14 +1,12 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Adapters;
+    using Constants;
     using Microsoft.ApplicationInsights;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using IActivity = Microsoft.Bot.Connector.IActivity;
+    using Settings;
+    using Telemetry;
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
@@ -21,23 +19,26 @@
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
-        public void TrackEvent(IActivity activity, string userQuery, string kbQuestion, string kbAnswer, double score)
+        public void TrackEvent(IActivity activity, QueryResult queryResult)
         {
             if (activity == null)
+            {
+                throw new ArgumentNullException(nameof(activity));
+            }
+            if (queryResult == null)
             {
                 throw new ArgumentNullException(nameof(activity));
             }
 
             var properties = new Dictionary<string, string>
             {
-                { QnAConstants.UserQuery, userQuery },
-                { QnAConstants.KnowledgeBaseQuestion, kbQuestion },
-                { QnAConstants.KnowledgeBaseAnswer, kbAnswer },
-                { QnAConstants.Score, score.ToString(CultureInfo.InvariantCulture) }
+                { QnAConstants.UserQuery, activity.MessageActivity.Text },
+                { QnAConstants.KnowledgeBaseQuestion, queryResult.KnowledgeBaseQuestion },
+                { QnAConstants.KnowledgeBaseAnswer, queryResult.KnowledgeBaseAnswer },
+                { QnAConstants.Score, queryResult.Score.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var objectivityActivity = new ActivityAdapter(activity);
-            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
+            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.QnaEvent;
             this.telemetryClient.TrackEvent(eventTelemetry);

@@ -1,24 +1,22 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Rest
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Rest
 {
     using System;
     using System.Linq;
     using System.Net.Http;
     using System.Threading;
-    using AutoFixture.Xunit2;
+    using Common.Rest;
     using FluentAssertions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Rest;
+    using global::AutoFixture.Xunit2;
     using Xunit;
 
     [Collection("ApiKeyServiceClientCredentials")]
     [Trait("Category", "Rest")]
     public class ApiKeyServiceClientCredentialsTests
     {
-        [Theory(DisplayName =
-            "GIVEN ApiKeyServiceClientCredentials WHEN ProcessHttpRequestAsync is invoked THEN request headers decorated with subscription keya")]
+        [Theory(DisplayName = "GIVEN ApiKeyServiceClientCredentials WHEN ProcessHttpRequestAsync is invoked THEN request headers decorated with subscription key")]
         [AutoData]
-        public async void
-            GivenApiKeyServiceClientCredentialsWhenProcessHttpRequestAsyncIsInvokedThenRequestHeadersDecoratedWithSubscriptionKey(
-                ApiKeyServiceClientCredentials credentials)
+        public async void GivenApiKeyServiceClientCredentials_WhenProcessHttpRequestAsyncIsInvoked_ThenRequestHeadersDecoratedWithSubscriptionKey(
+            ApiKeyServiceClientCredentials credentials)
         {
             // Arrange
             var request = new HttpRequestMessage();
@@ -35,20 +33,17 @@
                     p.Value.First() == credentials.SubscriptionKey);
         }
 
-        [Theory(DisplayName =
-            "GIVEN empty HttpRequestMessage WHEN ProcessHttpRequestAsync is invoked THEN exception is being throwna")]
+        [Theory(DisplayName = "GIVEN empty HttpRequestMessage WHEN ProcessHttpRequestAsync is invoked THEN exception is being thrown")]
         [AutoData]
-        public async void
-            GivenEmptyHttpRequestMessageWhenProcessHttpRequestAsyncIsInvokedThenExceptionIsBeingThrown(
-                ApiKeyServiceClientCredentials credentials)
+        public async void GivenEmptyHttpRequestMessage_WhenProcessHttpRequestAsyncIsInvoked_ThenExceptionIsBeingThrown(
+            ApiKeyServiceClientCredentials credentials)
         {
             // Arrange
             const HttpRequestMessage emptyHttpRequestMessage = null;
 
             // Act
             // Assert
-            await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                    credentials.ProcessHttpRequestAsync(emptyHttpRequestMessage, default(CancellationToken)))
+            await Assert.ThrowsAsync<ArgumentNullException>(() => credentials.ProcessHttpRequestAsync(emptyHttpRequestMessage, default(CancellationToken)))
                 .ConfigureAwait(false);
         }
     }

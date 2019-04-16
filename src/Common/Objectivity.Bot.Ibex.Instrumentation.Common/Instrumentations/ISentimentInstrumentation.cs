@@ -1,7 +1,7 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System.Threading.Tasks;
-    using Microsoft.Bot.Connector;
+    using Telemetry;
 
     public interface ISentimentInstrumentation
     {

@@ -1,17 +1,14 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
-    using Adapters;
+    using Constants;
     using Microsoft.ApplicationInsights;
-    using Microsoft.Bot.Connector;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using Sentiments;
-    using IActivity = Microsoft.Bot.Connector.IActivity;
+    using Settings;
+    using Telemetry;
 
     public class SentimentInstrumentation : ISentimentInstrumentation
     {
@@ -35,8 +32,7 @@
                 { SentimentConstants.Score, score.Value.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var objectivityActivity = new ActivityAdapter(activity);
-            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
+            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.MessageSentiment;
             this.telemetryClient.TrackEvent(eventTelemetry);
