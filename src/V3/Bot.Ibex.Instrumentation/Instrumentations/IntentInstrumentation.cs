@@ -1,15 +1,11 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
 {
     using System;
-    using System.Collections.Generic;
     using Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder.Luis.Models;
-    using Newtonsoft.Json;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
+    using Microsoft.Bot.Connector;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
-    using IActivity = Microsoft.Bot.Connector.IActivity;
 
     public class IntentInstrumentation : IIntentInstrumentation
     {
@@ -24,29 +20,13 @@
 
         public void TrackIntent(IActivity activity, LuisResult result)
         {
-            if (result?.TopScoringIntent == null)
-            {
-                throw new ArgumentNullException(nameof(result));
-            }
-
-            var properties = new Dictionary<string, string>
-            {
-                { IntentConstants.Intent, result.TopScoringIntent.Intent },
-                { IntentConstants.Score, result.TopScoringIntent.Score.ToString() },
-                { IntentConstants.Entities, JsonConvert.SerializeObject(result.Entities) }
-            };
-
-            this.TrackIntent(activity, properties);
-        }
-
-        private void TrackIntent(IActivity activity, IDictionary<string, string> properties)
-        {
             var objectivityActivity = new ActivityAdapter(activity);
-            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings, properties);
-            var eventTelemetry = builder.Build();
-            eventTelemetry.Name = EventTypes.Intent;
+            var luisResultAdapter = new LuisResultAdapter(result);
+            var convertedResult = luisResultAdapter.ConvertLuisResultToRecognizedIntentResult();
 
-            this.telemetryClient.TrackEvent(eventTelemetry);
+            var intentInstrumentation =
+                new Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
+            intentInstrumentation.TrackIntent(objectivityActivity, convertedResult, this.telemetryClient, this.settings);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Adapters
 {
-    using System.Globalization;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;

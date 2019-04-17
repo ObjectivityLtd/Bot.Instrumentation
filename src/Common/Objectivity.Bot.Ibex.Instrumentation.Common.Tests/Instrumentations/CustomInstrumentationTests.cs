@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
+﻿/*namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
 {
     using System;
     using System.Collections.Generic;
@@ -117,3 +117,4 @@
         }
     }
 }
+*/

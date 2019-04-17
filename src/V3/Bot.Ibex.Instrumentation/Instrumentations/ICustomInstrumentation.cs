@@ -1,17 +1,13 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
 {
     using System.Collections.Generic;
-    using Constants;
-    using Microsoft.ApplicationInsights;
-    using Settings;
-    using Telemetry;
+    using Microsoft.Bot.Connector;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
 
     public interface ICustomInstrumentation
     {
         void TrackCustomEvent(
             IActivity activity,
-            TelemetryClient telemetryClient,
-            InstrumentationSettings settings,
             string eventName = EventTypes.CustomEvent,
             IDictionary<string, string> properties = null);
     }

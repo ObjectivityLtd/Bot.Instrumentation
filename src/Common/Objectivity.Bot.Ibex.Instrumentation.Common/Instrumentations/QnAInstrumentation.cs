@@ -10,16 +10,7 @@
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
-        private readonly TelemetryClient telemetryClient;
-        private readonly InstrumentationSettings settings;
-
-        public QnAInstrumentation(TelemetryClient telemetryClient, InstrumentationSettings settings)
-        {
-            this.telemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
-            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
-        }
-
-        public void TrackEvent(IActivity activity, QueryResult queryResult)
+        public void TrackEvent(IActivity activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient)
         {
             if (activity == null)
             {
@@ -38,10 +29,16 @@
                 { QnAConstants.Score, queryResult.Score.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
+            TrackTelemetry(activity, settings, telemetryClient, properties);
+        }
+
+        private static void TrackTelemetry(IActivity activity, InstrumentationSettings settings,
+            TelemetryClient telemetryClient, Dictionary<string, string> properties)
+        {
+            var builder = new EventTelemetryBuilder(activity, settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.QnaEvent;
-            this.telemetryClient.TrackEvent(eventTelemetry);
+            telemetryClient.TrackEvent(eventTelemetry);
         }
     }
 }

@@ -2,11 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Adapters;
     using Instrumentations;
     using Microsoft.Bot.Builder.History;
     using Microsoft.Bot.Connector;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
 
     public class SentimentDialogActivityLogger : IActivityLogger
     {
@@ -19,8 +17,7 @@
 
         public async Task LogAsync(IActivity activity)
         {
-            var objectivityActivity = new ActivityAdapter(activity);
-            await this.sentimentInstrumentation.TrackMessageSentiment(objectivityActivity)
+            await this.sentimentInstrumentation.TrackMessageSentiment(activity)
                 .ConfigureAwait(false);
         }
     }

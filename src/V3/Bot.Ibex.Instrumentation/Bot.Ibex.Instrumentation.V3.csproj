@@ -35,6 +35,7 @@
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
 	<PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />
 	<PackageReference Include="Microsoft.Bot.Builder" Version="3.12.2.4" />
+	<PackageReference Include="Microsoft.Bot.Builder.CognitiveServices" Version="1.1.2" />
 	<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

@@ -1,6 +1,5 @@
 ﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
@@ -12,30 +11,25 @@
 
     public class SentimentInstrumentation : ISentimentInstrumentation
     {
-        private readonly TelemetryClient telemetryClient;
-        private readonly InstrumentationSettings settings;
-        private readonly ISentimentClient sentimentClient;
-
-        public SentimentInstrumentation(InstrumentationSettings settings, TelemetryClient telemetryClient, ISentimentClient sentimentClient)
+        public async Task TrackMessageSentiment(IActivity activity, TelemetryClient telemetryClient, InstrumentationSettings settings, ISentimentClient sentimentClient)
         {
-            this.telemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
-            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            this.sentimentClient = sentimentClient ?? throw new ArgumentNullException(nameof(sentimentClient));
-        }
-
-        public async Task TrackMessageSentiment(IActivity activity)
-        {
-            var score = await this.sentimentClient.GetSentiment(activity)
+            var score = await sentimentClient.GetSentiment(activity)
                 .ConfigureAwait(false);
             var properties = new Dictionary<string, string>
             {
                 { SentimentConstants.Score, score.Value.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var builder = new EventTelemetryBuilder(activity, this.settings, properties);
+            TrackTelemetry(activity, telemetryClient, settings, properties);
+        }
+
+        private static void TrackTelemetry(IActivity activity, TelemetryClient telemetryClient,
+            InstrumentationSettings settings, Dictionary<string, string> properties)
+        {
+            var builder = new EventTelemetryBuilder(activity, settings, properties);
             var eventTelemetry = builder.Build();
             eventTelemetry.Name = EventTypes.MessageSentiment;
-            this.telemetryClient.TrackEvent(eventTelemetry);
+            telemetryClient.TrackEvent(eventTelemetry);
         }
     }
 }

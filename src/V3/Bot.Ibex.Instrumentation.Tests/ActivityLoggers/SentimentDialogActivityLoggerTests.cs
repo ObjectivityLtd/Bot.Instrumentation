@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.V3.Tests.ActivityLoggers
+﻿/*namespace Bot.Ibex.Instrumentation.V3.Tests.ActivityLoggers
 {
     using System;
     using Adapters;
@@ -43,4 +43,4 @@
             Assert.Throws<ArgumentNullException>(() => new SentimentDialogActivityLogger(sentimentInstrumentation));
         }
     }
-}
+}*/

@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
+﻿/*namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
 {
     using System;
     using System.Globalization;
@@ -123,4 +123,4 @@
                 new SentimentInstrumentation(emptySettings, this.telemetryClient, sentimentClient));
         }
     }
-}
+}*/
