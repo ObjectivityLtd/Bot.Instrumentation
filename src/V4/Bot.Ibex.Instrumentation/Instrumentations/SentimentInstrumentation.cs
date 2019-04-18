@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Adapters;
     using Microsoft.ApplicationInsights;
+    using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
@@ -23,6 +24,8 @@
 
         public async Task TrackMessageSentiment(IMessageActivity activity)
         {
+            BotAssert.ActivityNotNull(activity);
+
             var objActivity = new ActivityAdapter(activity);
 
             var sentimentInstrumentation =

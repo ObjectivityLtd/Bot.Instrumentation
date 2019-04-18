@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Adapters;
     using AutoFixture;
     using AutoFixture.Xunit2;
     using FluentAssertions;
@@ -19,6 +20,7 @@
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using V4.Middleware;
     using Xunit;
+    using Activity = Microsoft.Bot.Schema.Activity;
     using ActivityTypes = Microsoft.Bot.Schema.ActivityTypes;
 
     [Collection("BotInstrumentationMiddleware")]

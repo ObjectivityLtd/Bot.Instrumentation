@@ -3,6 +3,7 @@
     using System;
     using Adapters;
     using Microsoft.ApplicationInsights;
+    using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
@@ -22,6 +23,13 @@
 
         public void TrackEvent(IMessageActivity activity, QueryResult queryResult)
         {
+            BotAssert.ActivityNotNull(activity);
+
+            if (queryResult == null)
+            {
+                throw new ArgumentNullException(nameof(queryResult));
+            }
+
             var objActivity = new ActivityAdapter(activity);
             var queryResultAdapter = new QueryResultAdapter(queryResult);
             var result = queryResultAdapter.ConvertQnAMakerResultsToQueryResult();

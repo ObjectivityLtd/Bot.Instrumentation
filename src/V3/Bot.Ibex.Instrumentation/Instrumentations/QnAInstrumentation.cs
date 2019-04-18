@@ -20,6 +20,16 @@
 
         public void TrackEvent(IActivity activity, QnAMakerResults queryResult)
         {
+            if (activity == null)
+            {
+                throw new ArgumentNullException(nameof(activity));
+            }
+
+            if (queryResult == null)
+            {
+                throw new ArgumentNullException(nameof(queryResult));
+            }
+
             var objActivity = new ActivityAdapter(activity);
             var queryResultAdapter = new QueryResultAdapter(queryResult);
             var result = queryResultAdapter.ConvertQnAMakerResultsToQueryResult();

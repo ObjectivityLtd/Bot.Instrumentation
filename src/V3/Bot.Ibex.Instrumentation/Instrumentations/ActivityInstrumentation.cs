@@ -21,6 +21,11 @@
 
         public Task TrackActivity(Microsoft.Bot.Connector.IActivity activity)
         {
+            if (activity == null)
+            {
+                throw new ArgumentNullException(nameof(activity));
+            }
+
             return Task.Run(() =>
             {
                 var objectivityActivity = new ActivityAdapter(activity);

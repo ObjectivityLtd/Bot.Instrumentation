@@ -1,4 +1,4 @@
-﻿/*namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
+﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Middleware
 {
     using System;
     using System.Threading.Tasks;
@@ -13,11 +13,10 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using V4.Middleware;
-    using V4.Sentiments;
     using Xunit;
-    using SentimentInstrumentationMiddlewareSettings = V4.Middleware.SentimentInstrumentationMiddlewareSettings;
 
     [Collection("SentimentInstrumentationMiddleware")]
     [Trait("Category", "Middleware")]
@@ -57,7 +56,7 @@
                 .ConfigureAwait(false);
 
             // Assert
-            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<IMessageActivity>()), Times.Exactly(expectedNumberOfInvocations));
+            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry.IActivity>()), Times.Exactly(expectedNumberOfInvocations));
             this.mockTelemetryChannel.Verify(tc => tc.Send(It.IsAny<EventTelemetry>()), Times.Exactly(expectedNumberOfInvocations));
         }
 
@@ -231,4 +230,3 @@
         }
     }
 }
-*/

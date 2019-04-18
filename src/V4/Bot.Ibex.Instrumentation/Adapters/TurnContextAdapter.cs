@@ -1,16 +1,17 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Adapters
 {
+    using System;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
-    public class ActivityExtensionsAdapter : IActivity
+    public class TurnContextAdapter : IActivity
     {
         private readonly ITurnContext activity;
 
-        public ActivityExtensionsAdapter(ITurnContext activity)
+        public TurnContextAdapter(ITurnContext activity)
         {
-            this.activity = activity;
+            this.activity = activity ?? throw new ArgumentNullException(nameof(activity));
         }
 
         public string TimeStampIso8601
@@ -47,23 +48,6 @@
                 channelAccount.Name = this.activity.Activity.Name;
                 channelAccount.Id = this.activity.Activity.Id;
                 return channelAccount;
-            }
-        }
-
-        public Activity Activity
-        {
-            get
-            {
-                var activity = new Activity();
-                activity.MessageActivity.Text = this.activity.Activity.AsMessageActivity().Text;
-                activity.MessageActivity.Id = this.activity.Activity.AsMessageActivity().Id;
-                activity.ChannelAccount.Id = this.activity.Activity.From.Id;
-                activity.ChannelAccount.Name = this.activity.Activity.From.Name;
-                activity.ChannelId = this.activity.Activity.ChannelId;
-                activity.ReplyToId = this.activity.Activity.ReplyToId;
-                activity.TimeStampIso8601 = this.activity.Activity.Timestamp.ToString();
-                activity.Type = this.activity.Activity.Type;
-                return activity;
             }
         }
     }

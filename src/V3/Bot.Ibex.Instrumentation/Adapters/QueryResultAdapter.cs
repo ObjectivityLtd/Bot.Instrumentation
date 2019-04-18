@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
+    using System;
     using System.Globalization;
     using System.Linq;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
@@ -11,7 +12,7 @@
 
         public QueryResultAdapter(QnAMakerResults queryResult)
         {
-            this.queryResult = queryResult;
+            this.queryResult = queryResult ?? throw new ArgumentNullException(nameof(queryResult));
         }
 
         public QueryResult ConvertQnAMakerResultsToQueryResult()

@@ -89,32 +89,5 @@
             // Assert
             Assert.Throws<ArgumentNullException>(() => instrumentation.TrackCustomEvent(emptyActivity, this.telemetryClient, settings));
         }
-
-        //[Theory(DisplayName =
-        //    "GIVEN empty telemetry client WHEN CustomInstrumentation is constructed THEN exception is being thrown")]
-        //[AutoData]
-        //public void GivenEmptyTelemetryClientWhenCustomInstrumentationIsConstructedThenExceptionIsBeingThrown(
-        //    IActivity activity,
-        //    InstrumentationSettings settings)
-        //{
-        //    // Arrange
-        //    const TelemetryClient emptyTelemetryClient = null;
-
-        //    // Act
-        //    // Assert
-        //    Assert.Throws<ArgumentNullException>(() => new CustomInstrumentation(emptyTelemetryClient, settings));
-        //}
-
-        //[Fact(DisplayName =
-        //    "GIVEN empty settings WHEN CustomInstrumentation is constructed THEN exception is being thrown")]
-        //public void GivenEmptySettingsWhenCustomInstrumentationIsConstructedThenExceptionIsBeingThrown()
-        //{
-        //    // Arrange
-        //    const InstrumentationSettings emptySettings = null;
-
-        //    // Act
-        //    // Assert
-        //    Assert.Throws<ArgumentNullException>(() => new CustomInstrumentation(this.telemetryClient, emptySettings));
-        //}
     }
 }

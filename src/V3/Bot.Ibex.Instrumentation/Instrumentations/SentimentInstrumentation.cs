@@ -23,6 +23,11 @@
 
         public async Task TrackMessageSentiment(IActivity activity)
         {
+            if (activity == null)
+            {
+                throw new ArgumentNullException(nameof(activity));
+            }
+
             var objActivity = new ActivityAdapter(activity);
 
             var sentimentInstrumentation =

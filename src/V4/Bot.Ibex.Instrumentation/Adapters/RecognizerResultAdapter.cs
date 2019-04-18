@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Adapters
 {
+    using System;
     using System.Globalization;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
@@ -11,7 +12,7 @@
 
         public RecognizerResultAdapter(RecognizerResult result)
         {
-            this.result = result;
+            this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
         public RecognizedIntentResult ConvertRecognizerResultToRecognizedIntentResult()

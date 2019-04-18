@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
+    using System;
     using Microsoft.Bot.Builder.Luis.Models;
     using Newtonsoft.Json;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Models;
@@ -10,7 +11,7 @@
 
         public LuisResultAdapter(LuisResult result)
         {
-            this.result = result;
+            this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
         public RecognizedIntentResult ConvertLuisResultToRecognizedIntentResult()

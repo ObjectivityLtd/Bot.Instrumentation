@@ -20,6 +20,11 @@
 
         public void TrackIntent(IActivity activity, LuisResult result)
         {
+            if (activity == null)
+            {
+                throw new ArgumentNullException(nameof(activity));
+            }
+
             if (result == null)
             {
                 throw new ArgumentNullException(nameof(result));

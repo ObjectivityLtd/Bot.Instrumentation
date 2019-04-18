@@ -21,6 +21,11 @@
 
         public void TrackCustomEvent(IActivity activity, string eventName = EventTypes.CustomEvent, IDictionary<string, string> properties = null)
         {
+            if (activity == null)
+            {
+                throw new ArgumentNullException(nameof(activity));
+            }
+
             var objActivity = new ActivityAdapter(activity);
 
             var customInstrumentation =

@@ -20,9 +20,11 @@
 
         public void TrackIntent(IActivity activity, RecognizerResult result)
         {
-            if (activity == null)
+            BotAssert.ActivityNotNull(activity);
+
+            if (result == null)
             {
-                throw new ArgumentNullException(nameof(activity));
+                throw new ArgumentNullException(nameof(result));
             }
 
             var objectivityActivity = new ActivityAdapter(activity);

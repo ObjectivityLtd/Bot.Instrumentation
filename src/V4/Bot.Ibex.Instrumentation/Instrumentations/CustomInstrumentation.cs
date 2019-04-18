@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Adapters;
     using Microsoft.ApplicationInsights;
+    using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
@@ -21,6 +22,8 @@
 
         public void TrackCustomEvent(IActivity activity, string eventName = EventTypes.CustomEvent, IDictionary<string, string> properties = null)
         {
+            BotAssert.ActivityNotNull(activity);
+
             var objActivity = new ActivityAdapter(activity);
 
             var customInstrumentation =

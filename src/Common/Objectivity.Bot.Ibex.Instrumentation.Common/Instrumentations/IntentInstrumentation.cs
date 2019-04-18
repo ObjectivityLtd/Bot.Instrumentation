@@ -12,11 +12,6 @@
     {
         public void TrackIntent(IActivity activity, RecognizedIntentResult result, TelemetryClient telemetryClient, InstrumentationSettings settings)
         {
-            if (result == null)
-            {
-                throw new ArgumentNullException(nameof(result));
-            }
-
             var properties = new Dictionary<string, string>
             {
                 { IntentConstants.Intent, result.Intent },
@@ -27,7 +22,11 @@
             TrackTelemetry(activity, properties, settings, telemetryClient);
         }
 
-        private void TrackTelemetry(IActivity activity, IDictionary<string, string> properties, InstrumentationSettings settings, TelemetryClient telemetryClient)
+        private void TrackTelemetry(
+            IActivity activity,
+            IDictionary<string, string> properties,
+            InstrumentationSettings settings,
+            TelemetryClient telemetryClient)
         {
             var builder = new EventTelemetryBuilder(activity, settings, properties);
             var eventTelemetry = builder.Build();

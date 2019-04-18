@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Adapters
 {
+    using System;
     using Newtonsoft.Json;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
@@ -9,7 +10,7 @@
 
         public ActivityAdapter(Microsoft.Bot.Schema.IActivity activity)
         {
-            this.activity = activity;
+            this.activity = activity ?? throw new ArgumentNullException(nameof(activity));
         }
 
         public string TimeStampIso8601

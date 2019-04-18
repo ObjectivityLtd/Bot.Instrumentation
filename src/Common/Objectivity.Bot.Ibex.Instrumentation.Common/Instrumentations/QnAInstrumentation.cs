@@ -12,15 +12,6 @@
     {
         public void TrackEvent(IActivity activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient)
         {
-            if (activity == null)
-            {
-                throw new ArgumentNullException(nameof(activity));
-            }
-            if (queryResult == null)
-            {
-                throw new ArgumentNullException(nameof(activity));
-            }
-
             var properties = new Dictionary<string, string>
             {
                 { QnAConstants.UserQuery, activity.MessageActivity.Text },
