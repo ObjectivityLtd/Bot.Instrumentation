@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
+    using System.Globalization;
     using System.Linq;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
@@ -20,7 +21,7 @@
 
             result.KnowledgeBaseQuestion = topScoreAnswer.Questions.ToString();
             result.KnowledgeBaseAnswer = topScoreAnswer.Answer;
-            result.Score = topScoreAnswer.Score;
+            result.Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture);
 
             return result;
         }

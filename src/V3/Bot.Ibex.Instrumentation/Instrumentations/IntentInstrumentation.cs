@@ -20,6 +20,11 @@
 
         public void TrackIntent(IActivity activity, LuisResult result)
         {
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
+
             var objectivityActivity = new ActivityAdapter(activity);
             var luisResultAdapter = new LuisResultAdapter(result);
             var convertedResult = luisResultAdapter.ConvertLuisResultToRecognizedIntentResult();

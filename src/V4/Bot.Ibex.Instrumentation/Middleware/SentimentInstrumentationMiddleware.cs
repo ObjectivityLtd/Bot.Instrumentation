@@ -5,11 +5,11 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Adapters;
+    using Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Bot.Builder;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
@@ -46,7 +46,7 @@
             InstrumentationSettings instrumentationSettings)
         {
             this.sentimentClient = sentimentClient ?? throw new ArgumentNullException(nameof(sentimentClient));
-            this.sentimentInstrumentation = new SentimentInstrumentation(instrumentationSettings, telemetryClient, this.sentimentClient);
+            this.sentimentInstrumentation = new SentimentInstrumentation(this.sentimentClient, telemetryClient, instrumentationSettings);
         }
 
         public async Task OnTurnAsync(
@@ -64,8 +64,7 @@
             var objectivityActivity = new ActivityExtensionsAdapter(turnContext);
             if (objectivityActivity.IsIncomingMessage())
             {
-                var activity = new ActivityExtensionsAdapter(turnContext);
-                await this.sentimentInstrumentation.TrackMessageSentiment(activity.Activity)
+                await this.sentimentInstrumentation.TrackMessageSentiment(turnContext.Activity)
                     .ConfigureAwait(false);
             }
 

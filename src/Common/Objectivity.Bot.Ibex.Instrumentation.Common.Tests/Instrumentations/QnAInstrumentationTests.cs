@@ -1,4 +1,4 @@
-﻿/*namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
+﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
 {
     using System;
     using System.Globalization;
@@ -38,10 +38,10 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
+            var instrumentation = new QnAInstrumentation();
 
             // Act
-            instrumentation.TrackEvent(activity, queryResult);
+            instrumentation.TrackEvent(activity, queryResult, settings, this.telemetryClient);
 
             // Assert
             this.mockTelemetryChannel.Verify(
@@ -61,13 +61,13 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
+            var instrumentation = new QnAInstrumentation();
             const IActivity emptyActivity = null;
 
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() =>
-                instrumentation.TrackEvent(emptyActivity, queryResult));
+                instrumentation.TrackEvent(emptyActivity, queryResult, settings, this.telemetryClient));
         }
 
         [Theory(DisplayName = "GIVEN empty query result WHEN TrackEvent is invoked THEN exception is being thrown")]
@@ -76,41 +76,40 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
+            var instrumentation = new QnAInstrumentation();
             IActivity activity = null;
             QueryResult queryResult = null;
 
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() =>
-                instrumentation.TrackEvent(activity, queryResult));
+                instrumentation.TrackEvent(activity, queryResult, settings, this.telemetryClient));
         }
 
-        [Theory(DisplayName =
-            "GIVEN empty telemetry client WHEN QnAInstrumentation is constructed THEN exception is being thrown")]
-        [AutoData]
-        public void GivenEmptyTelemetryClientWhenQnAInstrumentationIsConstructedThenExceptionIsBeingThrown(
-            InstrumentationSettings settings)
-        {
-            // Arrange
-            const TelemetryClient emptyTelemetryClient = null;
+        //[Theory(DisplayName =
+        //    "GIVEN empty telemetry client WHEN QnAInstrumentation is constructed THEN exception is being thrown")]
+        //[AutoData]
+        //public void GivenEmptyTelemetryClientWhenQnAInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        //    InstrumentationSettings settings)
+        //{
+        //    // Arrange
+        //    const TelemetryClient emptyTelemetryClient = null;
 
-            // Act
-            // Assert
-            Assert.Throws<ArgumentNullException>(() => new QnAInstrumentation(emptyTelemetryClient, settings));
-        }
+        //    // Act
+        //    // Assert
+        //    Assert.Throws<ArgumentNullException>(() => new QnAInstrumentation(emptyTelemetryClient, settings));
+        //}
 
-        [Fact(DisplayName =
-            "GIVEN empty settings WHEN QnAInstrumentation is constructed THEN exception is being thrown")]
-        public void GivenEmptySettingsWhenQnAInstrumentationIsConstructedThenExceptionIsBeingThrown()
-        {
-            // Arrange
-            const InstrumentationSettings emptySettings = null;
+        //[Fact(DisplayName =
+        //    "GIVEN empty settings WHEN QnAInstrumentation is constructed THEN exception is being thrown")]
+        //public void GivenEmptySettingsWhenQnAInstrumentationIsConstructedThenExceptionIsBeingThrown()
+        //{
+        //    // Arrange
+        //    const InstrumentationSettings emptySettings = null;
 
-            // Act
-            // Assert
-            Assert.Throws<ArgumentNullException>(() => new QnAInstrumentation(this.telemetryClient, emptySettings));
-        }
+        //    // Act
+        //    // Assert
+        //    Assert.Throws<ArgumentNullException>(() => new QnAInstrumentation(this.telemetryClient, emptySettings));
+        //}
     }
 }
-*/

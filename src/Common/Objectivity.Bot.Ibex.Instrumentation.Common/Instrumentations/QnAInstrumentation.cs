@@ -26,7 +26,7 @@
                 { QnAConstants.UserQuery, activity.MessageActivity.Text },
                 { QnAConstants.KnowledgeBaseQuestion, queryResult.KnowledgeBaseQuestion },
                 { QnAConstants.KnowledgeBaseAnswer, queryResult.KnowledgeBaseAnswer },
-                { QnAConstants.Score, queryResult.Score.ToString(CultureInfo.InvariantCulture) }
+                { QnAConstants.Score, queryResult.Score }
             };
 
             TrackTelemetry(activity, settings, telemetryClient, properties);
