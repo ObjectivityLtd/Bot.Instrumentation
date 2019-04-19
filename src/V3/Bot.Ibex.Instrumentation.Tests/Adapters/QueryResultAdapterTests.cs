@@ -1,10 +1,12 @@
-﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Adapters
+﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Adapters
 {
     using System;
     using System.Globalization;
-    using Microsoft.Bot.Builder.AI.QnA;
+    using System.Linq;
+    using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Adapters;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using V3.Adapters;
     using Xunit;
 
     [Collection("QueryResultAdapter")]
@@ -13,26 +15,26 @@
     {
         [Theory(DisplayName = "GIVEN any query WHEN QueryResultAdapter is invoked THEN query result is mapped")]
         [AutoMockData]
-        public void GivenAnyQueryWhenQueryResultAdapterIsInvokedThenQueryResultIsMapped(QueryResult queryResult)
+        public void GivenAnyQueryWhenQueryResultAdapterIsInvokedThenQueryResultIsMapped(QnAMakerResults queryResult)
         {
             // Arrange
-            string questionsSeparator = ",";
             var adapter = new QueryResultAdapter(queryResult);
+            var topScoreAnswer = queryResult.Answers.OrderByDescending(x => x.Score).First();
 
             // Act
             var convertedQueryResult = adapter.ConvertQnAMakerResultsToQueryResult();
 
             // Assert
-            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(questionsSeparator, queryResult.Questions));
-            Assert.Equal(convertedQueryResult.KnowledgeBaseAnswer, queryResult.Answer);
-            Assert.Equal(convertedQueryResult.Score, queryResult.Score.ToString(CultureInfo.InvariantCulture));
+            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, topScoreAnswer.Questions.ToString());
+            Assert.Equal(convertedQueryResult.KnowledgeBaseAnswer, topScoreAnswer.Answer);
+            Assert.Equal(convertedQueryResult.Score, topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture));
         }
 
         [Fact(DisplayName = "GIVEN empty result WHEN QueryResultAdapter is invoked THEN exception is being thrown")]
         public void GivenEmptyResultWhenQueryResultAdapterIsInvokedThenExceptionIsBeingThrown()
         {
             // Arrange
-            const QueryResult emptyResult = null;
+            const QnAMakerResults emptyResult = null;
 
             // Act
             // Assert

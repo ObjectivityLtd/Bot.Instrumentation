@@ -2,6 +2,7 @@
 {
     using System;
     using Newtonsoft.Json;
+    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class ActivityAdapter : IActivity
@@ -17,8 +18,14 @@
         {
             get
             {
-                var s = JsonConvert.SerializeObject(this.activity.Timestamp?.ToUniversalTime());
-                return s.Substring(1, s.Length - 2);
+                if (this.activity.Timestamp != null)
+                {
+                    return this.activity.Timestamp.Value.AsIso8601();
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -32,10 +39,17 @@
         {
             get
             {
-                var messageActivity = new MessageActivity();
-                messageActivity.Text = this.activity.AsMessageActivity().Text;
-                messageActivity.Id = this.activity.AsMessageActivity().Id;
-                return messageActivity;
+                if (this.activity.AsMessageActivity() != null)
+                {
+                    var messageActivity = new MessageActivity();
+                    messageActivity.Text = this.activity.AsMessageActivity().Text;
+                    messageActivity.Id = this.activity.AsMessageActivity().Id;
+                    return messageActivity;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -43,10 +57,17 @@
         {
             get
             {
-                var channelAccount = new ChannelAccount();
-                channelAccount.Name = this.activity.From.Name;
-                channelAccount.Id = this.activity.From.Id;
-                return channelAccount;
+                if (this.activity.From != null)
+                {
+                    var channelAccount = new ChannelAccount();
+                    channelAccount.Name = this.activity.From.Name;
+                    channelAccount.Id = this.activity.From.Id;
+                    return channelAccount;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
     }

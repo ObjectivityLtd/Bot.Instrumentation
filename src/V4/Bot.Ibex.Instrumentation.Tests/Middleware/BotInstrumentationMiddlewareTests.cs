@@ -75,6 +75,7 @@
             Mock.Get(turnContext)
                 .Setup(c => c.OnSendActivities(It.IsAny<SendActivitiesHandler>()))
                 .Callback<SendActivitiesHandler>(h => h(null, new List<Activity> { activity }, () => Task.FromResult(Array.Empty<ResourceResponse>())));
+
             const int expectedNumberOfTelemetryProperties = 2;
             const string expectedTelemetryName = EventTypes.ConversationUpdate;
 
@@ -83,7 +84,7 @@
                 .ConfigureAwait(false);
 
             // Assert
-            this.mockTelemetryChannel.Verify(
+             this.mockTelemetryChannel.Verify(
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == expectedTelemetryName &&
                     t.Properties.Count == expectedNumberOfTelemetryProperties &&

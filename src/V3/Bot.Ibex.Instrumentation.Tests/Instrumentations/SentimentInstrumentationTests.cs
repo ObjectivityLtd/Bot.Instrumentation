@@ -15,6 +15,7 @@
     using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
     using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using V3.Adapters;
     using V3.Instrumentations;
     using Xunit;
 

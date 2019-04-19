@@ -1,10 +1,10 @@
-﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Adapters
+﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Adapters
 {
     using System;
-    using Microsoft.Bot.Schema;
+    using Microsoft.Bot.Connector;
     using Newtonsoft.Json;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Adapters;
+    using V3.Adapters;
     using Xunit;
 
     [Collection("ActivityAdapter")]
