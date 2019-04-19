@@ -20,7 +20,7 @@
             var result = new QueryResult();
             var topScoreAnswer = this.queryResult.Answers.OrderByDescending(x => x.Score).First();
 
-            result.KnowledgeBaseQuestion = topScoreAnswer.Questions.ToString();
+            result.KnowledgeBaseQuestion = string.Join(QnAInstrumentation.QuestionsSeparator, topScoreAnswer.Questions);
             result.KnowledgeBaseAnswer = topScoreAnswer.Answer;
             result.Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture);
 

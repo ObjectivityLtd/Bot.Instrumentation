@@ -25,7 +25,7 @@
             var convertedQueryResult = adapter.ConvertQnAMakerResultsToQueryResult();
 
             // Assert
-            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, topScoreAnswer.Questions.ToString());
+            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(QnAInstrumentation.QuestionsSeparator, topScoreAnswer.Questions));
             Assert.Equal(convertedQueryResult.KnowledgeBaseAnswer, topScoreAnswer.Answer);
             Assert.Equal(convertedQueryResult.Score, topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture));
         }

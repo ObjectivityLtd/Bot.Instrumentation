@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Instrumentations
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using AutoFixture.Xunit2;
@@ -35,11 +36,26 @@
         [AutoMockData]
         public void GivenAnyActivityWhenTrackEventIsInvokedThenEventTelemetryIsBeingSent(
                    IMessageActivity activity,
-                   QnAMakerResults queryResult,
                    InstrumentationSettings settings)
         {
             // Arrange
             var instrumentation = new QnAInstrumentation(this.telemetryClient, settings);
+            QnAMakerResults queryResult = new QnAMakerResults
+            {
+                Answers = new List<QnAMakerResult>
+                {
+                    new QnAMakerResult
+                    {
+                        Score = .5,
+                        Questions = new List<string>
+                        {
+                            "good",
+                            "bad"
+                        },
+                        Answer = "good"
+                    }
+                }
+            };
 
             // Act
             instrumentation.TrackEvent(activity, queryResult);
@@ -49,7 +65,7 @@
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == EventTypes.QnaEvent &&
                     t.Properties[QnAConstants.UserQuery] == activity.AsMessageActivity().Text &&
-                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == queryResult.Answers.First().Questions.ToString() &&
+                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == string.Join(QnAInstrumentation.QuestionsSeparator, queryResult.Answers.First().Questions) &&
                     t.Properties[QnAConstants.KnowledgeBaseAnswer] == queryResult.Answers.First().Answer &&
                     t.Properties[QnAConstants.Score] == queryResult.Answers.First().Score.ToString(CultureInfo.InvariantCulture))),
                 Times.Once);
