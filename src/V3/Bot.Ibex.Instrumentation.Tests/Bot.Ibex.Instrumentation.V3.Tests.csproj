@@ -1,59 +1,57 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>	
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>net47</TargetFramework>
+    <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsTestProject>true</IsTestProject>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-  
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. -->
-    <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
-    <!-- Set StrongNameKeyPath to a default value when not defined by a build server. -->
+
+  <!--<PropertyGroup>
+    <SignAssembly Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</SignAssembly>
+    --><!--Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing.--><!--
+    --><!--<DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>--><!--
+    <DelaySign>true</DelaySign>
+    --><!--Set StrongNameKeyPath to a default value when not defined by a build server.--><!--
     <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
-    <AssemblyOriginatorKeyFile>$(StrongNameKeyPath)</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  
+    <AssemblyOriginatorKeyFile>..\..\public.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>-->
+
   <ItemGroup>
     <None Include="..\..\public.snk" Link="public.snk" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.8.0" />
-    <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />	
-	<PackageReference Include="FluentAssertions" Version="5.6.0" />
-	<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />	
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>	
-	<PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />	
-	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />	
+    </PackageReference>
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
     <PackageReference Include="Objectivity.AutoFixture.XUnit2.AutoMoq" Version="3.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-	<PackageReference Include="xunit" Version="2.4.1" />
-	<PackageReference Include="xunit.abstractions" Version="2.0.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
     <PackageReference Include="xunit.analyzers" Version="0.10.0" />
     <PackageReference Include="xunit.assert" Version="2.4.1" />
     <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.console" Version="2.4.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-	<DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V3.csproj" />
   </ItemGroup>
-   
+
 </Project>
