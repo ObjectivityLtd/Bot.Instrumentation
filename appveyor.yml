@@ -39,21 +39,21 @@ install:
     }
 build_script:
 - ps: >-
-    dotnet build ./src/$env:namespace.sln
+    dotnet build ./src/$env:package_module
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
-        dotnet pack ./src/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/$env:package_module/$env:namespace$env:package_suffix --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
     }
     else
     {
-        dotnet pack ./src/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/$env:package_module/$env:namespace$env:package_suffix --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
     }
 test_script:
 - cmd: >-
-    dotnet test ./src/%namespace%.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.xml
-
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.xml --flag unittests
+    dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml
+    
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
