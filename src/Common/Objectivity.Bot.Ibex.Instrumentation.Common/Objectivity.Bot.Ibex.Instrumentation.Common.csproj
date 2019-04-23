@@ -22,14 +22,5 @@
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Bot.Builder.CognitiveServices.QnAMaker">
-      <HintPath>C:\Users\mchudzik2\.nuget\packages\microsoft.bot.builder.cognitiveservices\1.1.2\lib\net46\Microsoft.Bot.Builder.CognitiveServices.QnAMaker.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bot.Connector">
-      <HintPath>C:\Users\mchudzik2\.nuget\packages\microsoft.bot.connector\3.12.2.4\lib\net46\Microsoft.Bot.Connector.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   
 </Project>
