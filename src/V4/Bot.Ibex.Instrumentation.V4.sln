@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation", "Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.csproj", "{4FF6A6CD-CEB2-4FEE-B8D2-77700C78716B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation", "Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V4.csproj", "{4FF6A6CD-CEB2-4FEE-B8D2-77700C78716B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Tests", "Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.Tests.csproj", "{EC50B1E4-0E18-468B-B611-26F381DA4EA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Tests", "Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V4.Tests.csproj", "{EC50B1E4-0E18-468B-B611-26F381DA4EA5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V4", "V4", "{F15DE9AA-CE44-404B-A08A-E4C52162681F}"
 EndProject
