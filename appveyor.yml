@@ -20,9 +20,9 @@ environment:
   cc: opencover
   matrix:
   - package_module: V3
-    package_suffix: .V3
+    package_suffix: 
   - package_module: V4
-    package_suffix: .V4
+    package_suffix: 
     
   StrongNameKeyName: key.snk
   StrongNameKeyPath: ''
