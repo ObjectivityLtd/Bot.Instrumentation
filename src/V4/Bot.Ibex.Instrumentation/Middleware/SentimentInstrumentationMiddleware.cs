@@ -5,13 +5,13 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Adapters;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Bot.Builder;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class SentimentInstrumentationMiddleware : IMiddleware, IDisposable
     {

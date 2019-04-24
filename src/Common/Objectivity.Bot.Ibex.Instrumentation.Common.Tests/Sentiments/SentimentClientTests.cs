@@ -1,10 +1,9 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Sentiments
+﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Sentiments
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using AutoFixture.XUnit2.AutoMoq.Attributes;
     using Common.Sentiments;
     using Common.Telemetry;
     using FluentAssertions;
@@ -12,6 +11,7 @@
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
     using Microsoft.Rest;
     using Moq;
+    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Settings;
     using Xunit;
 

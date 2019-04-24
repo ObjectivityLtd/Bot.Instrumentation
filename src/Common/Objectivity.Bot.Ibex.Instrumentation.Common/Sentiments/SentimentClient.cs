@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments
+﻿namespace Bot.Ibex.Instrumentation.Common.Sentiments
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

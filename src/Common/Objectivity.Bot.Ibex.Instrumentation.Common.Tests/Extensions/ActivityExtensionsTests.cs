@@ -1,10 +1,10 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Extensions
+﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Extensions
 {
-    using AutoFixture.XUnit2.AutoMoq.Attributes;
     using Common.Extensions;
     using Common.Telemetry;
     using Constants;
     using FluentAssertions;
+    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Telemetry;
     using Xunit;
 

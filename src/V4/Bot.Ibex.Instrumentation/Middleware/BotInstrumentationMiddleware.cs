@@ -4,11 +4,11 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Adapters;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Builder;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using IActivity = Microsoft.Bot.Schema.IActivity;
 
     public class BotInstrumentationMiddleware : IMiddleware

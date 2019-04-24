@@ -13,13 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V4.Tests", "V4\Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V4.Tests.csproj", "{3F8232C4-A7B8-4D9C-A1AD-BE9631B65CE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objectivity.Bot.Ibex.Instrumentation.Common", "Common\Objectivity.Bot.Ibex.Instrumentation.Common\Objectivity.Bot.Ibex.Instrumentation.Common.csproj", "{CB241EAD-EB1F-4869-B195-372F0F713EC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Common", "Common\Objectivity.Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj", "{CB241EAD-EB1F-4869-B195-372F0F713EC1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3", "V3\Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V3.csproj", "{FC25C664-DC28-4C7B-9820-01B419593F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Ibex.Instrumentation.V3.Tests", "V3\Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V3.Tests.csproj", "{27CF6FA4-CA2D-4F3E-BE48-168BC53B566B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3.Tests", "V3\Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V3.Tests.csproj", "{27CF6FA4-CA2D-4F3E-BE48-168BC53B566B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Objectivity.Bot.Ibex.Instrumentation.Common.Tests", "Common\Objectivity.Bot.Ibex.Instrumentation.Common.Tests\Objectivity.Bot.Ibex.Instrumentation.Common.Tests.csproj", "{5EBF0AF5-8CEE-4682-B4E1-E5CB91ED983B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Common.Tests", "Common\Objectivity.Bot.Ibex.Instrumentation.Common.Tests\Bot.Ibex.Instrumentation.Common.Tests.csproj", "{5EBF0AF5-8CEE-4682-B4E1-E5CB91ED983B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

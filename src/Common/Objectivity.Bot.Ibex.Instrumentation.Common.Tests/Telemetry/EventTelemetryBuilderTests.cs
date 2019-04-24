@@ -1,14 +1,14 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Telemetry
+﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Telemetry
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using AutoFixture.XUnit2.AutoMoq.Attributes;
     using Common.Telemetry;
     using Constants;
     using FluentAssertions;
     using global::AutoFixture;
     using global::AutoFixture.Xunit2;
+    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Settings;
     using Xunit;
 
@@ -192,7 +192,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry.IActivity emptyActivity = null;
+            const Bot.Ibex.Instrumentation.Common.Telemetry.IActivity emptyActivity = null;
 
             // Act
             // Assert

@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     public class QueryResult
     {

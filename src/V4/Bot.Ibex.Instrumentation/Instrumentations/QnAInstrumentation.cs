@@ -2,11 +2,11 @@
 {
     using System;
     using Adapters;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
@@ -35,7 +35,7 @@
             var result = queryResultAdapter.ConvertQnAMakerResultsToQueryResult();
 
             var qnaInstrumentation =
-                new Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations.QnAInstrumentation();
+                new Bot.Ibex.Instrumentation.Common.Instrumentations.QnAInstrumentation();
             qnaInstrumentation.TrackEvent(objActivity, result, this.settings, this.telemetryClient);
         }
     }

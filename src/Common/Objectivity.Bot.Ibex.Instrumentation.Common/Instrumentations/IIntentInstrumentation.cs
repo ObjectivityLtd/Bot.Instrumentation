@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using Microsoft.ApplicationInsights;
     using Models;

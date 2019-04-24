@@ -2,9 +2,9 @@
 {
     using System;
     using System.Globalization;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Models;
 
     public class RecognizerResultAdapter
     {

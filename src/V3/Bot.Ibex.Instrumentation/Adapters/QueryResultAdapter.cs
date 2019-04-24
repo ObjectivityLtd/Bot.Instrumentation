@@ -3,8 +3,8 @@
     using System;
     using System.Globalization;
     using System.Linq;
+    using Bot.Ibex.Instrumentation.Common.Instrumentations;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
 
     public class QueryResultAdapter
     {

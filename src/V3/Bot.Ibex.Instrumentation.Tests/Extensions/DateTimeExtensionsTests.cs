@@ -2,8 +2,8 @@
 {
     using System;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
     using FluentAssertions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
     using Xunit;
 
     [Collection("DateTimeExtensions")]

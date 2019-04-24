@@ -3,9 +3,9 @@
     using System;
     using System.Globalization;
     using System.Linq;
+    using Bot.Ibex.Instrumentation.Common.Instrumentations;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
     using V3.Adapters;
     using Xunit;
 

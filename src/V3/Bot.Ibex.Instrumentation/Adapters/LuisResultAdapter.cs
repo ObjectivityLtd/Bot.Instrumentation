@@ -1,9 +1,9 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Microsoft.Bot.Builder.Luis.Models;
     using Newtonsoft.Json;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Models;
 
     public class LuisResultAdapter
     {

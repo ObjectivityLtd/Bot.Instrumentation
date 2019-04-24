@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using Adapters;
+    using Bot.Ibex.Instrumentation.Common.Constants;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class CustomInstrumentation : ICustomInstrumentation
     {
@@ -27,7 +27,7 @@
             var objActivity = new ActivityAdapter(activity);
 
             var customInstrumentation =
-                new Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations.CustomInstrumentation();
+                new Bot.Ibex.Instrumentation.Common.Instrumentations.CustomInstrumentation();
             customInstrumentation.TrackCustomEvent(objActivity, this.telemetryClient, this.settings, eventName, properties);
         }
     }

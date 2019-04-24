@@ -1,9 +1,9 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Adapters
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Newtonsoft.Json;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Extensions;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class ActivityAdapter : IActivity
     {

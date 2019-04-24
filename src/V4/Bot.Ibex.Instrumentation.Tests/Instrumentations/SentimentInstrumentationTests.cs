@@ -3,8 +3,10 @@
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-    using Adapters;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Constants;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -12,9 +14,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using V4.Adapters;
     using V4.Instrumentations;
     using Xunit;

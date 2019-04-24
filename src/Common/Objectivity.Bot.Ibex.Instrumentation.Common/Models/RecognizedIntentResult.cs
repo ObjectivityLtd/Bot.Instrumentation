@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Models
+﻿namespace Bot.Ibex.Instrumentation.Common.Models
 {
     public class RecognizedIntentResult
     {

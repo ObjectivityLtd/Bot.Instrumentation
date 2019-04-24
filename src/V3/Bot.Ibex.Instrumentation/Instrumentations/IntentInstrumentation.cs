@@ -2,10 +2,10 @@
 {
     using System;
     using Adapters;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder.Luis.Models;
     using Microsoft.Bot.Connector;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class IntentInstrumentation : IIntentInstrumentation
     {
@@ -35,7 +35,7 @@
             var convertedResult = luisResultAdapter.ConvertLuisResultToRecognizedIntentResult();
 
             var intentInstrumentation =
-                new Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
+                new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
             intentInstrumentation.TrackIntent(objectivityActivity, convertedResult, this.telemetryClient, this.settings);
         }
     }

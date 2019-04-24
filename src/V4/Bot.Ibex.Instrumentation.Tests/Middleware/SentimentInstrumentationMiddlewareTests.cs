@@ -3,6 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using FluentAssertions;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -13,8 +15,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
     using V4.Middleware;
     using Xunit;
 
@@ -56,7 +56,7 @@
                 .ConfigureAwait(false);
 
             // Assert
-            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry.IActivity>()), Times.Exactly(expectedNumberOfInvocations));
+            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<Bot.Ibex.Instrumentation.Common.Telemetry.IActivity>()), Times.Exactly(expectedNumberOfInvocations));
             this.mockTelemetryChannel.Verify(tc => tc.Send(It.IsAny<EventTelemetry>()), Times.Exactly(expectedNumberOfInvocations));
         }
 

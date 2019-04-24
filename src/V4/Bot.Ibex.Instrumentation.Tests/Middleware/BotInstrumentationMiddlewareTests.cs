@@ -3,9 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Adapters;
     using AutoFixture;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Constants;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using FluentAssertions;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -15,9 +16,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry;
     using V4.Middleware;
     using Xunit;
     using Activity = Microsoft.Bot.Schema.Activity;

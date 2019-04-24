@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Rest
+﻿namespace Bot.Ibex.Instrumentation.Common.Rest
 {
     using System.Net.Http;
     using System.Threading;

@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry
+﻿namespace Bot.Ibex.Instrumentation.Common.Telemetry
 {
     using System;
     using System.Collections.Generic;

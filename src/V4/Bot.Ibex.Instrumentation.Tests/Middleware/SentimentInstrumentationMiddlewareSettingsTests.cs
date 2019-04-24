@@ -2,7 +2,7 @@
 {
     using System;
     using AutoFixture.Xunit2;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Xunit;
     using SentimentInstrumentationMiddlewareSettings = V4.Middleware.SentimentInstrumentationMiddlewareSettings;
 

@@ -3,11 +3,11 @@
     using System;
     using System.Threading.Tasks;
     using Adapters;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Sentiments;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Settings;
 
     public class SentimentInstrumentation : ISentimentInstrumentation
     {
@@ -29,7 +29,7 @@
             var objActivity = new ActivityAdapter(activity);
 
             var sentimentInstrumentation =
-                new Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations.SentimentInstrumentation();
+                new Bot.Ibex.Instrumentation.Common.Instrumentations.SentimentInstrumentation();
             await sentimentInstrumentation.TrackMessageSentiment(objActivity, this.telemetryClient, this.settings, this.sentimentClient).ConfigureAwait(false);
         }
     }

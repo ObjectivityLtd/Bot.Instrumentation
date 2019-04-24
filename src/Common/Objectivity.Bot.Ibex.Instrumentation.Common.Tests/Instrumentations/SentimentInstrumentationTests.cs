@@ -1,9 +1,8 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Instrumentations
 {
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-    using AutoFixture.XUnit2.AutoMoq.Attributes;
     using Common.Instrumentations;
     using Common.Sentiments;
     using Common.Telemetry;
@@ -13,6 +12,7 @@
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.ApplicationInsights.Extensibility;
     using Moq;
+    using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Settings;
     using Xunit;
 

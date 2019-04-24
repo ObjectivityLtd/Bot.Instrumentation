@@ -2,7 +2,7 @@
 {
     using System;
     using System.Globalization;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using Bot.Ibex.Instrumentation.Common.Instrumentations;
 
     public class QueryResultAdapter
     {

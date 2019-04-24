@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Settings
+﻿namespace Bot.Ibex.Instrumentation.Common.Settings
 {
     using System;
 

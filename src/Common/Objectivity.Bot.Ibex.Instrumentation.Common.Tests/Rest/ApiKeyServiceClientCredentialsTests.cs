@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Rest
+﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Rest
 {
     using System;
     using System.Linq;

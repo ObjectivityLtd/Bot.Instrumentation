@@ -1,8 +1,8 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
 {
     using System.Collections.Generic;
+    using Bot.Ibex.Instrumentation.Common.Constants;
     using Microsoft.Bot.Connector;
-    using Objectivity.Bot.Ibex.Instrumentation.Common.Constants;
 
     public interface ICustomInstrumentation
     {

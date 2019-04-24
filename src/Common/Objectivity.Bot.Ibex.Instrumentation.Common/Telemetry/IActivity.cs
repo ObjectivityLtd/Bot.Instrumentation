@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Telemetry
+﻿namespace Bot.Ibex.Instrumentation.Common.Telemetry
 {
     public interface IActivity
     {

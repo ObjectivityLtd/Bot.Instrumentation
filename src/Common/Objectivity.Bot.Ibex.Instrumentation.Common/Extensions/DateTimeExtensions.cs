@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Extensions
+﻿namespace Bot.Ibex.Instrumentation.Common.Extensions
 {
     using System;
     using Newtonsoft.Json;

@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Ibex.Instrumentation.Common.Tests.Telemetry
+﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Telemetry
 {
     using Common.Telemetry;
 
