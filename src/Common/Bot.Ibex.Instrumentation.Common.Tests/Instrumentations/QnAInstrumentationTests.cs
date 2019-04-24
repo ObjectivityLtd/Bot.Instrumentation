@@ -30,7 +30,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivityWhenTrackEventIsInvokedThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivity_WHENTrackEventIsInvoked_THENEventTelemetryIsBeingSent(
             IActivity activity,
             QueryResult queryResult,
             InstrumentationSettings settings)

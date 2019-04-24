@@ -13,7 +13,7 @@
     {
         [Theory(DisplayName = "GIVEN any query WHEN QueryResultAdapter is invoked THEN query result is mapped")]
         [AutoMockData]
-        public void GivenAnyQueryWhenQueryResultAdapterIsInvokedThenQueryResultIsMapped(QueryResult queryResult)
+        public void GIVENAnyQuery_WHENQueryResultAdapterIsInvoked_THENQueryResultIsMapped(QueryResult queryResult)
         {
             // Arrange
             string questionsSeparator = ",";
@@ -29,7 +29,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty result WHEN QueryResultAdapter is invoked THEN exception is being thrown")]
-        public void GivenEmptyResultWhenQueryResultAdapterIsInvokedThenExceptionIsBeingThrown()
+        public void GIVENEmptyResult_WHENQueryResultAdapterIsInvoked_THENExceptionIsBeingThrown()
         {
             // Arrange
             const QueryResult emptyResult = null;

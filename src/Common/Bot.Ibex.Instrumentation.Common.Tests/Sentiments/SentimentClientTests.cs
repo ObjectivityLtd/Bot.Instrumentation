@@ -21,7 +21,7 @@
     {
         [Theory(DisplayName = "GIVEN any message activity WHEN GetSentiment is invoked THEN score is being returned")]
         [AutoMockData]
-        public async void GivenAnyMessageActivityWhenGetSentimentIsInvokedThenScoreIsBeingReturned(
+        public async void GIVENAnyMessageActivity_WHENGetSentimentIsInvoked_THENScoreIsBeingReturned(
             ITextAnalyticsClient textAnalyticsClient,
             IActivity activity,
             double sentiment)
@@ -50,7 +50,7 @@
         [Theory(DisplayName =
             "GIVEN empty message activity WHEN GetSentiment is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public async void GivenEmptyMessageActivityWhenGetSentimentIsInvokedThenExceptionIsBeingThrown(
+        public async void GIVENEmptyMessageActivity_WHENGetSentimentIsInvoked_THENExceptionIsBeingThrown(
             ITextAnalyticsClient textAnalyticsClient)
         {
             // Arrange
@@ -66,7 +66,7 @@
         [Theory(DisplayName =
             "GIVEN disposed SentimentClient WHEN GetSentiment is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public async void GivenDisposedSentimentClientWhenGetSentimentIsInvokedThenExceptionIsBeingThrown(
+        public async void GIVENDisposedSentimentClient_WHENGetSentimentIsInvoked_THENExceptionIsBeingThrown(
             ITextAnalyticsClient textAnalyticsClient,
             IActivity activity)
         {
@@ -82,7 +82,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty sentiment client settings WHEN SentimentClient is created THEN exception is being thrown")]
-        public void GivenEmptySentimentClientSettingsWhenSentimentClientIsCreatedThenExceptionIsBeingThrown()
+        public void GIVENEmptySentimentClientSettings_WHENSentimentClientIsCreated_THENExceptionIsBeingThrown()
         {
             // Arrange
             const SentimentClientSettings emptySentimentClientSettings = null;
@@ -94,7 +94,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty text analytics client WHEN SentimentClient is created THEN exception is being thrown")]
-        public void GivenEmptyTextAnalyticsClientWhenSentimentClientIsCreatedThenExceptionIsBeingThrown()
+        public void GIVENEmptyTextAnalyticsClient_WHENSentimentClientIsCreated_THENExceptionIsBeingThrown()
         {
             // Arrange
             const ITextAnalyticsClient emptyTextAnalyticsClient = null;
@@ -107,7 +107,7 @@
         [Theory(DisplayName =
             "GIVEN SentimentClient WHEN Dispose is invoked THEN other resources are being disposed as well")]
         [AutoMockData]
-        public void GivenSentimentClientWhenDisposeIsInvokedThenOtherResourcesAreBeingDisposedAsWell(
+        public void GIVENSentimentClient_WHENDisposeIsInvoked_THENOtherResourcesAreBeingDisposedAsWell(
             ITextAnalyticsClient textAnalyticsClient)
         {
             // Arrange

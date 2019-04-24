@@ -15,7 +15,7 @@
     {
         [Theory(DisplayName = "GIVEN any query WHEN QueryResultAdapter is invoked THEN query result is mapped")]
         [AutoMockData]
-        public void GivenAnyQueryWhenQueryResultAdapterIsInvokedThenQueryResultIsMapped(QnAMakerResults queryResult)
+        public void GIVENAnyQuery_WHENQueryResultAdapterIsInvoked_THENQueryResultIsMapped(QnAMakerResults queryResult)
         {
             // Arrange
             var adapter = new QueryResultAdapter(queryResult);
@@ -31,7 +31,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty result WHEN QueryResultAdapter is invoked THEN exception is being thrown")]
-        public void GivenEmptyResultWhenQueryResultAdapterIsInvokedThenExceptionIsBeingThrown()
+        public void GIVENEmptyResult_WHENQueryResultAdapterIsInvoked_THENExceptionIsBeingThrown()
         {
             // Arrange
             const QnAMakerResults emptyResult = null;

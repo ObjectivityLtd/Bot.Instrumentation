@@ -34,7 +34,7 @@
         [Theory(DisplayName =
             "GIVEN any activity WHEN TrackMessageSentiment is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public async void GivenAnyActivityWhenTrackEventIsInvokedThenEventTelemetryIsBeingSent(
+        public async void GIVENAnyActivity_WHENTrackEventIsInvoked_THENEventTelemetryIsBeingSent(
             double sentimentScore,
             IActivity activity,
             ISentimentClient sentimentClient,
@@ -62,7 +62,7 @@
         [Theory(DisplayName =
             "GIVEN empty activity WHEN TrackMessageSentiment is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public async void GivenEmptyActivityWhenTrackMessageSentimentIsInvokedThenExceptionIsBeingThrown(
+        public async void GIVENEmptyActivity_WHENTrackMessageSentimentIsInvoked_THENExceptionIsBeingThrown(
             ISentimentClient sentimentClient,
             InstrumentationSettings settings)
         {
@@ -79,7 +79,7 @@
         //[Theory(DisplayName =
         //    "GIVEN empty sentiment client WHEN SentimentInstrumentation is constructed THEN exception is being thrown")]
         //[AutoData]
-        //public void GivenEmptySentimentClientWhenSentimentInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        //public void GIVENEmptySentimentClient_WHENSentimentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
         //    InstrumentationSettings settings)
         //{
         //    // Arrange
@@ -94,7 +94,7 @@
         //[Theory(DisplayName =
         //    "GIVEN empty telemetry client WHEN SentimentInstrumentation is constructed THEN exception is being thrown")]
         //[AutoMockData]
-        //public void GivenEmptyTelemetryClientWhenSentimentInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        //public void GIVENEmptyTelemetryClient_WHENSentimentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
         //    ISentimentClient sentimentClient,
         //    InstrumentationSettings settings)
         //{
@@ -110,7 +110,7 @@
         //[Theory(DisplayName =
         //    "GIVEN empty settings WHEN SentimentInstrumentation is constructed THEN exception is being thrown")]
         //[AutoMockData]
-        //public void GivenEmptySettingsWhenSentimentInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        //public void GIVENEmptySettings_WHENSentimentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
         //    ISentimentClient sentimentClient)
         //{
         //    // Arrange

@@ -14,7 +14,7 @@
     {
         [Theory(DisplayName = "GIVEN any result WHEN RecognizerResultAdapter is invoked THEN result is mapped")]
         [AutoMockData]
-        public void GivenAnyResultWhenRecognizerResultAdapterIsInvokedThenActivityIsMapped(RecognizerResult recognizerResult)
+        public void GIVENAnyResult_WHENRecognizerResultAdapterIsInvoked_THENActivityIsMapped(RecognizerResult recognizerResult)
         {
             // Arrange
             var adapter = new RecognizerResultAdapter(recognizerResult);
@@ -30,7 +30,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty result WHEN RecognizerResultAdapter is invoked THEN exception is being thrown")]
-        public void GivenEmptyResultWhenRecognizerResultAdaptertIsInvokedThenExceptionIsBeingThrown()
+        public void GIVENEmptyResult_WHENRecognizerResultAdaptertIsInvoked_THENExceptionIsBeingThrown()
         {
             // Arrange
             const RecognizerResult emptyRecognizerResult = null;

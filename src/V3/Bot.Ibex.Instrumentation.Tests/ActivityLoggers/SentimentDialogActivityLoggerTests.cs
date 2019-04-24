@@ -14,7 +14,7 @@
     {
         [Theory(DisplayName = "GIVEN activity WHEN LogAsync is invoked THEN TrackMessageSentiment is invoked")]
         [AutoMockData]
-        public async void GivenActivityWhenLogAsyncIsInvokedThenTrackMessageSentimentIsInvoked(
+        public async void GIVENActivity_WHENLogAsyncIsInvoked_THENTrackMessageSentimentIsInvoked(
             IActivity activity,
             ISentimentInstrumentation sentimentInstrumentation)
         {
@@ -31,7 +31,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty activity WHEN SentimentDialogActivityLogger is created THEN exception is being thrown")]
-        public void GivenEmptyActivityWhenSentimentDialogActivityLoggerIsCreatedThenExceptionIsBeingThrown()
+        public void GIVENEmptyActivity_WHENSentimentDialogActivityLoggerIsCreated_THENExceptionIsBeingThrown()
         {
             // Arrange
             const ISentimentInstrumentation sentimentInstrumentation = null;

@@ -13,7 +13,7 @@
     {
         [Theory(DisplayName = "GIVEN any activity WHEN TurnContextAdapter is invoked THEN activity is mapped")]
         [AutoMockData]
-        public void GivenAnyActivityWhenTurnContextAdapterIsInvokedThenActivityIsMapped(ITurnContext activity)
+        public void GIVENAnyActivity_WHENTurnContextAdapterIsInvoked_THENActivityIsMapped(ITurnContext activity)
         {
             // Arrange
             var adapter = new TurnContextAdapter(activity);
@@ -33,7 +33,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty activity result WHEN TurnContextAdapter is invoked THEN exception is being thrown")]
-        public void GivenEmptyActivityWhenTurnContextAdapterIsInvokedThenExceptionIsBeingThrown()
+        public void GIVENEmptyActivity_WHENTurnContextAdapterIsInvoked_THENExceptionIsBeingThrown()
         {
             // Arrange
             const ITurnContext emptyActivity = null;

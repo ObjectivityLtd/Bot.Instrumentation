@@ -34,7 +34,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivityWhenTrackEventIsInvokedThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivity_WHENTrackEventIsInvoked_THENEventTelemetryIsBeingSent(
                    IMessageActivity activity,
                    InstrumentationSettings settings)
         {
@@ -73,7 +73,7 @@
 
         [Theory(DisplayName = "GIVEN empty activity result WHEN TrackEvent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivityWhenTrackEventIsInvokedThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENTrackEventIsInvoked_THENExceptionIsBeingThrown(
             QnAMakerResults queryResult,
             InstrumentationSettings settings)
         {
@@ -88,7 +88,7 @@
 
         [Theory(DisplayName = "GIVEN empty query result WHEN TrackEvent is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptyQueryResultWhenTrackEventIsInvokedThenExceptionIsBeingThrown(
+        public void GIVENEmptyQueryResult_WHENTrackEventIsInvoked_THENExceptionIsBeingThrown(
             IMessageActivity activity,
             InstrumentationSettings settings)
         {
@@ -103,7 +103,7 @@
 
         [Theory(DisplayName = "GIVEN empty telemetry client WHEN QnAInstrumentation is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyTelemetryClientWhenQnAInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        public void GIVENEmptyTelemetryClient_WHENQnAInstrumentationIsConstructed_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -115,7 +115,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty settings WHEN QnAInstrumentation is constructed THEN exception is being thrown")]
-        public void GivenEmptySettingsWhenQnAInstrumentationIsConstructedThenExceptionIsBeingThrown()
+        public void GIVENEmptySettings_WHENQnAInstrumentationIsConstructed_THENExceptionIsBeingThrown()
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

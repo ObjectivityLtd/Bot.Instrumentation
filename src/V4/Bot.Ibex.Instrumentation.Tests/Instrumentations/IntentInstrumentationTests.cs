@@ -33,7 +33,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackIntent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivity_WhenTrackIntentIsInvoked_ThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivity_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
             IMessageActivity activity,
             RecognizerResult luisResult,
             InstrumentationSettings settings)
@@ -57,7 +57,7 @@
 
         [Theory(DisplayName = "GIVEN empty activity result WHEN TrackIntent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivity_WhenTrackIntentIsInvoked_ThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENTrackIntentIsInvoked_THENExceptionIsBeingThrown(
             RecognizerResult luisResult,
             InstrumentationSettings settings)
         {
@@ -72,7 +72,7 @@
 
         [Theory(DisplayName = "GIVEN empty query result WHEN TrackIntent is invoked THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptyQueryResult_WhenTrackIntentIsInvoked_ThenExceptionIsBeingThrown(
+        public void GIVENEmptyQueryResult_WHENTrackIntentIsInvoked_THENExceptionIsBeingThrown(
             IMessageActivity activity,
             InstrumentationSettings settings)
         {
@@ -87,7 +87,7 @@
 
         [Theory(DisplayName = "GIVEN empty telemetry client WHEN IntentInstrumentation is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyTelemetryClient_WhenIntentInstrumentationIsConstructed_ThenExceptionIsBeingThrown(
+        public void GIVENEmptyTelemetryClient_WHENIntentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -99,7 +99,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty settings WHEN IntentInstrumentation is constructed THEN exception is being thrown")]
-        public void GivenEmptySettings_WhenIntentInstrumentationIsConstructed_ThenExceptionIsBeingThrown()
+        public void GIVENEmptySettings_WHENIntentInstrumentationIsConstructed_THENExceptionIsBeingThrown()
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

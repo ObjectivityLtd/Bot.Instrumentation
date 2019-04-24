@@ -15,7 +15,7 @@
     {
         [Theory(DisplayName = "GIVEN ApiKeyServiceClientCredentials WHEN ProcessHttpRequestAsync is invoked THEN request headers decorated with subscription key")]
         [AutoData]
-        public async void GivenApiKeyServiceClientCredentials_WhenProcessHttpRequestAsyncIsInvoked_ThenRequestHeadersDecoratedWithSubscriptionKey(
+        public async void GIVENApiKeyServiceClientCredentials_WHENProcessHttpRequestAsyncIsInvoked_THENRequestHeadersDecoratedWithSubscriptionKey(
             ApiKeyServiceClientCredentials credentials)
         {
             // Arrange
@@ -35,7 +35,7 @@
 
         [Theory(DisplayName = "GIVEN empty HttpRequestMessage WHEN ProcessHttpRequestAsync is invoked THEN exception is being thrown")]
         [AutoData]
-        public async void GivenEmptyHttpRequestMessage_WhenProcessHttpRequestAsyncIsInvoked_ThenExceptionIsBeingThrown(
+        public async void GIVENEmptyHttpRequestMessage_WHENProcessHttpRequestAsyncIsInvoked_THENExceptionIsBeingThrown(
             ApiKeyServiceClientCredentials credentials)
         {
             // Arrange

@@ -31,7 +31,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivityWhenTrackCustomEventIsInvokedThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivity_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
             IMessageActivity activity,
             InstrumentationSettings settings)
         {
@@ -50,7 +50,7 @@
 
         [Theory(DisplayName = "GIVEN any activity, any event name and any property WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivityAnyEventNameAndAnyPropertyWhenTrackCustomEventIsInvokedThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivityAnyEventNameAndAnyProperty_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
             IMessageActivity activity,
             string eventName,
             string propertyKey,
@@ -74,7 +74,7 @@
 
         [Theory(DisplayName = "GIVEN empty activity result WHEN TrackCustomEvent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivityWhenTrackCustomEventIsInvokedThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENTrackCustomEventIsInvoked_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -88,7 +88,7 @@
 
         [Theory(DisplayName = "GIVEN empty telemetry client WHEN CustomInstrumentation is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyTelemetryClientWhenCustomInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        public void GIVENEmptyTelemetryClient_WHENCustomInstrumentationIsConstructed_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -100,7 +100,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty settings WHEN CustomInstrumentation is constructed THEN exception is being thrown")]
-        public void GivenEmptySettingsWhenCustomInstrumentationIsConstructedThenExceptionIsBeingThrown()
+        public void GIVENEmptySettings_WHENCustomInstrumentationIsConstructed_THENExceptionIsBeingThrown()
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

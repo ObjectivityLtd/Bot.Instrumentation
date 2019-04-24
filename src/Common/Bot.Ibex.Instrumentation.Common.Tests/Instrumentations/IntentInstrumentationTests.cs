@@ -31,7 +31,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackIntent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivity_WhenTrackIntentIsInvoked_ThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivity_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
             IActivity activity,
             RecognizedIntentResult luisResult,
             InstrumentationSettings settings)
@@ -57,7 +57,7 @@
             "GIVEN any activity, any result and any property WHEN TrackIntent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public void
-            GivenAnyActivityAnyResultAnAnyPropertyWhenTrackIntentIsInvokedThenEventTelemetryIsBeingSent(
+            GIVENAnyActivityAnyResultAnAnyProperty_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
                 IActivity activity,
                 RecognizedIntentResult result,
                 InstrumentationSettings settings)
@@ -80,7 +80,7 @@
 
         [Theory(DisplayName = "GIVEN empty activity result WHEN TrackIntent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivity_WhenTrackIntentIsInvoked_ThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENTrackIntentIsInvoked_THENExceptionIsBeingThrown(
             RecognizedIntentResult luisResult,
             InstrumentationSettings settings)
         {

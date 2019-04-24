@@ -14,7 +14,7 @@
     {
         [Theory(DisplayName = "GIVEN activity WHEN LogAsync is invoked THEN TrackActivity is invoked")]
         [AutoMockData]
-        public async void GivenActivityWhenLogAsyncIsInvokedThenTrackActivityIsInvoked(
+        public async void GIVENActivity_WHENLogAsyncIsInvoked_THENTrackActivityIsInvoked(
             IActivity activity,
             IActivityInstrumentation activityInstrumentation)
         {
@@ -31,7 +31,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty activity WHEN DialogActivityLogger is created THEN exception is being thrown")]
-        public void GivenEmptyActivityWhenDialogActivityLoggerIsCreatedThenExceptionIsBeingThrown()
+        public void GIVENEmptyActivity_WHENDialogActivityLoggerIsCreated_THENExceptionIsBeingThrown()
         {
             // Arrange
             const IActivityInstrumentation emptyActivityInstrumentation = null;

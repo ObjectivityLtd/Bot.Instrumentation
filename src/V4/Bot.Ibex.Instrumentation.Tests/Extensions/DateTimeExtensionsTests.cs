@@ -15,7 +15,7 @@ namespace Bot.Ibex.Instrumentation.V4.Tests.Extensions
         [InlineAutoData(1979, 10, 14, 9, 15, 0, 0, "1979-10-14T09:15:00+00:00")]
         [InlineAutoData(1999, 12, 31, 23, 59, 59, 999, "1999-12-31T23:59:59.999+00:00")]
         [InlineAutoData(2000, 1, 1, 0, 0, 0, 0, "2000-01-01T00:00:00+00:00")]
-        public void Given_DateTimeOffset_WhenAsIso8601IsInvoked_ThenExpectedStringIsBeingReturned(
+        public void GIVENDateTimeOffset_WHENAsIso8601IsInvoked_THENExpectedStringIsBeingReturned(
             int year,
             int month,
             int day,

@@ -12,7 +12,7 @@
     {
         [Theory(DisplayName = "GIVEN empty InstrumentationSettings and any SentimentInstrumentationMiddlewareSettings WHEN SentimentInstrumentationMiddleware is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyInstrumentationSettingsAndAnySentimentClientSettings_WhenSentimentInstrumentationMiddlewareSettingsIsConstructed_ThenExceptionIsBeingThrown(
+        public void GIVENEmptyInstrumentationSettingsAndAnySentimentClientSettings__WHENSentimentInstrumentationMiddlewareSettingsIsConstructed__THENExceptionIsBeingThrown(
             SentimentClientSettings sentimentClientSettings)
         {
             // Arrange
@@ -25,7 +25,7 @@
 
         [Theory(DisplayName = "GIVEN empty InstrumentationSettings and any SentimentInstrumentationMiddlewareSettings WHEN SentimentInstrumentationMiddleware is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenAnyInstrumentationSettingsAndEmptySentimentClientSettings_WhenSentimentInstrumentationMiddlewareSettingsIsConstructed_ThenExceptionIsBeingThrown(
+        public void GIVENAnyInstrumentationSettingsAndEmptySentimentClientSettings__WHENSentimentInstrumentationMiddlewareSettingsIsConstructed__THENExceptionIsBeingThrown(
             InstrumentationSettings instrumentationSettings)
         {
             // Arrange

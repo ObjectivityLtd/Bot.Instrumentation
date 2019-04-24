@@ -23,7 +23,7 @@
         [InlineAutoData(ActivityTypes.ConversationUpdate, EventTypes.ConversationUpdate)]
         [InlineAutoData(ActivityTypes.EndOfConversation, EventTypes.ConversationEnded)]
         [InlineAutoData(FakeActivityType, EventTypes.OtherActivity)]
-        public void GivenActivityTypeOtherThanMessageWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
+        public void GIVENActivityTypeOtherThanMessage_WHENBuildIsInvoked_THENEventTelemetryIsBeingCreated(
             string activityType,
             string expectedTelemetryName,
             InstrumentationSettings settings,
@@ -53,7 +53,7 @@
         [Theory(DisplayName =
             "GIVEN additional properties WHEN Build is invoked THEN event telemetry with properties is being created")]
         [AutoMockData]
-        public void GivenAdditionalPropertiesWhenBuildIsInvokedThenEventTelemetryWithPropertiesIsBeingCreated(
+        public void GIVENAdditionalProperties_WHENBuildIsInvoked_THENEventTelemetryWithPropertiesIsBeingCreated(
             IActivity activity,
             InstrumentationSettings settings,
             IDictionary<string, string> properties)
@@ -72,7 +72,7 @@
         [Theory(DisplayName =
             "GIVEN Message type activity and ReplyToId WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
-        public void GivenMessageTypeActivityAndReplyToIdWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
+        public void GIVENMessageTypeActivityAndReplyToId_WHENBuildIsInvoked_THENEventTelemetryIsBeingCreated(
             InstrumentationSettings settings,
             IFixture fixture)
         {
@@ -112,7 +112,7 @@
             "GIVEN Message type activity and omit username setting WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
         public void
-            GivenMessageTypeActivityAndOmitUsernameSettingWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
+            GIVENMessageTypeActivityAndOmitUsernameSetting_WHENBuildIsInvoked_THENEventTelemetryIsBeingCreated(
                 IFixture fixture)
         {
             // Arrange
@@ -150,7 +150,7 @@
             "GIVEN Message type activity and no omit username setting WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
         public void
-            GivenMessageTypeActivityAndNoOmitUsernameSettingWhenBuildIsInvokedThenEventTelemetryIsBeingCreated(
+            GIVENMessageTypeActivityAndNoOmitUsernameSetting_WHENBuildIsInvoked_THENEventTelemetryIsBeingCreated(
                 IFixture fixture)
         {
             // Arrange
@@ -188,7 +188,7 @@
         [Theory(DisplayName =
             "GIVEN empty activity WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivityWhenEventTelemetryBuilderIsConstructedThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENEventTelemetryBuilderIsConstructed_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -202,7 +202,7 @@
         [Theory(DisplayName =
             "GIVEN empty settings WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptySettingsWhenEventTelemetryBuilderIsConstructedThenExceptionIsBeingThrown(
+        public void GIVENEmptySettings_WHENEventTelemetryBuilderIsConstructed_THENExceptionIsBeingThrown(
             IActivity activity)
         {
             // Arrange

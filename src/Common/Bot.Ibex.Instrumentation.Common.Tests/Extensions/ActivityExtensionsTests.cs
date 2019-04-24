@@ -20,7 +20,7 @@
         [InlineAutoMockData("MESSAGE", ValidReplyToId, false)] // Case insensitive
         [InlineAutoMockData(ActivityTypes.Message, null, true)]
         [InlineAutoMockData(ActivityTypes.Invoke, ValidReplyToId, false)]
-        public void GivenActivityWhenIsIncomingMessageIsInvokedThenExpectedResultIsBeingReturned(
+        public void GIVENActivity_WHENIsIncomingMessageIsInvoked_THENExpectedResultIsBeingReturned(
             string type,
             string replyToId,
             bool expectedResult,
@@ -39,7 +39,7 @@
 
         [Theory(DisplayName = "GIVEN Activity WHEN ToSentimentInput is invoked THEN SentimentInput is being returned")]
         [AutoMockData]
-        public void GivenActivityWhenToSentimentInputIsInvokedThenSentimentInputIsBeingReturned(
+        public void GIVENActivity_WHENToSentimentInputIsInvoked_THENSentimentInputIsBeingReturned(
             IActivity activity)
         {
             // Arrange
@@ -57,7 +57,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty Activity WHEN IsIncomingMessage is invoked THEN False is being returned")]
-        public void GivenEmptyActivityWhenIsIncomingMessageIsInvokedThenFalseIsBeingReturned()
+        public void GIVENEmptyActivity_WHENIsIncomingMessageIsInvoked_THENFalseIsBeingReturned()
         {
             // Arrange
             const IActivity activity = null;
@@ -72,7 +72,7 @@
 
         [Fact(DisplayName =
             "GIVEN empty Activity WHEN ToSentimentInput is invoked THEN empty SentimentInput is being returned")]
-        public void GivenEmptyActivityWhenToSentimentInputIsInvokedThenEmptySentimentInputIsBeingReturned()
+        public void GIVENEmptyActivity_WHENToSentimentInputIsInvoked_THENEmptySentimentInputIsBeingReturned()
         {
             // Arrange
             const IActivity activity = null;

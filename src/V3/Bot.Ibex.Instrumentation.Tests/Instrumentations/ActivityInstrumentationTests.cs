@@ -31,7 +31,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackActivity is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public async void GivenAnyActivityWhenTrackActivityIsInvokedThenEventTelemetryIsBeingSent(
+        public async void GIVENAnyActivity_WHENTrackActivityIsInvoked_THENEventTelemetryIsBeingSent(
             IActivity activity,
             InstrumentationSettings settings)
         {
@@ -50,7 +50,7 @@
         [Theory(DisplayName =
             "GIVEN empty activity result WHEN TrackActivity is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivityWhenTrackActivityIsInvokedThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENTrackActivityIsInvoked_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -66,7 +66,7 @@
         [Theory(DisplayName =
             "GIVEN empty telemetry client WHEN ActivityInstrumentation is constructed THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptyTelemetryClientWhenActivityInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        public void GIVENEmptyTelemetryClient_WHENActivityInstrumentationIsConstructed_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -80,7 +80,7 @@
         [Theory(DisplayName =
             "GIVEN empty settings WHEN ActivityInstrumentation is constructed THEN exception is being thrown")]
         [AutoMockData]
-        public void GivenEmptySettingsWhenActivityInstrumentationIsConstructedThenExceptionIsBeingThrown(
+        public void GIVENEmptySettings_WHENActivityInstrumentationIsConstructed_THENExceptionIsBeingThrown(
             TelemetryClient emptyTelemetryClient)
         {
             // Arrange

@@ -32,7 +32,7 @@
 
         [Theory(DisplayName = "GIVEN any activity WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public void GivenAnyActivityWhenTrackCustomEventIsInvokedThenEventTelemetryIsBeingSent(
+        public void GIVENAnyActivity_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
             IActivity activity,
             InstrumentationSettings settings)
         {
@@ -53,7 +53,7 @@
             "GIVEN any activity, any event name and any property WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public void
-            GivenAnyActivityAnyEventNameAndAnyPropertyWhenTrackCustomEventIsInvokedThenEventTelemetryIsBeingSent(
+            GIVENAnyActivityAnyEventNameAndAnyProperty_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
                 IActivity activity,
                 string eventName,
                 string propertyKey,
@@ -78,7 +78,7 @@
         [Theory(DisplayName =
             "GIVEN empty activity result WHEN TrackCustomEvent is invoked THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyActivityWhenTrackCustomEventIsInvokedThenExceptionIsBeingThrown(
+        public void GIVENEmptyActivity_WHENTrackCustomEventIsInvoked_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange

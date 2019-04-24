@@ -37,7 +37,7 @@
 
         [Theory(DisplayName = "GIVEN turn context with any activity WHEN OnTurnAsync is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public async void GivenTurnContextWithAnyActivity_WhenOnTurnAsyncIsInvoked_ThenEventTelemetryIsBeingSent(
+        public async void GIVENTurnContextWithAnyActivity_WHENOnTurnAsyncIsInvoked_THENEventTelemetryIsBeingSent(
             Activity activity,
             ITurnContext turnContext,
             InstrumentationSettings settings)
@@ -58,7 +58,7 @@
 
         [Theory(DisplayName = "GIVEN turn context WHEN SendActivities is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public async void GivenTurnContext_WhenSendActivitiesInvoked_ThenEventTelemetryIsBeingSent(
+        public async void GIVENTurnContext_WHENSendActivitiesInvoked_THENEventTelemetryIsBeingSent(
             InstrumentationSettings settings,
             ITurnContext turnContext,
             IFixture fixture)
@@ -93,7 +93,7 @@
 
         [Theory(DisplayName = "GIVEN turn context WHEN UpdateActivity is invoked THEN event telemetry is being sent")]
         [AutoMockData]
-        public async void GivenTurnContext_WhenUpdateActivityInvoked_ThenEventTelemetryIsBeingSent(
+        public async void GIVENTurnContext_WHENUpdateActivityInvoked_THENEventTelemetryIsBeingSent(
             InstrumentationSettings settings,
             ITurnContext turnContext,
             IFixture fixture)
@@ -128,7 +128,7 @@
 
         [Theory(DisplayName = "GIVEN next turn WHEN OnTurnAsync is invoked THEN next turn is being invoked")]
         [AutoData]
-        public async void GivenNextTurn_WhenOnTurnAsyncIsInvoked_ThenNextTurnIsBeingInvoked(
+        public async void GIVENNextTurn_WHENOnTurnAsyncIsInvoked_THENNextTurnIsBeingInvoked(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -146,7 +146,7 @@
 
         [Theory(DisplayName = "GIVEN empty turn context WHEN OnTurnAsync is invoked THEN exception is being thrown")]
         [AutoData]
-        public async void GivenEmptyTurnContext_WhenOnTurnAsyncIsInvoked_ThenExceptionIsBeingThrown(
+        public async void GIVENEmptyTurnContext_WHENOnTurnAsyncIsInvoked_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -162,7 +162,7 @@
 
         [Theory(DisplayName = "GIVEN empty telemetry client WHEN BotInstrumentationMiddleware is constructed THEN exception is being thrown")]
         [AutoData]
-        public void GivenEmptyTelemetryClient_WhenBotInstrumentationMiddlewareIsConstructed_ThenExceptionIsBeingThrown(
+        public void GIVENEmptyTelemetryClient_WHENBotInstrumentationMiddlewareIsConstructed_THENExceptionIsBeingThrown(
             InstrumentationSettings settings)
         {
             // Arrange
@@ -174,7 +174,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty settings WHEN BotInstrumentationMiddleware is constructed THEN exception is being thrown")]
-        public void GivenEmptySettings_WhenBotInstrumentationMiddlewareIsConstructed_ThenExceptionIsBeingThrown()
+        public void GIVENEmptySettings_WHENBotInstrumentationMiddlewareIsConstructed_THENExceptionIsBeingThrown()
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

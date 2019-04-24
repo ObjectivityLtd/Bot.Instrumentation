@@ -13,7 +13,7 @@
     {
         [Theory(DisplayName = "GIVEN any result WHEN LuisResultAdapter is invoked THEN result is mapped")]
         [AutoMockData]
-        public void GivenAnyResultWhenLuisResultAdapterIsInvokedThenActivityIsMapped(LuisResult result)
+        public void GIVENAnyResult_WHENLuisResultAdapterIsInvoked_THENActivityIsMapped(LuisResult result)
         {
             // Arrange
             var adapter = new LuisResultAdapter(result);
@@ -28,7 +28,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty result WHEN LuisResultAdapter is invoked THEN exception is being thrown")]
-        public void GivenEmptyResultWhenLuisResultAdapterIsInvokedThenExceptionIsBeingThrown()
+        public void GIVENEmptyResult_WHENLuisResultAdapterIsInvoked_THENExceptionIsBeingThrown()
         {
             // Arrange
             const LuisResult emptyResult = null;

@@ -13,7 +13,7 @@
     {
         [Theory(DisplayName = "GIVEN any activity WHEN ActivityAdapter is invoked THEN activity is mapped")]
         [AutoMockData]
-        public void GivenAnyActivityWhenActivityAdapterIsInvokedThenActivityIsMapped(IActivity activity)
+        public void GIVENAnyActivity_WHENActivityAdapterIsInvoked_THENActivityIsMapped(IActivity activity)
         {
             // Arrange
             var adapter = new ActivityAdapter(activity);
@@ -33,7 +33,7 @@
         }
 
         [Fact(DisplayName = "GIVEN empty activity result WHEN ActivityAdapter is invoked THEN exception is being thrown")]
-        public void GivenEmptyActivityWhenActivityAdapterIsInvokedThenExceptionIsBeingThrown()
+        public void GIVENEmptyActivity_WHENActivityAdapterIsInvoked_THENExceptionIsBeingThrown()
         {
             // Arrange
             const IActivity emptyActivity = null;

@@ -15,7 +15,7 @@
         [InlineAutoData(1979, 10, 14, 9, 15, 0, 0, "1979-10-14T09:15:00Z")]
         [InlineAutoData(1999, 12, 31, 23, 59, 59, 999, "1999-12-31T23:59:59.999Z")]
         [InlineAutoData(2000, 1, 1, 0, 0, 0, 0, "2000-01-01T00:00:00Z")]
-        public void GivenDateTimeWhenAsIso8601IsInvokedThenExpectedStringIsBeingReturned(
+        public void GIVENDateTime_WHENAsIso8601IsInvoked_THENExpectedStringIsBeingReturned(
             int year,
             int month,
             int day,
