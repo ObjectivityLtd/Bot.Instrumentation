@@ -38,7 +38,6 @@
         {
             // Arrange
             var instrumentation = new IntentInstrumentation();
-            //var topScoringIntent = luisResult.GetTopScoringIntent();
 
             // Act
             instrumentation.TrackIntent(activity, luisResult, this.telemetryClient, settings);

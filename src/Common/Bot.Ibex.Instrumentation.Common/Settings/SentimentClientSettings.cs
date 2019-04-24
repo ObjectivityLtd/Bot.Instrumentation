@@ -2,7 +2,6 @@
 {
     using System;
 
-    [Serializable]
     public class SentimentClientSettings
     {
         public string ApiSubscriptionKey { get; set; }

@@ -3,7 +3,6 @@
     using System;
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
-    using Newtonsoft.Json;
 
     public class ActivityAdapter : IActivity
     {

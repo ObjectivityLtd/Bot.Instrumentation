@@ -75,51 +75,5 @@
             await Assert.ThrowsAsync<ArgumentNullException>(() => instrumentation.TrackMessageSentiment(emptyActivity, this.telemetryClient, settings, sentimentClient))
                 .ConfigureAwait(false);
         }
-
-        //[Theory(DisplayName =
-        //    "GIVEN empty sentiment client WHEN SentimentInstrumentation is constructed THEN exception is being thrown")]
-        //[AutoData]
-        //public void GIVENEmptySentimentClient_WHENSentimentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
-        //    InstrumentationSettings settings)
-        //{
-        //    // Arrange
-        //    const ISentimentClient emptySentimentClient = null;
-
-        //    // Act
-        //    // Assert
-        //    Assert.Throws<ArgumentNullException>(() =>
-        //        new SentimentInstrumentation(settings, this.telemetryClient, emptySentimentClient));
-        //}
-
-        //[Theory(DisplayName =
-        //    "GIVEN empty telemetry client WHEN SentimentInstrumentation is constructed THEN exception is being thrown")]
-        //[AutoMockData]
-        //public void GIVENEmptyTelemetryClient_WHENSentimentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
-        //    ISentimentClient sentimentClient,
-        //    InstrumentationSettings settings)
-        //{
-        //    // Arrange
-        //    const TelemetryClient emptyTelemetryClient = null;
-
-        //    // Act
-        //    // Assert
-        //    Assert.Throws<ArgumentNullException>(() =>
-        //        new SentimentInstrumentation(settings, emptyTelemetryClient, sentimentClient));
-        //}
-
-        //[Theory(DisplayName =
-        //    "GIVEN empty settings WHEN SentimentInstrumentation is constructed THEN exception is being thrown")]
-        //[AutoMockData]
-        //public void GIVENEmptySettings_WHENSentimentInstrumentationIsConstructed_THENExceptionIsBeingThrown(
-        //    ISentimentClient sentimentClient)
-        //{
-        //    // Arrange
-        //    const InstrumentationSettings emptySettings = null;
-
-        //    // Act
-        //    // Assert
-        //    Assert.Throws<ArgumentNullException>(() =>
-        //        new SentimentInstrumentation(emptySettings, this.telemetryClient, sentimentClient));
-        //}
     }
 }
