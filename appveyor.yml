@@ -40,7 +40,7 @@ build_script:
 - ps: >-
     dotnet build ./src/$env:package_module
     
-    if(package_module != 'Common')
+    if(%package_module% != 'Common')
     {
       if ($env:APPVEYOR_REPO_TAG -eq "true")
       {
