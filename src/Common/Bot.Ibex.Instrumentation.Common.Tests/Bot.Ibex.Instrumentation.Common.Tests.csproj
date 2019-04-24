@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Objectivity.Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" />
+    <ProjectReference Include="..\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" />
   </ItemGroup>
 
 </Project>
