@@ -80,22 +80,6 @@
                 .ConfigureAwait(false);
         }
 
-        [Theory(DisplayName =
-            "GIVEN SentimentClient WHEN Dispose is invoked THEN other resources are being disposed as well")]
-        [AutoMockData]
-        public void GivenSentimentClientWhenDisposeIsInvokedThenOtherResourcesAreBeingDisposedAsWell(
-            ITextAnalyticsClient textAnalyticsClient)
-        {
-            // Arrange
-            var sentimentClient = new SentimentClient(textAnalyticsClient);
-
-            // Act
-            sentimentClient.Dispose();
-
-            // Assert
-            Mock.Get(textAnalyticsClient).Verify(sc => sc.Dispose(), Times.Once);
-        }
-
         [Fact(DisplayName =
             "GIVEN empty sentiment client settings WHEN SentimentClient is created THEN exception is being thrown")]
         public void GivenEmptySentimentClientSettingsWhenSentimentClientIsCreatedThenExceptionIsBeingThrown()
@@ -118,6 +102,22 @@
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() => new SentimentClient(emptyTextAnalyticsClient));
+        }
+
+        [Theory(DisplayName =
+            "GIVEN SentimentClient WHEN Dispose is invoked THEN other resources are being disposed as well")]
+        [AutoMockData]
+        public void GivenSentimentClientWhenDisposeIsInvokedThenOtherResourcesAreBeingDisposedAsWell(
+            ITextAnalyticsClient textAnalyticsClient)
+        {
+            // Arrange
+            var sentimentClient = new SentimentClient(textAnalyticsClient);
+
+            // Act
+            sentimentClient.Dispose();
+
+            // Assert
+            Mock.Get(textAnalyticsClient).Verify(sc => sc.Dispose(), Times.Once);
         }
     }
 }

@@ -20,9 +20,8 @@ environment:
   cc: opencover
   matrix:
   - package_module: V3
-    package_suffix: 
   - package_module: V4
-    package_suffix: 
+  - package_module: Common
     
   StrongNameKeyName: key.snk
   StrongNameKeyPath: ''
@@ -41,19 +40,22 @@ build_script:
 - ps: >-
     dotnet build ./src/$env:package_module
     
-    if ($env:APPVEYOR_REPO_TAG -eq "true")
+    if(package_module != 'Common')
     {
-        dotnet pack ./src/$env:package_module/$env:namespace$env:package_suffix --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
-    }
-    else
-    {
-        dotnet pack ./src/$env:package_module/$env:namespace$env:package_suffix --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+      if ($env:APPVEYOR_REPO_TAG -eq "true")
+      {
+          dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+      }
+      else
+      {
+          dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+      }
     }
 test_script:
 - cmd: >-
-    dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml
+    dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_module%.xml
     
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml --flag unittests
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%%package_module%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
