@@ -61,8 +61,9 @@
 
             BotAssert.ContextNotNull(turnContext);
 
-            var objectivityActivity = new TurnContextAdapter(turnContext);
-            if (objectivityActivity.IsIncomingMessage())
+            var activity = new ActivityAdapter(turnContext.Activity);
+
+            if (activity.IsIncomingMessage())
             {
                 await this.sentimentInstrumentation.TrackMessageSentiment(turnContext.Activity)
                     .ConfigureAwait(false);

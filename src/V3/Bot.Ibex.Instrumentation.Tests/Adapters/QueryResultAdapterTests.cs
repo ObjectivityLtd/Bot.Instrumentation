@@ -23,7 +23,7 @@
             var topScoreAnswer = queryResult.Answers.OrderByDescending(x => x.Score).First();
 
             // Act
-            var convertedQueryResult = adapter.ConvertQnAMakerResultsToQueryResult();
+            var convertedQueryResult = adapter.QueryResult;
 
             // Assert
             Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(QuestionsSeparator.Separator, topScoreAnswer.Questions));

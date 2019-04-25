@@ -4,10 +4,11 @@
     using System.Globalization;
     using System.Linq;
     using Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using Common.Adapters;
     using Common.Models;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
 
-    public class QueryResultAdapter
+    public class QueryResultAdapter : IQueryResultAdapter
     {
         private readonly QnAMakerResults queryResult;
 
@@ -16,7 +17,9 @@
             this.queryResult = queryResult ?? throw new ArgumentNullException(nameof(queryResult));
         }
 
-        public QueryResult ConvertQnAMakerResultsToQueryResult()
+        public QueryResult QueryResult => this.ConvertQnAMakerResultsToQueryResult();
+
+        private QueryResult ConvertQnAMakerResultsToQueryResult()
         {
             var topScoreAnswer = this.queryResult.Answers.OrderByDescending(x => x.Score).First();
             var result = new QueryResult

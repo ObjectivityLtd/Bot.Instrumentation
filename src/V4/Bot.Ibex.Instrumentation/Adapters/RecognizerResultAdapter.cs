@@ -3,10 +3,11 @@
     using System;
     using System.Globalization;
     using Bot.Ibex.Instrumentation.Common.Models;
+    using Common.Adapters;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
 
-    public class RecognizerResultAdapter
+    public class RecognizerResultAdapter : ILuisResultAdapter
     {
         private readonly RecognizerResult result;
 
@@ -15,7 +16,9 @@
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
-        public IntentResult ConvertRecognizerResultToRecognizedIntentResult()
+        public IntentResult IntentResult => this.ConvertRecognizerResultIntentResult();
+
+        public IntentResult ConvertRecognizerResultIntentResult()
         {
             var topScoringIntent = this.result.GetTopScoringIntent();
             var intentResult = new IntentResult

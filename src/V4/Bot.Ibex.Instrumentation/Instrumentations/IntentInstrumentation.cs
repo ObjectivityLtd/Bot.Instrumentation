@@ -28,12 +28,11 @@
             }
 
             var objectivityActivity = new ActivityAdapter(activity);
-            var recognizerResultAdapter = new RecognizerResultAdapter(result);
-            var convertedResult = recognizerResultAdapter.ConvertRecognizerResultToRecognizedIntentResult();
+            var recognizerResultAdapter = new RecognizerResultAdapter(result).IntentResult;
 
             var intentInstrumentation =
                 new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
-            intentInstrumentation.TrackIntent(objectivityActivity, convertedResult, this.telemetryClient, this.settings);
+            intentInstrumentation.TrackIntent(objectivityActivity, recognizerResultAdapter, this.telemetryClient, this.settings);
         }
     }
 }

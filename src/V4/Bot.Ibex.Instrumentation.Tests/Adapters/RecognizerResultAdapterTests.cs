@@ -21,7 +21,7 @@
             var topScoringIntent = recognizerResult.GetTopScoringIntent();
 
             // Act
-            var recognizedIntentResult = adapter.ConvertRecognizerResultToRecognizedIntentResult();
+            var recognizedIntentResult = adapter.ConvertRecognizerResultIntentResult();
 
             // Assert
             Assert.Equal(recognizedIntentResult.Intent, topScoringIntent.intent);

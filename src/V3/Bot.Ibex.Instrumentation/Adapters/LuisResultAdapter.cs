@@ -2,10 +2,11 @@
 {
     using System;
     using Bot.Ibex.Instrumentation.Common.Models;
+    using Common.Adapters;
     using Microsoft.Bot.Builder.Luis.Models;
     using Newtonsoft.Json;
 
-    public class LuisResultAdapter
+    public class LuisResultAdapter : ILuisResultAdapter
     {
         private readonly LuisResult result;
 
@@ -14,7 +15,9 @@
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
-        public IntentResult ConvertLuisResultToRecognizedIntentResult()
+        public IntentResult IntentResult => this.ConvertLuisesultToIntentResult();
+
+        public IntentResult ConvertLuisesultToIntentResult()
         {
             var intentResult = new IntentResult
             {
