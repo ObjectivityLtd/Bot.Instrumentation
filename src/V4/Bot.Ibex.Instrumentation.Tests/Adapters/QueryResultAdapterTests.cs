@@ -2,10 +2,11 @@
 {
     using System;
     using System.Globalization;
-    using Microsoft.Bot.Builder.AI.QnA;
+    using Common.Models;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using V4.Adapters;
     using Xunit;
+    using QueryResult = Microsoft.Bot.Builder.AI.QnA.QueryResult;
 
     [Collection("QueryResultAdapter")]
     [Trait("Category", "Adapters")]
@@ -16,14 +17,13 @@
         public void GIVENAnyQuery_WHENQueryResultAdapterIsInvoked_THENQueryResultIsMapped(QueryResult queryResult)
         {
             // Arrange
-            string questionsSeparator = ",";
             var adapter = new QueryResultAdapter(queryResult);
 
             // Act
             var convertedQueryResult = adapter.ConvertQnAMakerResultsToQueryResult();
 
             // Assert
-            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(questionsSeparator, queryResult.Questions));
+            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(QuestionsSeparator.Separator, queryResult.Questions));
             Assert.Equal(convertedQueryResult.KnowledgeBaseAnswer, queryResult.Answer);
             Assert.Equal(convertedQueryResult.Score, queryResult.Score.ToString(CultureInfo.InvariantCulture));
         }

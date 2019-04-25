@@ -18,12 +18,14 @@
 
         public QueryResult ConvertQnAMakerResultsToQueryResult()
         {
-            var result = new QueryResult();
             var topScoreAnswer = this.queryResult.Answers.OrderByDescending(x => x.Score).First();
-
-            result.KnowledgeBaseQuestion = string.Join(QnAInstrumentation.QuestionsSeparator, topScoreAnswer.Questions);
-            result.KnowledgeBaseAnswer = topScoreAnswer.Answer;
-            result.Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture);
+            var result = new QueryResult
+            {
+                KnowledgeBaseQuestion =
+                    string.Join(QuestionsSeparator.Separator, topScoreAnswer.Questions),
+                KnowledgeBaseAnswer = topScoreAnswer.Answer,
+                Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture)
+            };
 
             return result;
         }

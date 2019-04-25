@@ -8,8 +8,6 @@
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
-        public const string QuestionsSeparator = ",";
-
         public void TrackEvent(IActivity activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient)
         {
             var properties = new Dictionary<string, string>

@@ -14,13 +14,14 @@
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
-        public RecognizedIntentResult ConvertLuisResultToRecognizedIntentResult()
+        public IntentResult ConvertLuisResultToRecognizedIntentResult()
         {
-            var intentResult = new RecognizedIntentResult();
-
-            intentResult.Intent = this.result.TopScoringIntent.Intent;
-            intentResult.Score = this.result.TopScoringIntent.Score.ToString();
-            intentResult.Entities = JsonConvert.SerializeObject(this.result.Entities);
+            var intentResult = new IntentResult
+            {
+                Intent = this.result.TopScoringIntent.Intent,
+                Score = this.result.TopScoringIntent.Score.ToString(),
+                Entities = JsonConvert.SerializeObject(this.result.Entities)
+            };
 
             return intentResult;
         }

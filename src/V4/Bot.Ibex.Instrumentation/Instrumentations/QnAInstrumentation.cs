@@ -10,8 +10,6 @@
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
-        public const string QuestionsSeparator = ",";
-
         private readonly TelemetryClient telemetryClient;
         private readonly InstrumentationSettings settings;
 

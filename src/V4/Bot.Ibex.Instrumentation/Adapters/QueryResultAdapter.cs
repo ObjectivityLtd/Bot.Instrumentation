@@ -6,8 +6,6 @@
 
     public class QueryResultAdapter
     {
-        public const string QuestionsSeparator = ",";
-
         private readonly Microsoft.Bot.Builder.AI.QnA.QueryResult queryResult;
 
         public QueryResultAdapter(Microsoft.Bot.Builder.AI.QnA.QueryResult queryResult)
@@ -17,11 +15,12 @@
 
         public QueryResult ConvertQnAMakerResultsToQueryResult()
         {
-            var result = new QueryResult();
-
-            result.KnowledgeBaseQuestion = string.Join(QuestionsSeparator, this.queryResult.Questions);
-            result.KnowledgeBaseAnswer = this.queryResult.Answer;
-            result.Score = this.queryResult.Score.ToString(CultureInfo.InvariantCulture);
+            var result = new QueryResult
+            {
+                KnowledgeBaseQuestion = string.Join(QuestionsSeparator.Separator, this.queryResult.Questions),
+                KnowledgeBaseAnswer = this.queryResult.Answer,
+                Score = this.queryResult.Score.ToString(CultureInfo.InvariantCulture)
+            };
 
             return result;
         }

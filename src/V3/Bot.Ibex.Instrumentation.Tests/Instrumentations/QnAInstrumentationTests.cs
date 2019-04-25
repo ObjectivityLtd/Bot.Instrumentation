@@ -6,6 +6,7 @@
     using System.Linq;
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Common.Models;
     using Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -65,7 +66,7 @@
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == EventTypes.QnaEvent &&
                     t.Properties[QnAConstants.UserQuery] == activity.AsMessageActivity().Text &&
-                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == string.Join(QnAInstrumentation.QuestionsSeparator, queryResult.Answers.First().Questions) &&
+                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == string.Join(QuestionsSeparator.Separator, queryResult.Answers.First().Questions) &&
                     t.Properties[QnAConstants.KnowledgeBaseAnswer] == queryResult.Answers.First().Answer &&
                     t.Properties[QnAConstants.Score] == queryResult.Answers.First().Score.ToString(CultureInfo.InvariantCulture))),
                 Times.Once);

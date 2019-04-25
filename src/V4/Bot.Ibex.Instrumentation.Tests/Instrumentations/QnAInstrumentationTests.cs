@@ -4,17 +4,18 @@
     using System.Globalization;
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Common.Models;
     using Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.ApplicationInsights.Extensibility;
-    using Microsoft.Bot.Builder.AI.QnA;
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using V4.Instrumentations;
     using Xunit;
+    using QueryResult = Microsoft.Bot.Builder.AI.QnA.QueryResult;
 
     [Collection("QnAInstrumentation")]
     [Trait("Category", "Instrumentations")]
@@ -48,7 +49,7 @@
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == EventTypes.QnaEvent &&
                     t.Properties[QnAConstants.UserQuery] == activity.AsMessageActivity().Text &&
-                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == string.Join(QnAInstrumentation.QuestionsSeparator, queryResult.Questions) &&
+                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == string.Join(QuestionsSeparator.Separator, queryResult.Questions) &&
                     t.Properties[QnAConstants.KnowledgeBaseAnswer] == queryResult.Answer &&
                     t.Properties[QnAConstants.Score] == queryResult.Score.ToString(CultureInfo.InvariantCulture))),
                 Times.Once);

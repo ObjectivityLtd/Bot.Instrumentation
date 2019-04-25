@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.Linq;
     using Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using Common.Models;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using V3.Adapters;
@@ -25,7 +26,7 @@
             var convertedQueryResult = adapter.ConvertQnAMakerResultsToQueryResult();
 
             // Assert
-            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(QnAInstrumentation.QuestionsSeparator, topScoreAnswer.Questions));
+            Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(QuestionsSeparator.Separator, topScoreAnswer.Questions));
             Assert.Equal(convertedQueryResult.KnowledgeBaseAnswer, topScoreAnswer.Answer);
             Assert.Equal(convertedQueryResult.Score, topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture));
         }

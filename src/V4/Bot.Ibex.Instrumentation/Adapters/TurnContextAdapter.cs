@@ -15,20 +15,7 @@
             this.activity = activity ?? throw new ArgumentNullException(nameof(activity));
         }
 
-        public string TimeStampIso8601
-        {
-            get
-            {
-                if (this.activity.Activity.Timestamp != null)
-                {
-                    return this.activity.Activity.Timestamp.Value.AsIso8601();
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
+        public string TimeStampIso8601 => this.activity.Activity.Timestamp?.AsIso8601();
 
         public string Type => this.activity.Activity.Type;
 
@@ -42,9 +29,12 @@
             {
                 if (this.activity.Activity.Text != null)
                 {
-                    var messageActivity = new MessageActivity();
-                    messageActivity.Text = this.activity.Activity.Text;
-                    messageActivity.Id = this.activity.Activity.Id;
+                    var messageActivity = new MessageActivity
+                    {
+                        Text = this.activity.Activity.Text,
+                        Id = this.activity.Activity.Id
+                    };
+
                     return messageActivity;
                 }
                 else
@@ -60,9 +50,12 @@
             {
                 if (this.activity.Activity != null)
                 {
-                    var channelAccount = new ChannelAccount();
-                    channelAccount.Name = this.activity.Activity.Name;
-                    channelAccount.Id = this.activity.Activity.Id;
+                    var channelAccount = new ChannelAccount
+                    {
+                        Name = this.activity.Activity.Name,
+                        Id = this.activity.Activity.Id
+                    };
+
                     return channelAccount;
                 }
                 else
