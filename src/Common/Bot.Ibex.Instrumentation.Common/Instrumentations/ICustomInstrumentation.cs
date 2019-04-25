@@ -1,7 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System.Collections.Generic;
-    using Constants;
     using Microsoft.ApplicationInsights;
     using Settings;
     using Telemetry;

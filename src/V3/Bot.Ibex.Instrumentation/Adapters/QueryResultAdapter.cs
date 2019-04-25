@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.Linq;
     using Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using Common.Models;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
 
     public class QueryResultAdapter

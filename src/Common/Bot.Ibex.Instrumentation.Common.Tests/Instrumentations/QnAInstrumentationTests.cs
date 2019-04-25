@@ -3,11 +3,11 @@
     using System.Globalization;
     using Common.Instrumentations;
     using Common.Telemetry;
-    using Constants;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.ApplicationInsights.Extensibility;
+    using Models;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Settings;

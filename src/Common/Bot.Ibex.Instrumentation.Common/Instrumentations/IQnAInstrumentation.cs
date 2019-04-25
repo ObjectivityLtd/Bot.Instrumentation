@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using Microsoft.ApplicationInsights;
+    using Models;
     using Settings;
     using Telemetry;
 

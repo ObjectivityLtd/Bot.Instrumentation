@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading.Tasks;
-    using Constants;
     using Microsoft.ApplicationInsights;
     using Sentiments;
     using Settings;

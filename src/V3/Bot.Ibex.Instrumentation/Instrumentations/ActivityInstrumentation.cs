@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using Adapters;
-    using Bot.Ibex.Instrumentation.Common.Constants;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;

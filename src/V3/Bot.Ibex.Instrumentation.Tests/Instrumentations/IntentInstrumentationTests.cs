@@ -2,8 +2,8 @@
 {
     using System;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Common.Constants;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;

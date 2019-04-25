@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Common.Constants
+﻿namespace Bot.Ibex.Instrumentation.Common.Telemetry
 {
     public static class ActivityTypes
     {

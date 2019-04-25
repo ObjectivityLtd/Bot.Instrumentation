@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Telemetry
 {
     using Common.Telemetry;
+    using Models;
 
     public class Activity : IActivity
     {

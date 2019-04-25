@@ -1,5 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Telemetry
 {
+    using Models;
+
     public interface IActivity
     {
         string TimeStampIso8601{ get; }

@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using Adapters;
-    using Bot.Ibex.Instrumentation.Common.Constants;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
-    using Microsoft.Bot.Schema;
+    using IActivity = Microsoft.Bot.Schema.IActivity;
 
     public class CustomInstrumentation : ICustomInstrumentation
     {

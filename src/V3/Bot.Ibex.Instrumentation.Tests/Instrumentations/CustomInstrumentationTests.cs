@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using AutoFixture.Xunit2;
-    using Bot.Ibex.Instrumentation.Common.Constants;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -14,6 +14,7 @@
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using V3.Instrumentations;
     using Xunit;
+    using IActivity = Microsoft.Bot.Connector.IActivity;
 
     [Collection("CustomInstrumentation")]
     [Trait("Category", "Instrumentations")]

@@ -6,7 +6,6 @@
     using Common.Instrumentations;
     using Common.Sentiments;
     using Common.Telemetry;
-    using Constants;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;

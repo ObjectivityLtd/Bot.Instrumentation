@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Adapters
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;

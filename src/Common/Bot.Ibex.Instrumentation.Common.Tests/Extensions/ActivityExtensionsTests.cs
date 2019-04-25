@@ -2,7 +2,6 @@
 {
     using Common.Extensions;
     using Common.Telemetry;
-    using Constants;
     using FluentAssertions;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Telemetry;

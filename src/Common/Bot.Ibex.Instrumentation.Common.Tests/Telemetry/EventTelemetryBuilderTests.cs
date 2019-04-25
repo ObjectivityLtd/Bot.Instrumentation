@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Globalization;
     using Common.Telemetry;
-    using Constants;
     using FluentAssertions;
     using global::AutoFixture;
     using global::AutoFixture.Xunit2;
+    using Models;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Settings;
     using Xunit;

@@ -3,6 +3,7 @@
     using System;
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Common.Models;
     using Microsoft.Bot.Builder;
 
     public class TurnContextAdapter : IActivity

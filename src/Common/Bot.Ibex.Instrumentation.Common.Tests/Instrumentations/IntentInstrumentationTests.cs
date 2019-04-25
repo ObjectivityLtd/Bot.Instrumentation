@@ -3,7 +3,6 @@
     using System;
     using Common.Instrumentations;
     using Common.Telemetry;
-    using Constants;
     using global::AutoFixture.Xunit2;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;

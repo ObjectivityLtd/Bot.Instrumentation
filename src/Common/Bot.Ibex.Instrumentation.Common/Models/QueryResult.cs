@@ -1,4 +1,4 @@
-﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
+﻿namespace Bot.Ibex.Instrumentation.Common.Models
 {
     public class QueryResult
     {
