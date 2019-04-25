@@ -8,7 +8,7 @@
     public class CustomInstrumentation : ICustomInstrumentation
     {
         public void TrackCustomEvent(
-            IActivity activity,
+            IActivityAdapter activity,
             TelemetryClient telemetryClient,
             InstrumentationSettings settings,
             string eventName = EventTypes.CustomEvent,
@@ -18,7 +18,7 @@
         }
 
         private static void TrackTelemetry(
-            IActivity activity,
+            IActivityAdapter activity,
             TelemetryClient telemetryClient,
             InstrumentationSettings settings,
             string eventName,

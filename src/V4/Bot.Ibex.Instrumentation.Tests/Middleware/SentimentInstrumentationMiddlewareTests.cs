@@ -56,7 +56,7 @@
                 .ConfigureAwait(false);
 
             // Assert
-            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<Bot.Ibex.Instrumentation.Common.Telemetry.IActivity>()), Times.Exactly(expectedNumberOfInvocations));
+            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<Bot.Ibex.Instrumentation.Common.Telemetry.IActivityAdapter>()), Times.Exactly(expectedNumberOfInvocations));
             this.mockTelemetryChannel.Verify(tc => tc.Send(It.IsAny<EventTelemetry>()), Times.Exactly(expectedNumberOfInvocations));
         }
 

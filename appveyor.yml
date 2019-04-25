@@ -51,9 +51,11 @@ build_script:
 test_script:
 - cmd: >-
     dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml
+    
     dotnet test ./src/%common_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
     
     codecov -f %appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml --flag unittests
+    
     codecov -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
 
 artifacts:

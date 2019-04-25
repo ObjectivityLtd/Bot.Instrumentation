@@ -31,7 +31,7 @@
         [Theory(DisplayName = "GIVEN any activity WHEN TrackIntent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public void GIVENAnyActivity_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
-            IActivity activity,
+            IActivityAdapter activity,
             IntentResult luisResult,
             InstrumentationSettings settings)
         {
@@ -56,7 +56,7 @@
         [AutoMockData]
         public void
             GIVENAnyActivityAnyResultAnAnyProperty_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
-                IActivity activity,
+                IActivityAdapter activity,
                 IntentResult result,
                 InstrumentationSettings settings)
         {
@@ -84,7 +84,7 @@
         {
             // Arrange
             var instrumentation = new IntentInstrumentation();
-            const IActivity emptyActivity = null;
+            const IActivityAdapter emptyActivity = null;
 
             // Act
             // Assert

@@ -6,12 +6,12 @@
 
     public static class ActivityExtensions
     {
-        public static bool IsIncomingMessage(this IActivity activity)
+        public static bool IsIncomingMessage(this IActivityAdapter activity)
         {
             return activity?.Type == ActivityTypes.Message && activity?.ReplyToId == null;
         }
 
-        public static MultiLanguageBatchInput ToSentimentInput(this IActivity activity)
+        public static MultiLanguageBatchInput ToSentimentInput(this IActivityAdapter activity)
         {
             return activity == null
                 ? null

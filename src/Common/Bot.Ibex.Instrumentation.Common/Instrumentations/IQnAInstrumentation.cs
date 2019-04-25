@@ -7,6 +7,6 @@
 
     public interface IQnAInstrumentation
     {
-        void TrackEvent(IActivity activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient);
+        void TrackEvent(IActivityAdapter activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient);
     }
 }

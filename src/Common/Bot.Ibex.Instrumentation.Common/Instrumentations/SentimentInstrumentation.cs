@@ -10,7 +10,7 @@
 
     public class SentimentInstrumentation : ISentimentInstrumentation
     {
-        public async Task TrackMessageSentiment(IActivity activity, TelemetryClient telemetryClient, InstrumentationSettings settings, ISentimentClient sentimentClient)
+        public async Task TrackMessageSentiment(IActivityAdapter activity, TelemetryClient telemetryClient, InstrumentationSettings settings, ISentimentClient sentimentClient)
         {
             var score = await sentimentClient.GetSentiment(activity)
                 .ConfigureAwait(false);
@@ -22,7 +22,7 @@
             TrackTelemetry(activity, telemetryClient, settings, properties);
         }
 
-        private static void TrackTelemetry(IActivity activity, TelemetryClient telemetryClient,
+        private static void TrackTelemetry(IActivityAdapter activity, TelemetryClient telemetryClient,
             InstrumentationSettings settings, Dictionary<string, string> properties)
         {
             var builder = new EventTelemetryBuilder(activity, settings, properties);

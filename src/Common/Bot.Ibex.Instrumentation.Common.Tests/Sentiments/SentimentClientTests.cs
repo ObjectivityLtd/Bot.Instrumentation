@@ -23,7 +23,7 @@
         [AutoMockData]
         public async void GIVENAnyMessageActivity_WHENGetSentimentIsInvoked_THENScoreIsBeingReturned(
             ITextAnalyticsClient textAnalyticsClient,
-            IActivity activity,
+            IActivityAdapter activity,
             double sentiment)
         {
             // Arrange
@@ -55,7 +55,7 @@
         {
             // Arrange
             var instrumentation = new SentimentClient(textAnalyticsClient);
-            const IActivity emptyMessageActivity = null;
+            const IActivityAdapter emptyMessageActivity = null;
 
             // Act
             // Assert
@@ -68,7 +68,7 @@
         [AutoMockData]
         public async void GIVENDisposedSentimentClient_WHENGetSentimentIsInvoked_THENExceptionIsBeingThrown(
             ITextAnalyticsClient textAnalyticsClient,
-            IActivity activity)
+            IActivityAdapter activity)
         {
             // Arrange
             var instrumentation = new SentimentClient(textAnalyticsClient);

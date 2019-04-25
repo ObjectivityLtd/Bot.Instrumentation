@@ -39,7 +39,7 @@
         [Theory(DisplayName = "GIVEN Activity WHEN ToSentimentInput is invoked THEN SentimentInput is being returned")]
         [AutoMockData]
         public void GIVENActivity_WHENToSentimentInputIsInvoked_THENSentimentInputIsBeingReturned(
-            IActivity activity)
+            IActivityAdapter activity)
         {
             // Arrange
             const int expectedNumberOfDocuments = 1;
@@ -59,7 +59,7 @@
         public void GIVENEmptyActivity_WHENIsIncomingMessageIsInvoked_THENFalseIsBeingReturned()
         {
             // Arrange
-            const IActivity activity = null;
+            const IActivityAdapter activity = null;
             const bool expectedResult = false;
 
             // Act
@@ -74,7 +74,7 @@
         public void GIVENEmptyActivity_WHENToSentimentInputIsInvoked_THENEmptySentimentInputIsBeingReturned()
         {
             // Arrange
-            const IActivity activity = null;
+            const IActivityAdapter activity = null;
 
             // Act
             var actualResult = activity.ToSentimentInput();

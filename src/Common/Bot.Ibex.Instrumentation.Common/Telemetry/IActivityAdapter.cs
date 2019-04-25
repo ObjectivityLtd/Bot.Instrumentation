@@ -2,7 +2,7 @@
 {
     using Models;
 
-    public interface IActivity
+    public interface IActivityAdapter
     {
         string TimeStampIso8601{ get; }
         string Type { get; }

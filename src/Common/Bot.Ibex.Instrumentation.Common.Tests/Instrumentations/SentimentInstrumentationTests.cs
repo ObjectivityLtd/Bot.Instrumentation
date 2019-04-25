@@ -35,7 +35,7 @@
         [AutoMockData]
         public async void GIVENAnyActivity_WHENTrackEventIsInvoked_THENEventTelemetryIsBeingSent(
             double sentimentScore,
-            IActivity activity,
+            IActivityAdapter activity,
             ISentimentClient sentimentClient,
             InstrumentationSettings settings)
         {
@@ -66,7 +66,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const IActivity emptyActivity = null;
+            const IActivityAdapter emptyActivity = null;
             var instrumentation = new SentimentInstrumentation();
 
             // Act

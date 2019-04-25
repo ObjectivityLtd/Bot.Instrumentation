@@ -8,7 +8,7 @@
     public interface ICustomInstrumentation
     {
         void TrackCustomEvent(
-            IActivity activity,
+            IActivityAdapter activity,
             TelemetryClient telemetryClient,
             InstrumentationSettings settings,
             string eventName = EventTypes.CustomEvent,

@@ -8,7 +8,7 @@
 
     public class IntentInstrumentation : IIntentInstrumentation
     {
-        public void TrackIntent(IActivity activity, IntentResult result, TelemetryClient telemetryClient, InstrumentationSettings settings)
+        public void TrackIntent(IActivityAdapter activity, IntentResult result, TelemetryClient telemetryClient, InstrumentationSettings settings)
         {
             var properties = new Dictionary<string, string>
             {
@@ -21,7 +21,7 @@
         }
 
         private void TrackTelemetry(
-            IActivity activity,
+            IActivityAdapter activity,
             IDictionary<string, string> properties,
             InstrumentationSettings settings,
             TelemetryClient telemetryClient)

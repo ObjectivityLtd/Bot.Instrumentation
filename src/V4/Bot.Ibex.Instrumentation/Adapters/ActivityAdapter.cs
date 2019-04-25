@@ -5,7 +5,7 @@
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Common.Models;
 
-    public class ActivityAdapter : IActivity
+    public class ActivityAdapter : IActivityAdapter
     {
         private readonly Microsoft.Bot.Schema.IActivity activity;
 

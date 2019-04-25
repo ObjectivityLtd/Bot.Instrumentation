@@ -3,7 +3,7 @@
     using Common.Telemetry;
     using Models;
 
-    public class Activity : IActivity
+    public class Activity : IActivityAdapter
     {
         public string TimeStampIso8601 { get; set; }
 

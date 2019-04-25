@@ -8,7 +8,7 @@
 
     public class QnAInstrumentation : IQnAInstrumentation
     {
-        public void TrackEvent(IActivity activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient)
+        public void TrackEvent(IActivityAdapter activity, QueryResult queryResult, InstrumentationSettings settings, TelemetryClient telemetryClient)
         {
             var properties = new Dictionary<string, string>
             {
@@ -21,7 +21,7 @@
             TrackTelemetry(activity, settings, telemetryClient, properties);
         }
 
-        private static void TrackTelemetry(IActivity activity, InstrumentationSettings settings,
+        private static void TrackTelemetry(IActivityAdapter activity, InstrumentationSettings settings,
             TelemetryClient telemetryClient, Dictionary<string, string> properties)
         {
             var builder = new EventTelemetryBuilder(activity, settings, properties);

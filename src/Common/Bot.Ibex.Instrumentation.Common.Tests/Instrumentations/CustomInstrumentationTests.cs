@@ -32,7 +32,7 @@
         [Theory(DisplayName = "GIVEN any activity WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
         [AutoMockData]
         public void GIVENAnyActivity_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
-            IActivity activity,
+            IActivityAdapter activity,
             InstrumentationSettings settings)
         {
             // Arrange
@@ -53,7 +53,7 @@
         [AutoMockData]
         public void
             GIVENAnyActivityAnyEventNameAndAnyProperty_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
-                IActivity activity,
+                IActivityAdapter activity,
                 string eventName,
                 string propertyKey,
                 string propertyValue,
@@ -82,7 +82,7 @@
         {
             // Arrange
             var instrumentation = new CustomInstrumentation();
-            const IActivity emptyActivity = null;
+            const IActivityAdapter emptyActivity = null;
 
             // Act
             // Assert

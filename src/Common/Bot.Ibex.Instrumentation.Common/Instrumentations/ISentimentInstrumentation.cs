@@ -8,6 +8,6 @@
 
     public interface ISentimentInstrumentation
     {
-        Task TrackMessageSentiment(IActivity activity, TelemetryClient telemetryClient, InstrumentationSettings settings, ISentimentClient sentimentClient);
+        Task TrackMessageSentiment(IActivityAdapter activity, TelemetryClient telemetryClient, InstrumentationSettings settings, ISentimentClient sentimentClient);
     }
 }

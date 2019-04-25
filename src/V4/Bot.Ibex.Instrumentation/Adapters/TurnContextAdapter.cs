@@ -6,7 +6,7 @@
     using Common.Models;
     using Microsoft.Bot.Builder;
 
-    public class TurnContextAdapter : IActivity
+    public class TurnContextAdapter : IActivityAdapter
     {
         private readonly ITurnContext activity;
 

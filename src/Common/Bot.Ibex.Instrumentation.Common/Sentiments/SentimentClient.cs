@@ -33,7 +33,7 @@
             this.textAnalyticsClient = textAnalyticsClient ?? throw new ArgumentNullException(nameof(textAnalyticsClient));
         }
 
-        public async Task<double?> GetSentiment(IActivity activity)
+        public async Task<double?> GetSentiment(IActivityAdapter activity)
         {
             if (activity == null)
             {

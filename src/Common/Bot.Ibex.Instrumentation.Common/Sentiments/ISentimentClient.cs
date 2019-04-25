@@ -6,6 +6,6 @@
 
     public interface ISentimentClient : IDisposable
     {
-        Task<double?> GetSentiment(IActivity activity);
+        Task<double?> GetSentiment(IActivityAdapter activity);
     }
 }

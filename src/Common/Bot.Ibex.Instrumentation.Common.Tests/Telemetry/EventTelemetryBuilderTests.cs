@@ -54,7 +54,7 @@
             "GIVEN additional properties WHEN Build is invoked THEN event telemetry with properties is being created")]
         [AutoMockData]
         public void GIVENAdditionalProperties_WHENBuildIsInvoked_THENEventTelemetryWithPropertiesIsBeingCreated(
-            IActivity activity,
+            IActivityAdapter activity,
             InstrumentationSettings settings,
             IDictionary<string, string> properties)
         {
@@ -192,7 +192,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const Bot.Ibex.Instrumentation.Common.Telemetry.IActivity emptyActivity = null;
+            const Bot.Ibex.Instrumentation.Common.Telemetry.IActivityAdapter emptyActivity = null;
 
             // Act
             // Assert
@@ -203,7 +203,7 @@
             "GIVEN empty settings WHEN EventTelemetryBuilder is constructed THEN exception is being thrown")]
         [AutoMockData]
         public void GIVENEmptySettings_WHENEventTelemetryBuilderIsConstructed_THENExceptionIsBeingThrown(
-            IActivity activity)
+            IActivityAdapter activity)
         {
             // Arrange
             const InstrumentationSettings emptySettings = null;

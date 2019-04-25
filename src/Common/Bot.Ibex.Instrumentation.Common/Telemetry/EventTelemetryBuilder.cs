@@ -8,11 +8,11 @@
 
     public class EventTelemetryBuilder
     {
-        private readonly IActivity activity;
+        private readonly IActivityAdapter activity;
         private readonly InstrumentationSettings settings;
         private readonly IEnumerable<KeyValuePair<string, string>> properties;
 
-        public EventTelemetryBuilder(IActivity activity, InstrumentationSettings settings, IEnumerable<KeyValuePair<string, string>> properties = null)
+        public EventTelemetryBuilder(IActivityAdapter activity, InstrumentationSettings settings, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
             this.activity = activity ?? throw new ArgumentNullException(nameof(activity));
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));

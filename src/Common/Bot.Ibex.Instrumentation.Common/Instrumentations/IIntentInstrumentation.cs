@@ -7,6 +7,6 @@
 
     public interface IIntentInstrumentation
     {
-        void TrackIntent(IActivity activity, IntentResult result, TelemetryClient telemetryClient, InstrumentationSettings settings);
+        void TrackIntent(IActivityAdapter activity, IntentResult result, TelemetryClient telemetryClient, InstrumentationSettings settings);
     }
 }
