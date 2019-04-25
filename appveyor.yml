@@ -17,12 +17,11 @@ dotnet_csproj:
   informational_version: '{version}'
 environment:
   namespace: Bot.Ibex.Instrumentation
-  commonnamespace: Objectivity.Bot.Ibex.Instrumentation.Common
+  common_module: Common
   cc: opencover
   matrix:
   - package_module: V3
   - package_module: V4
-  - package_module: Common
     
   StrongNameKeyName: key.snk
   StrongNameKeyPath: ''
@@ -39,35 +38,24 @@ install:
     }
 build_script:
 - ps: >-   
-    if($env:package_module -eq "Common")
+    dotnet build ./src/$env:package_module
+    
+    if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
-      dotnet build ./src/$env:package_module/$env:commonnamespace
+        dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
     }
     else
     {
-      dotnet build ./src/$env:package_module
-      
-      if ($env:APPVEYOR_REPO_TAG -eq "true")
-      {
-          dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
-      }
-      else
-      {
-          dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
-      }
+        dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
     }
 test_script:
 - cmd: >-
-    if %package_module% == "Common"
-    (
-      dotnet test ./src/%package_module%/%commonnamespace% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%commonnamespace%.xml
-      codecov -f %appveyor_build_folder%\%cc%\%commonnamespace%.xml --flag unittests
-    )
-    else
-    (
-      dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_module%.xml
-      codecov -f %appveyor_build_folder%\%cc%\%namespace%%package_module%.xml --flag unittests
-    )
+    dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml
+    dotnet test ./src/%common_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
+    
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml --flag unittests
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
+
 artifacts:
 - path: '**\*.nupkg'
 deploy:
