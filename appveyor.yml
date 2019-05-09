@@ -38,7 +38,7 @@ install:
     }
 build_script:
 - ps: >-   
-    dotnet build ./src/$env:package_module
+    dotnet build /p:Platform=x64 ./src/$env:package_module 
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
