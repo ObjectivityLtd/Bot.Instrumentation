@@ -8,15 +8,14 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <!--<PropertyGroup>
-    <SignAssembly Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</SignAssembly>
-    --><!--Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing.--><!--
-    --><!--<DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>--><!--
-    <DelaySign>true</DelaySign>
-    --><!--Set StrongNameKeyPath to a default value when not defined by a build server.--><!--
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. -->
+    <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
+    <!-- Set StrongNameKeyPath to a default value when not defined by a build server. -->
     <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
-    <AssemblyOriginatorKeyFile>..\..\public.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>-->
+    <AssemblyOriginatorKeyFile>$(StrongNameKeyPath)</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\public.snk" Link="public.snk" />
