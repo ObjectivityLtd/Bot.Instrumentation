@@ -39,7 +39,7 @@ install:
     }
 build_script:
 - ps: >-   
-    dotnet build ./src/$env:package_module 
+    dotnet build ./src/$env:package_module
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
@@ -51,9 +51,9 @@ build_script:
     }
 test_script:
 - cmd: >-
-    dotnet test ./src/%package_module% /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml
+    dotnet test ./src/%package_module% /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml RunConfiguration.TargetPlatform=x64
     
-    dotnet test ./src/%common_module%/Bot.Ibex.Instrumentation.Common.Tests /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
+    dotnet test ./src/%common_module%/Bot.Ibex.Instrumentation.Common.Tests /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml RunConfiguration.TargetPlatform=x64
     
     codecov -f %appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml --flag unittests
     
