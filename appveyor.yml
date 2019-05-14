@@ -49,9 +49,9 @@ build_script:
     }
 test_script:
 - cmd: >-
-    #dotnet test ./src/%package_module% /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml -- RunConfiguration.TargetPlatform=x64
+# dotnet test ./src/%package_module% /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml -- RunConfiguration.TargetPlatform=x64
     
-    #dotnet test ./src/%common_module%/Bot.Ibex.Instrumentation.Common.Tests /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml -- RunConfiguration.TargetPlatform=x64
+# dotnet test ./src/%common_module%/Bot.Ibex.Instrumentation.Common.Tests /p:Exclude="[xunit.*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml -- RunConfiguration.TargetPlatform=x64
     
     OpenCover.Console.exe -register:user -target:"xunit.console.exe" -targetargs:"Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:".\Bot.Ibex.Instrumentation.V3.Tests.xml"
 
