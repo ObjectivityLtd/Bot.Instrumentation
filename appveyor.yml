@@ -19,9 +19,6 @@ environment:
   namespace: Bot.Ibex.Instrumentation
   common_module: Common
   cc: opencover
-  matrix:
-  - package_module: V3
-  - package_module: V4
     
   StrongNameKeyName: key.snk
   StrongNameKeyPath: ''
@@ -46,13 +43,13 @@ build_script:
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
-        dotnet pack ./src/$env:V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
-        dotnet pack ./src/$env:V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
     }
     else
     {
-        dotnet pack ./src/$env:V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
-        dotnet pack ./src/$env:V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
     }
 test_script:
 - cmd: >-
