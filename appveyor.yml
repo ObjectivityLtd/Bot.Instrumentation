@@ -42,26 +42,28 @@ install:
     }
 build_script:
 - ps: >-   
-    dotnet build ./src/$env:package_module
+    dotnet build ./src/$env:namespace.sln
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
-        dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/$env:V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/$env:V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
     }
     else
     {
-        dotnet pack ./src/$env:package_module/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/$env:V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/$env:V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
     }
 test_script:
 - cmd: >-
-    OpenCover.Console.exe -register:user -target:"xunit.console.exe" -targetargs:"Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:".\Bot.Ibex.Instrumentation.V3.Tests.xml"
-
-    codecov -f %appveyor_build_folder%\%cc%\Bot.Ibex.Instrumentation.V3.Tests.xml --flag unittests
-
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml --flag unittests
+    dotnet test ./src/%common_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
+    dotnet test ./src/%V4% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%V4%.xml
     
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
+    OpenCover.Console.exe -register:user -target:"xunit.console.exe" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:"%appveyor_build_folder%\%cc%\%namespace%.%V3%.xml"
 
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%V3%.xml --flag unittests
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%V4%.xml --flag unittests
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
