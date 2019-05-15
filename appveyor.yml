@@ -56,7 +56,9 @@ test_script:
     dotnet test ./src/%common_module%/%namespace%.%common_module%.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
 
     dotnet test ./src/V4/%namespace%.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%V4%.xml
-    
+
+    xunit.console.exe ./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll 
+
     OpenCover.Console.exe -register:user -target:"xunit.console.exe" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:"%appveyor_build_folder%\%cc%\%namespace%.%V3%.xml"
 
     codecov -f %appveyor_build_folder%\%cc%\%namespace%.%V3%.xml --flag unittests
