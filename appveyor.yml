@@ -28,10 +28,12 @@ test:
   assemblies:
     - '**\*.Tests.dll'
 
-
 install:
-- cinst codecov xunit
 - ps: >-
+    nuget restore packages.tools.config -PackagesDirectory tools
+
+    Get-ChildItem -path "tools" -Recurse
+
     if ($env:StrongNameKey)
     {
         Set-AppveyorBuildVariable "StrongNameKeyPath" "..\..\$env:StrongNameKeyName"
@@ -39,10 +41,6 @@ install:
     }
 build_script:
 - ps: >-
-    nuget restore packages.tools.config -PackagesDirectory tools
-
-    Get-ChildItem -path "tools" -Recurse
-
     dotnet build ./src/$env:namespace.sln
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
@@ -63,11 +61,11 @@ test_script:
 
     OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\tools\xunit.runner.console.2.4.1\tools\net47\xunit.console.exe" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml"
 
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
+    %appveyor_build_folder%\tools\Codecov.1.5.0\tools\codecov.exe -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
 
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.V4.xml --flag unittests
+    %appveyor_build_folder%\tools\Codecov.1.5.0\tools\codecov.exe -f %appveyor_build_folder%\%cc%\%namespace%.V4.xml --flag unittests
 
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
+    %appveyor_build_folder%\tools\Codecov.1.5.0\tools\codecov.exe -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
