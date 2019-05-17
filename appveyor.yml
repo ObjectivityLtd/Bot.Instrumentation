@@ -38,7 +38,8 @@ install:
         [IO.File]::WriteAllBytes("$env:APPVEYOR_BUILD_FOLDER\src\$env:StrongNameKeyName",[Convert]::FromBase64String($env:StrongNameKey))
     }
 build_script:
-- ps: >-   
+- ps: >-
+    nuget restore tools.config -PackagesDirectory tools\
     dotnet build ./src/$env:namespace.sln
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
