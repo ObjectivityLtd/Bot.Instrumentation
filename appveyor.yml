@@ -39,8 +39,8 @@ install:
     }
 build_script:
 - ps: >-
-    nuget restore tools.config -PackagesDirectory tools
-    
+    nuget restore packages.tools.config -PackagesDirectory tools
+
     dotnet build ./src/$env:namespace.sln
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
