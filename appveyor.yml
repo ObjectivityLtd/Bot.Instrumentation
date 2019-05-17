@@ -19,6 +19,8 @@ environment:
   namespace: Bot.Ibex.Instrumentation
   common_module: Common
   cc: opencover
+  codecov: tools\Codecov.1.5.0\tools\codecov.exe
+  xunit: tools\xunit.runner.console.2.4.1\tools\net47\xunit.console.exe
     
   StrongNameKeyName: key.snk
   StrongNameKeyPath: ''
@@ -59,13 +61,13 @@ test_script:
 
     dotnet test ./src/V4/%namespace%.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.V4.xml
 
-    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\tools\xunit.runner.console.2.4.1\tools\net47\xunit.console.exe" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml"
+    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\%xunit%" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml"
 
-    %appveyor_build_folder%\tools\Codecov.1.5.0\tools\codecov.exe -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
+    %appveyor_build_folder%\%codecov% -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
 
-    %appveyor_build_folder%\tools\Codecov.1.5.0\tools\codecov.exe -f %appveyor_build_folder%\%cc%\%namespace%.V4.xml --flag unittests
+    %appveyor_build_folder%\%codecov% -f %appveyor_build_folder%\%cc%\%namespace%.V4.xml --flag unittests
 
-    %appveyor_build_folder%\tools\Codecov.1.5.0\tools\codecov.exe -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
+    %appveyor_build_folder%\%codecov% -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
