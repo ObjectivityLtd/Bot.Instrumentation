@@ -59,7 +59,7 @@ test_script:
 
     dotnet test ./src/V4/%namespace%.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.V4.xml
 
-    OpenCover.Console.exe -register:user -target:"xunit.console.exe" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml"
+    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\xunit.runner.console\2.4.1\tools\net47\xunit.console.exe" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml"
 
     codecov -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
 
