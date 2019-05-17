@@ -41,6 +41,8 @@ build_script:
 - ps: >-
     nuget restore packages.tools.config -PackagesDirectory tools
 
+    Get-ChildItem -path "tools" -Recurse
+
     dotnet build ./src/$env:namespace.sln
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
