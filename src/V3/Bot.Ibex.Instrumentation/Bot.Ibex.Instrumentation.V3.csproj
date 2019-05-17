@@ -7,6 +7,9 @@
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Required to generate PDB files used by OpenCover -->
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup>
