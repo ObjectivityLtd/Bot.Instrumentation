@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net47</TargetFramework>
-    <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>	
-	  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Required to generate PDB files used by OpenCover -->
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup>
