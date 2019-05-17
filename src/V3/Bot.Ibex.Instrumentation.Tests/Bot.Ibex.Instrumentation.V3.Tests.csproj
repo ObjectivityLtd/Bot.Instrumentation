@@ -6,6 +6,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsTestProject>true</IsTestProject>
     <IsPackable>false</IsPackable>
+	<DebugType>Full</DebugType> <!-- Required to generate PDB files used by OpenCover -->
   </PropertyGroup>
 
   <PropertyGroup>
