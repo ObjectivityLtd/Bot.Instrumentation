@@ -61,7 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" />
+    <ProjectReference Include="..\..\Common\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" PrivateAssets="all"/>
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
