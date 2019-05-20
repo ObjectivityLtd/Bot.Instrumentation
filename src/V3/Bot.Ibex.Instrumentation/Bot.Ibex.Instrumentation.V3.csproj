@@ -10,6 +10,7 @@
     <!-- Required to generate PDB files used by OpenCover -->
     <DebugType>Full</DebugType>
     <DebugSymbols>True</DebugSymbols>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -61,5 +62,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" />
   </ItemGroup>
-  
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+    </ItemGroup>
+  </Target>  
+
 </Project>
