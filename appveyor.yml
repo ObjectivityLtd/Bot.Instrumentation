@@ -45,21 +45,21 @@ build_script:
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
-        dotnet pack ./src/V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
-        dotnet pack ./src/V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/$env:namespace.V3 --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/$env:namespace.V4 --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
     }
     else
     {
-        dotnet pack ./src/V3/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
-        dotnet pack ./src/V4/$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/$env:namespace.V4 --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/$env:namespace.V4 --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
     }
 test_script:
 - cmd: >-
-    dotnet test ./src/%common_module%/%namespace%.%common_module%.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
+    dotnet test ./src/%namespace%.%common_module%.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml
 
-    dotnet test ./src/V4/%namespace%.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.V4.xml
+    dotnet test ./src/%namespace%.V4.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.V4.xml
 
-    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\%xunit%" -targetargs:"./src/V3/Bot.Ibex.Instrumentation.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml" -filter:"+[Bot.Ibex.Instrumentation*]* -[*.Tests]*"
+    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\%xunit%" -targetargs:"./src/Bot.Ibex.Instrumentation.V3.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml" -filter:"+[Bot.Ibex.Instrumentation*]* -[*.Tests]*"
 
     %appveyor_build_folder%\%codecov% -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
 
