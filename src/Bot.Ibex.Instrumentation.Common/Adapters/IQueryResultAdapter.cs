@@ -1,6 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Adapters
 {
-    using Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Models;
 
     public interface IQueryResultAdapter
     {

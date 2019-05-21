@@ -1,9 +1,10 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
+    using System;
     using System.Collections.Generic;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
-    using Settings;
-    using Telemetry;
 
     public class CustomInstrumentation : ICustomInstrumentation
     {
@@ -14,6 +15,11 @@
             string eventName = EventTypes.CustomEvent,
             IDictionary<string, string> properties = null)
         {
+            if (telemetryClient is null)
+            {
+                throw new ArgumentNullException(nameof(telemetryClient));
+            }
+
             TrackTelemetry(activity, telemetryClient, settings, eventName, properties);
         }
 

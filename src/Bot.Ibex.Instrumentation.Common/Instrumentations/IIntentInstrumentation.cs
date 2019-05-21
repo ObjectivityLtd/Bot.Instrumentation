@@ -1,9 +1,9 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
+    using Bot.Ibex.Instrumentation.Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
-    using Models;
-    using Settings;
-    using Telemetry;
 
     public interface IIntentInstrumentation
     {

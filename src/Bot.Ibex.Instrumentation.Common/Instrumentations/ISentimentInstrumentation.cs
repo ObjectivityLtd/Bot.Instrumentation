@@ -1,10 +1,10 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System.Threading.Tasks;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
-    using Sentiments;
-    using Settings;
-    using Telemetry;
 
     public interface ISentimentInstrumentation
     {

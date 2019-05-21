@@ -3,12 +3,12 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Extensions;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
+    using Bot.Ibex.Instrumentation.Common.Rest;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
-    using Rest;
-    using Settings;
-    using Telemetry;
 
     public class SentimentClient : ISentimentClient
     {
@@ -24,7 +24,7 @@
 
             this.textAnalyticsClient = new TextAnalyticsClient(new ApiKeyServiceClientCredentials(settings.ApiSubscriptionKey))
             {
-                Endpoint = settings.Endpoint
+                Endpoint = settings.Endpoint,
             };
         }
 
