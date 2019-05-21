@@ -2,17 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\Analysers.Tests.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
-    <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
+    <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\public.snk</StrongNameKeyPath>
     <AssemblyOriginatorKeyFile>$(StrongNameKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\public.snk" Link="public.snk" />
+    <None Include="..\public.snk" Link="public.snk" />
   </ItemGroup>
 
   <ItemGroup>

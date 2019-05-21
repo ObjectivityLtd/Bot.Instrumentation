@@ -3,23 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BA4B316C-CDC7-4A98-B0BD-9B3EF540429E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V4", "Bot.Ibex.Instrumentation.V4\Bot.Ibex.Instrumentation.V4.csproj", "{91C6BDEF-BE56-4F95-8032-03241C9723A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V4", "V4", "{E551E6A4-3183-462A-9036-46AFBC8A77E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V4.Tests", "Bot.Ibex.Instrumentation.V4.Tests\Bot.Ibex.Instrumentation.V4.Tests.csproj", "{3F8232C4-A7B8-4D9C-A1AD-BE9631B65CE8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V3", "V3", "{882D00E7-786B-4C55-BF60-976C75505B2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3", "Bot.Ibex.Instrumentation.V3\Bot.Ibex.Instrumentation.V3.csproj", "{FC25C664-DC28-4C7B-9820-01B419593F47}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V4", "V4\Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V4.csproj", "{91C6BDEF-BE56-4F95-8032-03241C9723A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3.Tests", "Bot.Ibex.Instrumentation.V3.Tests\Bot.Ibex.Instrumentation.V3.Tests.csproj", "{27CF6FA4-CA2D-4F3E-BE48-168BC53B566B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V4.Tests", "V4\Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V4.Tests.csproj", "{3F8232C4-A7B8-4D9C-A1AD-BE9631B65CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Common.Tests", "Bot.Ibex.Instrumentation.Common.Tests\Bot.Ibex.Instrumentation.Common.Tests.csproj", "{17C75CBE-3CBF-4917-878F-542BA5FF5821}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3", "V3\Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V3.csproj", "{FC25C664-DC28-4C7B-9820-01B419593F47}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.V3.Tests", "V3\Bot.Ibex.Instrumentation.Tests\Bot.Ibex.Instrumentation.V3.Tests.csproj", "{27CF6FA4-CA2D-4F3E-BE48-168BC53B566B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Common.Tests", "Common\Bot.Ibex.Instrumentation.Common.Tests\Bot.Ibex.Instrumentation.Common.Tests.csproj", "{17C75CBE-3CBF-4917-878F-542BA5FF5821}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Common", "Common\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj", "{8E03F9E5-4705-48CE-A7D9-5D574DE09310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Ibex.Instrumentation.Common", "Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj", "{8E03F9E5-4705-48CE-A7D9-5D574DE09310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,14 +48,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{91C6BDEF-BE56-4F95-8032-03241C9723A5} = {E551E6A4-3183-462A-9036-46AFBC8A77E8}
-		{3F8232C4-A7B8-4D9C-A1AD-BE9631B65CE8} = {E551E6A4-3183-462A-9036-46AFBC8A77E8}
-		{FC25C664-DC28-4C7B-9820-01B419593F47} = {882D00E7-786B-4C55-BF60-976C75505B2F}
-		{27CF6FA4-CA2D-4F3E-BE48-168BC53B566B} = {882D00E7-786B-4C55-BF60-976C75505B2F}
-		{17C75CBE-3CBF-4917-878F-542BA5FF5821} = {BA4B316C-CDC7-4A98-B0BD-9B3EF540429E}
-		{8E03F9E5-4705-48CE-A7D9-5D574DE09310} = {BA4B316C-CDC7-4A98-B0BD-9B3EF540429E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AE942EC-8D4E-4E2C-BE33-B70D3EAC45ED}

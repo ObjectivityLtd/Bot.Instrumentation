@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net47</TargetFramework>
-    <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Analysers.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
@@ -18,7 +18,7 @@
     <!-- Sign assembly with public & private key only on a build server with a defined key, otherwise delay signing. -->
     <DelaySign Condition="'$(CI)'=='' OR '$(StrongNameKey)'==''">true</DelaySign>
     <!-- Set StrongNameKeyPath to a default value when not defined by a build server. -->
-    <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\..\public.snk</StrongNameKeyPath>
+    <StrongNameKeyPath Condition="'$(StrongNameKeyPath)'==''">..\public.snk</StrongNameKeyPath>
     <AssemblyOriginatorKeyFile>$(StrongNameKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
@@ -60,7 +60,7 @@
   </ItemGroup>
 	
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" PrivateAssets="All" />
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
