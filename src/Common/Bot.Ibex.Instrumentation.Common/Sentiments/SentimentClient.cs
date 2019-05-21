@@ -46,7 +46,7 @@
             }
 
             MultiLanguageBatchInput input = activity.ToSentimentInput();
-            SentimentBatchResult result = await this.textAnalyticsClient.SentimentAsync(input)
+            SentimentBatchResult result = await this.textAnalyticsClient.SentimentAsync(null, input)
                                             .ConfigureAwait(false);
 
             return result?.Documents[0].Score;

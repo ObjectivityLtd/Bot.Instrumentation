@@ -2,10 +2,10 @@
 {
     using System;
     using Bot.Ibex.Instrumentation.Common.Models;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Adapters;
     using Xunit;
 
     [Collection("ActivityAdapter")]

@@ -3,16 +3,16 @@
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-    using Common.Instrumentations;
-    using Common.Sentiments;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.ApplicationInsights.Extensibility;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Settings;
     using Xunit;
 
     [Collection("SentimentInstrumentation")]

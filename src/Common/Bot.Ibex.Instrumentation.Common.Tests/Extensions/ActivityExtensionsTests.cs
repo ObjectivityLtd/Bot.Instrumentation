@@ -1,10 +1,10 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Extensions
 {
-    using Common.Extensions;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Tests.Telemetry;
     using FluentAssertions;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Telemetry;
     using Xunit;
 
     [Collection("ActivityExtensions")]

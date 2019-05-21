@@ -2,8 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using Common.Instrumentations;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Instrumentations;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using global::AutoFixture.Xunit2;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -11,7 +12,6 @@
     using Microsoft.ApplicationInsights.Extensibility;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Settings;
     using Xunit;
 
     [Collection("CustomInstrumentation")]

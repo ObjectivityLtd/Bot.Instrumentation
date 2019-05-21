@@ -4,15 +4,15 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Common.Sentiments;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using FluentAssertions;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
     using Microsoft.Rest;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Settings;
     using Xunit;
 
     [Collection("SentimentClient")]
@@ -30,10 +30,11 @@
             var instrumentation = new SentimentClient(textAnalyticsClient);
             var response = new HttpOperationResponse<SentimentBatchResult>
             {
-                Body = new SentimentBatchResult(new[] { new SentimentBatchResultItem(sentiment) })
+                Body = new SentimentBatchResult(new[] { new SentimentBatchResultItem(null, sentiment) }),
             };
             Mock.Get(textAnalyticsClient)
                 .Setup(tac => tac.SentimentWithHttpMessagesAsync(
+                    It.IsAny<bool?>(),
                     It.IsAny<MultiLanguageBatchInput>(),
                     It.IsAny<Dictionary<string, List<string>>>(),
                     It.IsAny<CancellationToken>()))

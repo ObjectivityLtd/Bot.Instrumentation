@@ -4,7 +4,8 @@
     using System.Collections.Generic;
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V4.Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -12,7 +13,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Instrumentations;
     using Xunit;
     using IActivity = Microsoft.Bot.Schema.IActivity;
 

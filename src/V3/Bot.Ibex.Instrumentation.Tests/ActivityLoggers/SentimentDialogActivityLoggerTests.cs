@@ -1,11 +1,11 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Tests.ActivityLoggers
 {
     using System;
+    using Bot.Ibex.Instrumentation.V3.ActivityLoggers;
+    using Bot.Ibex.Instrumentation.V3.Instrumentations;
     using Microsoft.Bot.Connector;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V3.ActivityLoggers;
-    using V3.Instrumentations;
     using Xunit;
 
     [Collection("SentimentDialogActivityLogger")]

@@ -5,6 +5,7 @@
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.V4.Middleware;
     using FluentAssertions;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -15,7 +16,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Middleware;
     using Xunit;
 
     [Collection("SentimentInstrumentationMiddleware")]

@@ -3,9 +3,10 @@
     using System;
     using System.Globalization;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Common.Models;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V4.Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -13,7 +14,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Instrumentations;
     using Xunit;
     using QueryResult = Microsoft.Bot.Builder.AI.QnA.QueryResult;
 

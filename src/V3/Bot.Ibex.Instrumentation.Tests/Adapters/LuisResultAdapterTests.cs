@@ -1,10 +1,10 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Tests.Adapters
 {
     using System;
+    using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.Bot.Builder.Luis.Models;
     using Newtonsoft.Json;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V3.Adapters;
     using Xunit;
 
     [Collection("LuisResultAdapter")]

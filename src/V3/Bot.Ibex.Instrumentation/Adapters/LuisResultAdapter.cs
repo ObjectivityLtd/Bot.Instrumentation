@@ -1,8 +1,8 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Models;
-    using Common.Adapters;
     using Microsoft.Bot.Builder.Luis.Models;
     using Newtonsoft.Json;
 
@@ -23,7 +23,7 @@
             {
                 Intent = this.result.TopScoringIntent.Intent,
                 Score = this.result.TopScoringIntent.Score.ToString(),
-                Entities = JsonConvert.SerializeObject(this.result.Entities)
+                Entities = JsonConvert.SerializeObject(this.result.Entities),
             };
 
             return intentResult;

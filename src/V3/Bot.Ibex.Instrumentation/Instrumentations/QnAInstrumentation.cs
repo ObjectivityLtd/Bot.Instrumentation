@@ -1,8 +1,8 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
 {
     using System;
-    using Adapters;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
     using Microsoft.Bot.Connector;

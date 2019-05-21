@@ -3,9 +3,9 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Adapters;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Builder;
@@ -29,7 +29,9 @@
         {
             BotAssert.ContextNotNull(turnContext);
 
+            #pragma warning disable CA1062 // Validate arguments of public methods
             if (turnContext.Activity != null)
+            #pragma warning restore CA1062 // Validate arguments of public methods
             {
                 var et = this.BuildEventTelemetry(turnContext.Activity);
                 this.telemetryClient.TrackEvent(et);

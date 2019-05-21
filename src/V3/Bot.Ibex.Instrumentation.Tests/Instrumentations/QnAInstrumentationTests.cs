@@ -5,9 +5,9 @@
     using System.Globalization;
     using System.Linq;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Common.Models;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -17,7 +17,7 @@
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Xunit;
-    using QnAInstrumentation = V3.Instrumentations.QnAInstrumentation;
+    using QnAInstrumentation = Bot.Ibex.Instrumentation.V3.Instrumentations.QnAInstrumentation;
 
     [Collection("QnAInstrumentation")]
     [Trait("Category", "Instrumentations")]
@@ -51,11 +51,11 @@
                         Questions = new List<string>
                         {
                             "good",
-                            "bad"
+                            "bad",
                         },
-                        Answer = "good"
-                    }
-                }
+                        Answer = "good",
+                    },
+                },
             };
 
             // Act

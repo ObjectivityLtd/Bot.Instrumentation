@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Adapters;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Connector;
 

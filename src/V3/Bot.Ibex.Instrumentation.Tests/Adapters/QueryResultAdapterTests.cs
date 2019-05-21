@@ -4,10 +4,10 @@
     using System.Globalization;
     using System.Linq;
     using Bot.Ibex.Instrumentation.Common.Instrumentations;
-    using Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Models;
+    using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V3.Adapters;
     using Xunit;
 
     [Collection("QueryResultAdapter")]

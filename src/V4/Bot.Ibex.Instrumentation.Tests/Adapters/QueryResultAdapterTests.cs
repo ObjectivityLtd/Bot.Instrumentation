@@ -2,9 +2,9 @@
 {
     using System;
     using System.Globalization;
-    using Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Models;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Adapters;
     using Xunit;
     using QueryResult = Microsoft.Bot.Builder.AI.QnA.QueryResult;
 

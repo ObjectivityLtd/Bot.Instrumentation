@@ -6,7 +6,8 @@
     using AutoFixture;
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V4.Middleware;
     using FluentAssertions;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
@@ -16,7 +17,6 @@
     using Microsoft.Bot.Schema;
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Middleware;
     using Xunit;
     using Activity = Microsoft.Bot.Schema.Activity;
     using ActivityTypes = Microsoft.Bot.Schema.ActivityTypes;
@@ -68,7 +68,7 @@
             var activity = new Activity
             {
                 Type = ActivityTypes.ConversationUpdate,
-                ChannelId = fixture.Create<string>()
+                ChannelId = fixture.Create<string>(),
             };
             Mock.Get(turnContext)
                 .Setup(c => c.OnSendActivities(It.IsAny<SendActivitiesHandler>()))
@@ -82,7 +82,7 @@
                 .ConfigureAwait(false);
 
             // Assert
-             this.mockTelemetryChannel.Verify(
+            this.mockTelemetryChannel.Verify(
                 tc => tc.Send(It.Is<EventTelemetry>(t =>
                     t.Name == expectedTelemetryName &&
                     t.Properties.Count == expectedNumberOfTelemetryProperties &&
@@ -103,7 +103,7 @@
             var activity = new Activity
             {
                 Type = ActivityTypes.ConversationUpdate,
-                ChannelId = fixture.Create<string>()
+                ChannelId = fixture.Create<string>(),
             };
             Mock.Get(turnContext)
                 .Setup(c => c.OnUpdateActivity(It.IsAny<UpdateActivityHandler>()))

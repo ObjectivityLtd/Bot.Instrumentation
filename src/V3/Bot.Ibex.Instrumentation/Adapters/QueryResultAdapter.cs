@@ -3,9 +3,9 @@
     using System;
     using System.Globalization;
     using System.Linq;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Instrumentations;
-    using Common.Adapters;
-    using Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
 
     public class QueryResultAdapter : IQueryResultAdapter
@@ -27,7 +27,7 @@
                 KnowledgeBaseQuestion =
                     string.Join(QuestionsSeparator.Separator, topScoreAnswer.Questions),
                 KnowledgeBaseAnswer = topScoreAnswer.Answer,
-                Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture)
+                Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture),
             };
 
             return result;

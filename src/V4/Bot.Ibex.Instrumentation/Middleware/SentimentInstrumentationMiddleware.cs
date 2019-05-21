@@ -4,11 +4,11 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
-    using Adapters;
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Instrumentations;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
+    using Bot.Ibex.Instrumentation.V4.Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Bot.Builder;
@@ -61,7 +61,9 @@
 
             BotAssert.ContextNotNull(turnContext);
 
+            #pragma warning disable CA1062 // Validate arguments of public methods
             var activity = new ActivityAdapter(turnContext.Activity);
+            #pragma warning restore CA1062 // Validate arguments of public methods
 
             if (activity.IsIncomingMessage())
             {

@@ -2,8 +2,8 @@
 {
     using System;
     using System.Globalization;
-    using Common.Adapters;
-    using Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
+    using Bot.Ibex.Instrumentation.Common.Models;
 
     public class QueryResultAdapter : IQueryResultAdapter
     {
@@ -22,7 +22,7 @@
             {
                 KnowledgeBaseQuestion = string.Join(QuestionsSeparator.Separator, this.queryResult.Questions),
                 KnowledgeBaseAnswer = this.queryResult.Answer,
-                Score = this.queryResult.Score.ToString(CultureInfo.InvariantCulture)
+                Score = this.queryResult.Score.ToString(CultureInfo.InvariantCulture),
             };
 
             return result;

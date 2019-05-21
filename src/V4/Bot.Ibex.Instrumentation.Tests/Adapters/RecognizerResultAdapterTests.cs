@@ -2,10 +2,10 @@
 {
     using System;
     using System.Globalization;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V4.Adapters;
     using Xunit;
 
     [Collection("RecognizerResultAdapter")]

@@ -2,8 +2,8 @@
 {
     using System;
     using Bot.Ibex.Instrumentation.Common.Extensions;
+    using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
-    using Common.Models;
 
     public class ActivityAdapter : IActivityAdapter
     {
@@ -31,7 +31,7 @@
                     var messageActivity = new MessageActivity
                     {
                         Text = this.activity.AsMessageActivity().Text,
-                        Id = this.activity.AsMessageActivity().Id
+                        Id = this.activity.AsMessageActivity().Id,
                     };
 
                     return messageActivity;
@@ -52,7 +52,7 @@
                     var channelAccount = new ChannelAccount
                     {
                         Name = this.activity.From.Name,
-                        Id = this.activity.From.Id
+                        Id = this.activity.From.Id,
                     };
 
                     return channelAccount;

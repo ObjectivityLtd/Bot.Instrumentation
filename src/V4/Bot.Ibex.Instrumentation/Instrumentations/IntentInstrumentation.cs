@@ -1,8 +1,8 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Instrumentations
 {
     using System;
-    using Adapters;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;

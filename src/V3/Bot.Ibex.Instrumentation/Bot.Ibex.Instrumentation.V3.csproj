@@ -45,15 +45,15 @@
 	
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.9.1" />
-    <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />
-    <PackageReference Include="Microsoft.Bot.Builder" Version="3.12.2.4" />
-    <PackageReference Include="Microsoft.Bot.Builder.CognitiveServices" Version="1.1.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="3.20.1" />
+    <PackageReference Include="Microsoft.Bot.Builder.CognitiveServices" Version="1.1.7" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  	<PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+  	<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using Adapters;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using IActivity = Microsoft.Bot.Schema.IActivity;

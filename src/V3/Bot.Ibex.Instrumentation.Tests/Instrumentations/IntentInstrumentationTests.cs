@@ -3,7 +3,8 @@
     using System;
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V3.Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -13,7 +14,6 @@
     using Moq;
     using Newtonsoft.Json;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using V3.Instrumentations;
     using Xunit;
 
     [Collection("IntentInstrumentation")]

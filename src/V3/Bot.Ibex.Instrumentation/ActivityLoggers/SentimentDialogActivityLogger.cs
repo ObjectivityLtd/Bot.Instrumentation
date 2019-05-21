@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Instrumentations;
+    using Bot.Ibex.Instrumentation.V3.Instrumentations;
     using Microsoft.Bot.Builder.History;
     using Microsoft.Bot.Connector;
 

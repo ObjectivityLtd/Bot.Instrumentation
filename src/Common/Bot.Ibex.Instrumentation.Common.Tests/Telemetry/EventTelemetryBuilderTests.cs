@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Common.Telemetry;
+    using Bot.Ibex.Instrumentation.Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using FluentAssertions;
     using global::AutoFixture;
     using global::AutoFixture.Xunit2;
-    using Models;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
-    using Settings;
     using Xunit;
 
     [Collection("EventTelemetryBuilder")]
@@ -34,7 +34,7 @@
             {
                 Type = activityType,
                 ChannelId = fixture.Create<string>(),
-                TimeStampIso8601 = DateTime.MinValue.ToString(CultureInfo.CurrentCulture)
+                TimeStampIso8601 = DateTime.MinValue.ToString(CultureInfo.CurrentCulture),
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 3;
@@ -81,7 +81,7 @@
             var channelAccount = new ChannelAccount
             {
                 Id = fixture.Create<string>(),
-                Name = fixture.Create<string>()
+                Name = fixture.Create<string>(),
             };
             var activity = new Activity
             {
@@ -90,7 +90,7 @@
                 ReplyToId = fixture.Create<string>(),
                 MessageActivity = messageActivity,
                 TimeStampIso8601 = DateTime.Now.ToString(CultureInfo.CurrentCulture),
-                ChannelAccount = channelAccount
+                ChannelAccount = channelAccount,
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 5;
@@ -121,14 +121,14 @@
             var channelAccount = new ChannelAccount
             {
                 Id = fixture.Create<string>(),
-                Name = fixture.Create<string>()
+                Name = fixture.Create<string>(),
             };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
                 MessageActivity = messageActivity,
-                ChannelAccount = channelAccount
+                ChannelAccount = channelAccount,
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 5;
@@ -159,14 +159,14 @@
             var channelAccount = new ChannelAccount
             {
                 Id = fixture.Create<string>(),
-                Name = fixture.Create<string>()
+                Name = fixture.Create<string>(),
             };
             var activity = new Activity
             {
                 Type = ActivityTypes.Message,
                 ChannelId = fixture.Create<string>(),
                 MessageActivity = messageActivity,
-                ChannelAccount = channelAccount
+                ChannelAccount = channelAccount,
             };
             var builder = new EventTelemetryBuilder(activity, settings);
             const int expectedNumberOfTelemetryProperties = 6;

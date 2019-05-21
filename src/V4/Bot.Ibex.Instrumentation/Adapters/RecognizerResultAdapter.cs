@@ -2,8 +2,8 @@
 {
     using System;
     using System.Globalization;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Models;
-    using Common.Adapters;
     using Microsoft.Bot.Builder;
     using Newtonsoft.Json;
 
@@ -25,7 +25,7 @@
             {
                 Intent = topScoringIntent.intent,
                 Score = topScoringIntent.score.ToString(CultureInfo.InvariantCulture),
-                Entities = this.result.Entities.ToString(Formatting.None)
+                Entities = this.result.Entities.ToString(Formatting.None),
             };
 
             return intentResult;

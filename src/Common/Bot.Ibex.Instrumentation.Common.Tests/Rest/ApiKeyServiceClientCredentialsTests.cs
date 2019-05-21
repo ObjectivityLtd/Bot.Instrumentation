@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Net.Http;
     using System.Threading;
-    using Common.Rest;
+    using Bot.Ibex.Instrumentation.Common.Rest;
     using FluentAssertions;
     using global::AutoFixture.Xunit2;
     using Xunit;
