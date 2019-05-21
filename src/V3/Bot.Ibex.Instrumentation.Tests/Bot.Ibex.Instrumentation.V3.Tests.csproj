@@ -52,6 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Bot.Ibex.Instrumentation.Common\Bot.Ibex.Instrumentation.Common.csproj" />
     <ProjectReference Include="..\Bot.Ibex.Instrumentation\Bot.Ibex.Instrumentation.V3.csproj" />
   </ItemGroup>
 
