@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
@@ -192,7 +193,7 @@
             InstrumentationSettings settings)
         {
             // Arrange
-            const Bot.Ibex.Instrumentation.Common.Telemetry.IActivityAdapter emptyActivity = null;
+            const IActivityAdapter emptyActivity = null;
 
             // Act
             // Assert

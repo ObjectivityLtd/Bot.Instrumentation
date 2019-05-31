@@ -1,7 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Telemetry
 {
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Models;
-    using Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class Activity : IActivityAdapter
     {

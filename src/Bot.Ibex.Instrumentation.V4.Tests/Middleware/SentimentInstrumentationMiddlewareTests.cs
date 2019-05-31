@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using AutoFixture.Xunit2;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.V4.Middleware;
@@ -56,7 +57,7 @@
                 .ConfigureAwait(false);
 
             // Assert
-            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<Bot.Ibex.Instrumentation.Common.Telemetry.IActivityAdapter>()), Times.Exactly(expectedNumberOfInvocations));
+            Mock.Get(sentimentClient).Verify(sc => sc.GetSentiment(It.IsAny<IActivityAdapter>()), Times.Exactly(expectedNumberOfInvocations));
             this.mockTelemetryChannel.Verify(tc => tc.Send(It.IsAny<EventTelemetry>()), Times.Exactly(expectedNumberOfInvocations));
         }
 

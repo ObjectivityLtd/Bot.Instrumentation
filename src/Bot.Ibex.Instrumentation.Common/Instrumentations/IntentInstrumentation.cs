@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;

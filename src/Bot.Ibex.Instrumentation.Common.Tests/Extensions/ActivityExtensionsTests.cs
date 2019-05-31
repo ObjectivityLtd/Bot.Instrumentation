@@ -1,5 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Extensions
 {
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Bot.Ibex.Instrumentation.Common.Tests.Telemetry;

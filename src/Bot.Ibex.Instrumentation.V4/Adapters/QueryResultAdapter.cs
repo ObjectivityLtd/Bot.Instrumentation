@@ -18,6 +18,7 @@
 
         public QueryResult ConvertQnAMakerResultsToQueryResult()
         {
+            var topScoreAnswer = this.queryResult.Answers.OrderByDescending(x => x.Score).First();
             var result = new QueryResult
             {
                 KnowledgeBaseQuestion = string.Join(QuestionsSeparator.Separator, this.queryResult.Questions),

@@ -1,9 +1,9 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Adapters
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Models;
-    using Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public class ActivityAdapter : IActivityAdapter
     {

@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Instrumentations
 {
     using System.Threading.Tasks;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;

@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Rest;
     using Bot.Ibex.Instrumentation.Common.Settings;

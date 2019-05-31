@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Extensions
 {
     using System.Collections.Generic;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
 

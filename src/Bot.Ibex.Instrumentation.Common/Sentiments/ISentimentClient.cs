@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
 
     public interface ISentimentClient : IDisposable
