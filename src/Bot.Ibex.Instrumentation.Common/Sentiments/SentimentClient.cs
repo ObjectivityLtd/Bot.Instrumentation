@@ -7,7 +7,6 @@
     using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Rest;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
     using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
 

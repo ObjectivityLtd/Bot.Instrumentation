@@ -4,7 +4,6 @@
     using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
-    using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Microsoft.ApplicationInsights;
 
     public interface ISentimentInstrumentation

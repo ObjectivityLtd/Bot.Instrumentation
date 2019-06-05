@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using AutoFixture;
+    using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using FluentAssertions;
-    using global::AutoFixture;
-    using global::AutoFixture.Xunit2;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Xunit;
 

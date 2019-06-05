@@ -14,7 +14,6 @@
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Xunit;
-    using IActivity = Microsoft.Bot.Schema.IActivity;
 
     [Collection("CustomInstrumentation")]
     [Trait("Category", "Instrumentations")]

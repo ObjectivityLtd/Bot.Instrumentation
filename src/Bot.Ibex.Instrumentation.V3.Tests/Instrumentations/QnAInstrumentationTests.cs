@@ -8,6 +8,7 @@
     using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
+    using Bot.Ibex.Instrumentation.V3.Instrumentations;
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -17,7 +18,6 @@
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Xunit;
-    using QnAInstrumentation = Bot.Ibex.Instrumentation.V3.Instrumentations.QnAInstrumentation;
 
     [Collection("QnAInstrumentation")]
     [Trait("Category", "Instrumentations")]

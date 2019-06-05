@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
-    using IActivity = Microsoft.Bot.Connector.IActivity;
+    using Microsoft.Bot.Connector;
 
     public interface ICustomInstrumentation
     {

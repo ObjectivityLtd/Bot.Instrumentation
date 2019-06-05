@@ -1,7 +1,6 @@
 ﻿namespace Bot.Ibex.Instrumentation.V4.Tests.Adapters
 {
     using System;
-    using Bot.Ibex.Instrumentation.Common.Models;
     using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;

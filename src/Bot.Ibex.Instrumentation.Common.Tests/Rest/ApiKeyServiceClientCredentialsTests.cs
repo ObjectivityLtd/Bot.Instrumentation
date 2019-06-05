@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Net.Http;
     using System.Threading;
+    using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Rest;
     using FluentAssertions;
-    using global::AutoFixture.Xunit2;
     using Xunit;
 
     [Collection("ApiKeyServiceClientCredentials")]

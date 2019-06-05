@@ -18,7 +18,6 @@
     using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Xunit;
-    using Activity = Microsoft.Bot.Schema.Activity;
     using ActivityTypes = Microsoft.Bot.Schema.ActivityTypes;
 
     [Collection("BotInstrumentationMiddleware")]

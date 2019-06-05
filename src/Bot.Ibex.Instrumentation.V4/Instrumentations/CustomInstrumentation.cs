@@ -7,7 +7,7 @@
     using Bot.Ibex.Instrumentation.V4.Adapters;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
-    using IActivity = Microsoft.Bot.Schema.IActivity;
+    using Microsoft.Bot.Schema;
 
     public class CustomInstrumentation : ICustomInstrumentation
     {

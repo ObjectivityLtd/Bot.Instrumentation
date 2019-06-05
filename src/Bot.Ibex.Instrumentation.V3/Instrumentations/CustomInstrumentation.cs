@@ -6,7 +6,7 @@
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.ApplicationInsights;
-    using IActivity = Microsoft.Bot.Connector.IActivity;
+    using Microsoft.Bot.Connector;
 
     public class CustomInstrumentation : ICustomInstrumentation
     {

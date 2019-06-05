@@ -9,7 +9,7 @@
     using Microsoft.ApplicationInsights;
     using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.Bot.Builder;
-    using IActivity = Microsoft.Bot.Schema.IActivity;
+    using Microsoft.Bot.Schema;
 
     public class BotInstrumentationMiddleware : IMiddleware
     {

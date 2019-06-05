@@ -3,8 +3,8 @@
     using System;
     using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Settings;
+    using Bot.Ibex.Instrumentation.V4.Middleware;
     using Xunit;
-    using SentimentInstrumentationMiddlewareSettings = Bot.Ibex.Instrumentation.V4.Middleware.SentimentInstrumentationMiddlewareSettings;
 
     [Collection("SentimentInstrumentationMiddlewareSettings")]
     [Trait("Category", "Middleware")]
