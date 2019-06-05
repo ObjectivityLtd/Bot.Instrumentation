@@ -2,7 +2,7 @@ version: 0.0.{build}
 image: Visual Studio 2017
 skip_commits:
   files:
-    - README.md
+    - '**/*.md'
 configuration: Release
 init:
 - ps: >-
