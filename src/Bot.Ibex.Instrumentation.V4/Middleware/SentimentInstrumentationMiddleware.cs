@@ -62,10 +62,10 @@
             BotAssert.ContextNotNull(turnContext);
 
             #pragma warning disable CA1062 // Validate arguments of public methods
-            var activity = new ActivityAdapter(turnContext.Activity);
+            var activityAdapter = new ActivityAdapter(turnContext.Activity);
             #pragma warning restore CA1062 // Validate arguments of public methods
 
-            if (activity.IsIncomingMessage())
+            if (activityAdapter.IsIncomingMessage())
             {
                 await this.sentimentInstrumentation.TrackMessageSentiment(turnContext.Activity)
                     .ConfigureAwait(false);

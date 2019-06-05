@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Bot.Ibex.Instrumentation.V3.Adapters;
@@ -27,11 +28,8 @@
 
             return Task.Run(() =>
             {
-                var objectivityActivity = new ActivityAdapter(activity);
-                var builder = new EventTelemetryBuilder(objectivityActivity, this.settings);
-                var eventTelemetry = builder.Build();
-                eventTelemetry.Name = EventTypes.ActivityEvent;
-                this.telemetryClient.TrackEvent(eventTelemetry);
+                var activityAdapter = new ActivityAdapter(activity);
+                activityAdapter.TrackCustomEvent(this.telemetryClient, this.settings, EventTypes.ActivityEvent);
             });
         }
     }

@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.ApplicationInsights;
@@ -30,12 +31,10 @@
                 throw new ArgumentNullException(nameof(result));
             }
 
-            var objectivityActivity = new ActivityAdapter(activity);
+            var activityAdapter = new ActivityAdapter(activity);
             var luisResultAdapter = new LuisResultAdapter(result);
-            var intentResult = luisResultAdapter.IntentResult;
 
-            var intentInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
-            intentInstrumentation.TrackIntent(objectivityActivity, intentResult, this.telemetryClient, this.settings);
+            activityAdapter.TrackIntent(luisResultAdapter.IntentResult, this.telemetryClient, this.settings);
         }
     }
 }

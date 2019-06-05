@@ -65,8 +65,8 @@
 
         private EventTelemetry BuildEventTelemetry(IActivity activity)
         {
-            var objectivityActivity = new ActivityAdapter(activity);
-            var builder = new EventTelemetryBuilder(objectivityActivity, this.settings);
+            var activityAdapter = new ActivityAdapter(activity);
+            var builder = new EventTelemetryBuilder(activityAdapter, this.settings);
             return builder.Build();
         }
     }

@@ -1,10 +1,23 @@
 ﻿namespace Bot.Ibex.Instrumentation.Common.Tests.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using AutoFixture.Xunit2;
     using Bot.Ibex.Instrumentation.Common.Adapters;
     using Bot.Ibex.Instrumentation.Common.Extensions;
+    using Bot.Ibex.Instrumentation.Common.Models;
+    using Bot.Ibex.Instrumentation.Common.Sentiments;
+    using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Bot.Ibex.Instrumentation.Common.Tests.Telemetry;
     using FluentAssertions;
+    using Microsoft.ApplicationInsights;
+    using Microsoft.ApplicationInsights.Channel;
+    using Microsoft.ApplicationInsights.DataContracts;
+    using Microsoft.ApplicationInsights.Extensibility;
+    using Moq;
     using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
     using Xunit;
 
@@ -13,9 +26,17 @@
     public class ActivityExtensionsTests
     {
         private const string ValidReplyToId = "SOME-REPLY-TO-ID";
+        private const string FakeInstrumentationKey = "FAKE-INSTRUMENTATION-KEY";
+        private readonly Mock<ITelemetryChannel> mockTelemetryChannel = new Mock<ITelemetryChannel>();
+        private readonly TelemetryClient telemetryClient;
 
-        [Theory(DisplayName =
-            "GIVEN Activity WHEN IsIncomingMessage is invoked THEN expected result is being returned")]
+        public ActivityExtensionsTests()
+        {
+            var telemetryConfiguration = new TelemetryConfiguration(FakeInstrumentationKey, this.mockTelemetryChannel.Object);
+            this.telemetryClient = new TelemetryClient(telemetryConfiguration);
+        }
+
+        [Theory(DisplayName = "GIVEN Activity WHEN IsIncomingMessage is invoked THEN expected result is being returned")]
         [InlineAutoMockData(ActivityTypes.Message, ValidReplyToId, false)]
         [InlineAutoMockData("MESSAGE", ValidReplyToId, false)] // Case insensitive
         [InlineAutoMockData(ActivityTypes.Message, null, true)]
@@ -70,8 +91,7 @@
             actualResult.Should().Be(expectedResult);
         }
 
-        [Fact(DisplayName =
-            "GIVEN empty Activity WHEN ToSentimentInput is invoked THEN empty SentimentInput is being returned")]
+        [Fact(DisplayName = "GIVEN empty Activity WHEN ToSentimentInput is invoked THEN empty SentimentInput is being returned")]
         public void GIVENEmptyActivity_WHENToSentimentInputIsInvoked_THENEmptySentimentInputIsBeingReturned()
         {
             // Arrange
@@ -82,6 +102,179 @@
 
             // Assert
             actualResult.Should().BeNull();
+        }
+
+        [Theory(DisplayName = "GIVEN any activity WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
+        [AutoMockData]
+        public void GIVENAnyActivity_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
+            IActivityAdapter activity,
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            // Act
+            activity.TrackCustomEvent(this.telemetryClient, settings);
+
+            // Assert
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(t =>
+                    t.Name == EventTypes.CustomEvent)),
+                Times.Once);
+        }
+
+        [Theory(DisplayName = "GIVEN any activity, any event name and any property WHEN TrackCustomEvent is invoked THEN event telemetry is being sent")]
+        [AutoMockData]
+        public void
+            GIVENAnyActivityAnyEventNameAndAnyProperty_WHENTrackCustomEventIsInvoked_THENEventTelemetryIsBeingSent(
+                IActivityAdapter activity,
+                string eventName,
+                string propertyKey,
+                string propertyValue,
+                InstrumentationSettings settings)
+        {
+            // Arrange
+            var properties = new Dictionary<string, string> { { propertyKey, propertyValue } };
+
+            // Act
+            activity.TrackCustomEvent(this.telemetryClient, settings, eventName, properties);
+
+            // Assert
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(t =>
+                    t.Name == eventName &&
+                    t.Properties[propertyKey] == propertyValue)),
+                Times.Once);
+        }
+
+        [Theory(DisplayName = "GIVEN empty activity result WHEN TrackCustomEvent is invoked THEN exception is being thrown")]
+        [AutoData]
+        public void GIVENEmptyActivity_WHENTrackCustomEventIsInvoked_THENExceptionIsBeingThrown(
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            const IActivityAdapter emptyActivity = null;
+
+            // Act
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => emptyActivity.TrackCustomEvent(this.telemetryClient, settings));
+        }
+
+        [Theory(DisplayName = "GIVEN any activity WHEN TrackIntent is invoked THEN event telemetry is being sent")]
+        [AutoMockData]
+        public void GIVENAnyActivity_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
+            IActivityAdapter activity,
+            IntentResult luisResult,
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            // Act
+            activity.TrackIntent(luisResult, this.telemetryClient, settings);
+
+            // Assert
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(t =>
+                    t.Name == EventTypes.Intent &&
+                    t.Properties[IntentConstants.Intent] == luisResult.Intent &&
+                    t.Properties[IntentConstants.Score] == luisResult.Score &&
+                    t.Properties[IntentConstants.Entities] == luisResult.Entities)),
+                Times.Once);
+        }
+
+        [Theory(DisplayName = "GIVEN any activity, any result and any property WHEN TrackIntent is invoked THEN event telemetry is being sent")]
+        [AutoMockData]
+        public void
+            GIVENAnyActivityAnyResultAnAnyProperty_WHENTrackIntentIsInvoked_THENEventTelemetryIsBeingSent(
+                IActivityAdapter activity,
+                IntentResult result,
+                InstrumentationSettings settings)
+        {
+            // Arrange
+            // Act
+            activity.TrackIntent(result, this.telemetryClient, settings);
+
+            // Assert
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(t =>
+                    t.Name == EventTypes.Intent &&
+                    t.Properties[IntentConstants.Intent] == result.Intent &&
+                    t.Properties[IntentConstants.Score] == result.Score &&
+                    t.Properties[IntentConstants.Entities] == result.Entities)),
+                Times.Once);
+        }
+
+        [Theory(DisplayName = "GIVEN empty activity result WHEN TrackIntent is invoked THEN exception is being thrown")]
+        [AutoData]
+        public void GIVENEmptyActivity_WHENTrackIntentIsInvoked_THENExceptionIsBeingThrown(
+            IntentResult luisResult,
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            const IActivityAdapter emptyActivity = null;
+
+            // Act
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => emptyActivity.TrackIntent(luisResult, this.telemetryClient, settings));
+        }
+
+        [Theory(DisplayName = "GIVEN any activity WHEN TrackEvent is invoked THEN event telemetry is being sent")]
+        [AutoMockData]
+        public void GIVENAnyActivity_WHENTrackEventIsInvoked_THENEventTelemetryIsBeingSent(
+            IActivityAdapter activity,
+            QueryResult queryResult,
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            // Act
+            activity.TrackEvent(queryResult, settings, this.telemetryClient);
+
+            // Assert
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(t =>
+                    t.Name == EventTypes.QnaEvent &&
+                    t.Properties[QnAConstants.UserQuery] == activity.MessageActivity.Text &&
+                    t.Properties[QnAConstants.KnowledgeBaseQuestion] == queryResult.KnowledgeBaseQuestion &&
+                    t.Properties[QnAConstants.KnowledgeBaseAnswer] == queryResult.KnowledgeBaseAnswer &&
+                    t.Properties[QnAConstants.Score] == queryResult.Score.ToString(CultureInfo.InvariantCulture))),
+                Times.Once);
+        }
+
+        [Theory(DisplayName = "GIVEN any activity WHEN TrackMessageSentiment is invoked THEN event telemetry is being sent")]
+        [AutoMockData]
+        public async void GIVENAnyActivity_WHENTrackMessageSentimentIsInvoked_THENEventTelemetryIsBeingSent(
+            double sentimentScore,
+            IActivityAdapter activity,
+            ISentimentClient sentimentClient,
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            Mock.Get(sentimentClient)
+               .Setup(s => s.GetSentiment(activity))
+               .Returns(Task.FromResult<double?>(sentimentScore));
+
+            // Act
+            await activity.TrackMessageSentiment(this.telemetryClient, settings, sentimentClient)
+                .ConfigureAwait(false);
+
+            // Assert
+            this.mockTelemetryChannel.Verify(
+                tc => tc.Send(It.Is<EventTelemetry>(t =>
+                    t.Name == EventTypes.MessageSentiment &&
+                    t.Properties[SentimentConstants.Score] == sentimentScore.ToString(CultureInfo.InvariantCulture))),
+                Times.Once);
+        }
+
+        [Theory(DisplayName = "GIVEN empty activity WHEN TrackMessageSentiment is invoked THEN exception is being thrown")]
+        [AutoMockData]
+        public async void GIVENEmptyActivity_WHENTrackMessageSentimentIsInvoked_THENExceptionIsBeingThrown(
+            ISentimentClient sentimentClient,
+            InstrumentationSettings settings)
+        {
+            // Arrange
+            const IActivityAdapter emptyActivity = null;
+
+            // Act
+            // Assert
+            await Assert.ThrowsAsync<ArgumentNullException>(() => emptyActivity.TrackMessageSentiment(this.telemetryClient, settings, sentimentClient))
+                .ConfigureAwait(false);
         }
     }
 }

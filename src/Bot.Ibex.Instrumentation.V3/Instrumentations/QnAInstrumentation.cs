@@ -1,6 +1,7 @@
 ﻿namespace Bot.Ibex.Instrumentation.V3.Instrumentations
 {
     using System;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.V3.Adapters;
     using Microsoft.ApplicationInsights;
@@ -30,12 +31,10 @@
                 throw new ArgumentNullException(nameof(queryResult));
             }
 
-            var objActivity = new ActivityAdapter(activity);
+            var activityAdapter = new ActivityAdapter(activity);
             var queryResultAdapter = new QueryResultAdapter(queryResult);
-            var result = queryResultAdapter.QueryResult;
 
-            var qnaInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.QnAInstrumentation();
-            qnaInstrumentation.TrackEvent(objActivity, result, this.settings, this.telemetryClient);
+            activityAdapter.TrackEvent(queryResultAdapter.QueryResult, this.settings, this.telemetryClient);
         }
     }
 }

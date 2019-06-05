@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Sentiments;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.V4.Adapters;
@@ -26,10 +27,9 @@
         {
             BotAssert.ActivityNotNull(activity);
 
-            var objActivity = new ActivityAdapter(activity);
+            var activityAdapter = new ActivityAdapter(activity);
 
-            var sentimentInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.SentimentInstrumentation();
-            await sentimentInstrumentation.TrackMessageSentiment(objActivity, this.telemetryClient, this.settings, this.sentimentClient).ConfigureAwait(false);
+            await activityAdapter.TrackMessageSentiment(this.telemetryClient, this.settings, this.sentimentClient).ConfigureAwait(false);
         }
     }
 }

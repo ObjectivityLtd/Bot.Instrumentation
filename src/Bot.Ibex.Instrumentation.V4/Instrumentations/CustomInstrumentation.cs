@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Bot.Ibex.Instrumentation.Common.Extensions;
     using Bot.Ibex.Instrumentation.Common.Settings;
     using Bot.Ibex.Instrumentation.Common.Telemetry;
     using Bot.Ibex.Instrumentation.V4.Adapters;
@@ -24,10 +25,8 @@
         {
             BotAssert.ActivityNotNull(activity);
 
-            var objActivity = new ActivityAdapter(activity);
-
-            var customInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.CustomInstrumentation();
-            customInstrumentation.TrackCustomEvent(objActivity, this.telemetryClient, this.settings, eventName, properties);
+            var activityAdapter = new ActivityAdapter(activity);
+            activityAdapter.TrackCustomEvent(this.telemetryClient, this.settings, eventName, properties);
         }
     }
 }
