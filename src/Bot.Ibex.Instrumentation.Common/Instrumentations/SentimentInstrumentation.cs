@@ -31,15 +31,8 @@
                 { SentimentConstants.Score, score.Value.ToString(CultureInfo.InvariantCulture) },
             };
 
-            TrackTelemetry(activity, telemetryClient, settings, properties);
-        }
-
-        private static void TrackTelemetry(IActivityAdapter activity, TelemetryClient telemetryClient, InstrumentationSettings settings, Dictionary<string, string> properties)
-        {
-            var builder = new EventTelemetryBuilder(activity, settings, properties);
-            var eventTelemetry = builder.Build();
-            eventTelemetry.Name = EventTypes.MessageSentiment;
-            telemetryClient.TrackEvent(eventTelemetry);
+            var instrumentation = new CustomInstrumentation();
+            instrumentation.TrackCustomEvent(activity, telemetryClient, settings, EventTypes.MessageSentiment, properties);
         }
     }
 }

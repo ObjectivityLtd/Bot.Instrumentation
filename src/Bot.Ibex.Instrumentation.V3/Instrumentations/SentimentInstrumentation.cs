@@ -30,8 +30,7 @@
 
             var objActivity = new ActivityAdapter(activity);
 
-            var sentimentInstrumentation =
-                new Bot.Ibex.Instrumentation.Common.Instrumentations.SentimentInstrumentation();
+            var sentimentInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.SentimentInstrumentation();
             await sentimentInstrumentation.TrackMessageSentiment(objActivity, this.telemetryClient, this.settings, this.sentimentClient).ConfigureAwait(false);
         }
     }

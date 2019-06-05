@@ -31,11 +31,11 @@
             }
 
             var objectivityActivity = new ActivityAdapter(activity);
-            var luisResultAdapter = new LuisResultAdapter(result).IntentResult;
+            var luisResultAdapter = new LuisResultAdapter(result);
+            var intentResult = luisResultAdapter.IntentResult;
 
-            var intentInstrumentation =
-                new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
-            intentInstrumentation.TrackIntent(objectivityActivity, luisResultAdapter, this.telemetryClient, this.settings);
+            var intentInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
+            intentInstrumentation.TrackIntent(objectivityActivity, intentResult, this.telemetryClient, this.settings);
         }
     }
 }

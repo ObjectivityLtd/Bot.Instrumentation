@@ -21,19 +21,12 @@
                 throw new ArgumentNullException(nameof(telemetryClient));
             }
 
-            TrackTelemetry(activity, telemetryClient, settings, eventName, properties);
-        }
-
-        private static void TrackTelemetry(
-            IActivityAdapter activity,
-            TelemetryClient telemetryClient,
-            InstrumentationSettings settings,
-            string eventName,
-            IDictionary<string, string> properties)
-        {
             var builder = new EventTelemetryBuilder(activity, settings, properties);
             var eventTelemetry = builder.Build();
-            eventTelemetry.Name = string.IsNullOrWhiteSpace(eventName) ? EventTypes.CustomEvent : eventName;
+            eventTelemetry.Name = string.IsNullOrWhiteSpace(eventName)
+                ? EventTypes.CustomEvent
+                : eventName;
+
             telemetryClient.TrackEvent(eventTelemetry);
         }
     }

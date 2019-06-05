@@ -35,15 +35,8 @@
                 { QnAConstants.Score, queryResult.Score },
             };
 
-            TrackTelemetry(activity, settings, telemetryClient, properties);
-        }
-
-        private static void TrackTelemetry(IActivityAdapter activity, InstrumentationSettings settings, TelemetryClient telemetryClient, Dictionary<string, string> properties)
-        {
-            var builder = new EventTelemetryBuilder(activity, settings, properties);
-            var eventTelemetry = builder.Build();
-            eventTelemetry.Name = EventTypes.QnaEvent;
-            telemetryClient.TrackEvent(eventTelemetry);
+            var instrumentation = new CustomInstrumentation();
+            instrumentation.TrackCustomEvent(activity, telemetryClient, settings, EventTypes.QnaEvent, properties);
         }
     }
 }

@@ -29,20 +29,8 @@
                 { IntentConstants.Entities, result.Entities },
             };
 
-            this.TrackTelemetry(activity, properties, settings, telemetryClient);
-        }
-
-        private void TrackTelemetry(
-            IActivityAdapter activity,
-            IDictionary<string, string> properties,
-            InstrumentationSettings settings,
-            TelemetryClient telemetryClient)
-        {
-            var builder = new EventTelemetryBuilder(activity, settings, properties);
-            var eventTelemetry = builder.Build();
-            eventTelemetry.Name = EventTypes.Intent;
-
-            telemetryClient.TrackEvent(eventTelemetry);
+            var instrumentation = new CustomInstrumentation();
+            instrumentation.TrackCustomEvent(activity, telemetryClient, settings, EventTypes.Intent, properties);
         }
     }
 }

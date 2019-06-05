@@ -34,8 +34,7 @@
             var queryResultAdapter = new QueryResultAdapter(queryResult);
             var result = queryResultAdapter.QueryResult;
 
-            var qnaInstrumentation =
-                new Bot.Ibex.Instrumentation.Common.Instrumentations.QnAInstrumentation();
+            var qnaInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.QnAInstrumentation();
             qnaInstrumentation.TrackEvent(objActivity, result, this.settings, this.telemetryClient);
         }
     }

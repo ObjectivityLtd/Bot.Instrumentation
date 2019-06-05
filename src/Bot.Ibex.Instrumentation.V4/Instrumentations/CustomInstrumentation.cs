@@ -26,8 +26,7 @@
 
             var objActivity = new ActivityAdapter(activity);
 
-            var customInstrumentation =
-                new Bot.Ibex.Instrumentation.Common.Instrumentations.CustomInstrumentation();
+            var customInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.CustomInstrumentation();
             customInstrumentation.TrackCustomEvent(objActivity, this.telemetryClient, this.settings, eventName, properties);
         }
     }

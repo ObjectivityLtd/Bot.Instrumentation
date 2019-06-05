@@ -28,11 +28,11 @@
             }
 
             var objectivityActivity = new ActivityAdapter(activity);
-            var recognizerResultAdapter = new RecognizerResultAdapter(result).IntentResult;
+            var recognizerResultAdapter = new RecognizerResultAdapter(result);
+            var intentResult = recognizerResultAdapter.IntentResult;
 
-            var intentInstrumentation =
-                new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
-            intentInstrumentation.TrackIntent(objectivityActivity, recognizerResultAdapter, this.telemetryClient, this.settings);
+            var intentInstrumentation = new Bot.Ibex.Instrumentation.Common.Instrumentations.IntentInstrumentation();
+            intentInstrumentation.TrackIntent(objectivityActivity, intentResult, this.telemetryClient, this.settings);
         }
     }
 }
