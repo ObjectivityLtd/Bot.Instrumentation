@@ -13,7 +13,7 @@
     <IsPackable>true</IsPackable>
     <PackageProjectUrl>https://github.com/ObjectivityLtd/Bot.Ibex.Instrumentation</PackageProjectUrl>
     <PackageIconUrl>https://github.com/ObjectivityLtd.png</PackageIconUrl>
-    <PackageTags>bot botframework ibex ibex-dashboard analitycs</PackageTags>
+    <PackageTags>bot botframework ibex ibex-dashboard analitycs instrumentation</PackageTags>
     <PackageReleaseNotes>See https://github.com/ObjectivityLtd/Bot.Ibex.Instrumentation/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/ObjectivityLtd/Bot.Ibex.Instrumentation.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -27,7 +27,7 @@
     <Copyright Condition="'$(Copyright)'==''">Copyright (c) $(Company)</Copyright>
     <AssemblyTitle Condition="'$(AssemblyTitle)'==''">$(AssemblyName)</AssemblyTitle>
     <Product Condition="'$(Product)'==''">$(AssemblyName)</Product>
-    <Description Condition="'$(Description)'==''">Custom Analytics for bot framework to leverage with ibex.</Description>
+    <Description Condition="'$(Description)'==''">Custom Analytics for bot framework.</Description>
   </PropertyGroup>
 
   <PropertyGroup>
