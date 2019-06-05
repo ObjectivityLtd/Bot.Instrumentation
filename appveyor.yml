@@ -62,7 +62,7 @@ test_script:
 
     dotnet test ./src/%namespace%.V4.Tests /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.V4.xml
 
-    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\%xunit%" -targetargs:"./src/Bot.Ibex.Instrumentation.V3.Tests/bin/Release/net47/Bot.Ibex.Instrumentation.V3.Tests.dll -noshadow" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml" -filter:"+[Bot.Ibex.Instrumentation*]* -[*.Tests]*"
+    OpenCover.Console.exe -register:user -target:"%appveyor_build_folder%\%xunit%" -targetargs:"./src/%namespace%.V3.Tests/bin/%configuration%/net47/%namespace%.V3.Tests.dll -noshadow" -output:"%appveyor_build_folder%\%cc%\%namespace%.V3.xml" -filter:"+[%namespace%*]* -[*.Tests]*"
 
     %appveyor_build_folder%\%codecov% -f %appveyor_build_folder%\%cc%\%namespace%.V3.xml --flag unittests
 
@@ -70,7 +70,7 @@ test_script:
 
     %appveyor_build_folder%\%codecov% -f %appveyor_build_folder%\%cc%\%namespace%.%common_module%.xml --flag unittests
 artifacts:
-- path: '**\Bot.Ibex.Instrumentation.*.nupkg'
+- path: '**\$(namespace).*.nupkg'
 deploy:
 - provider: NuGet
   api_key:
