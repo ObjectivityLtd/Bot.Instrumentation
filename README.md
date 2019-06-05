@@ -10,5 +10,5 @@ Two versions of Bot Framework are currently supported. For further details and e
 
 | Documentation                                           | Corresponding NuGet package |
 | ---------------------------------------------------------:|:--------------------------- |
-| [Bot Framework V3](/src/Bot.Ibex.Instrumentation.V3) | [![nuget](https://img.shields.io/nuget/v/Bot.Ibex.Instrumentation.svg) ![Downloads](https://img.shields.io/nuget/dt/Bot.Ibex.Instrumentation.svg)](https://www.nuget.org/packages/Bot.Ibex.Instrumentation/)
-| [Bot Framework V4](/src/Bot.Ibex.Instrumentation.V4) | [![nuget](https://img.shields.io/nuget/v/Bot.Ibex.Instrumentation.svg) ![Downloads](https://img.shields.io/nuget/dt/Bot.Ibex.Instrumentation.V4.svg)](https://www.nuget.org/packages/Bot.Ibex.Instrumentation.V4/)
+| [Bot Framework V3](/src/Bot.Ibex.Instrumentation.V3) | [![nuget](https://img.shields.io/nuget/v/Bot.Ibex.Instrumentation.V3.svg) ![Downloads](https://img.shields.io/nuget/dt/Bot.Ibex.Instrumentation.V3.svg)](https://www.nuget.org/packages/Bot.Ibex.Instrumentation.V3/)
+| [Bot Framework V4](/src/Bot.Ibex.Instrumentation.V4) | [![nuget](https://img.shields.io/nuget/v/Bot.Ibex.Instrumentation.V4.svg) ![Downloads](https://img.shields.io/nuget/dt/Bot.Ibex.Instrumentation.V4.svg)](https://www.nuget.org/packages/Bot.Ibex.Instrumentation.V4/)
