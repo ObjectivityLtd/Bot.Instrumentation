@@ -19,7 +19,7 @@
             var adapter = new LuisResultAdapter(result);
 
             // Act
-            var recognizedIntentResult = adapter.ConvertLuisesultToIntentResult();
+            var recognizedIntentResult = adapter.IntentResult;
 
             // Assert
             Assert.Equal(recognizedIntentResult.Intent, result.TopScoringIntent.Intent);

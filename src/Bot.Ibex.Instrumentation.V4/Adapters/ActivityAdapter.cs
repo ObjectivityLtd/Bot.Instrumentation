@@ -26,20 +26,17 @@
         {
             get
             {
-                if (this.activity.AsMessageActivity() != null)
+                var messageActivity = this.activity.AsMessageActivity();
+                if (messageActivity != null)
                 {
-                    var messageActivity = new MessageActivity
+                    return new MessageActivity
                     {
-                        Text = this.activity.AsMessageActivity().Text,
-                        Id = this.activity.AsMessageActivity().Id,
+                        Text = messageActivity.Text,
+                        Id = messageActivity.Id,
                     };
+                }
 
-                    return messageActivity;
-                }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
 
@@ -47,20 +44,17 @@
         {
             get
             {
-                if (this.activity.From != null)
+                var from = this.activity.From;
+                if (from != null)
                 {
-                    var channelAccount = new ChannelAccount
+                    return new ChannelAccount
                     {
-                        Name = this.activity.From.Name,
-                        Id = this.activity.From.Id,
+                        Name = from.Name,
+                        Id = from.Id,
                     };
+                }
 
-                    return channelAccount;
-                }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
     }

@@ -15,18 +15,11 @@
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
-        public IntentResult IntentResult => this.ConvertLuisesultToIntentResult();
-
-        public IntentResult ConvertLuisesultToIntentResult()
+        public IntentResult IntentResult => new IntentResult
         {
-            var intentResult = new IntentResult
-            {
-                Intent = this.result.TopScoringIntent.Intent,
-                Score = this.result.TopScoringIntent.Score.ToString(),
-                Entities = JsonConvert.SerializeObject(this.result.Entities),
-            };
-
-            return intentResult;
-        }
+            Intent = this.result.TopScoringIntent.Intent,
+            Score = this.result.TopScoringIntent.Score.ToString(),
+            Entities = JsonConvert.SerializeObject(this.result.Entities),
+        };
     }
 }

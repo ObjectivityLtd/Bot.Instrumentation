@@ -16,19 +16,18 @@
             this.result = result ?? throw new ArgumentNullException(nameof(result));
         }
 
-        public IntentResult IntentResult => this.ConvertRecognizerResultIntentResult();
-
-        public IntentResult ConvertRecognizerResultIntentResult()
+        public IntentResult IntentResult
         {
-            var topScoringIntent = this.result.GetTopScoringIntent();
-            var intentResult = new IntentResult
+            get
             {
-                Intent = topScoringIntent.intent,
-                Score = topScoringIntent.score.ToString(CultureInfo.InvariantCulture),
-                Entities = this.result.Entities.ToString(Formatting.None),
-            };
-
-            return intentResult;
+                var topScoringIntent = this.result.GetTopScoringIntent();
+                return new IntentResult
+                {
+                    Intent = topScoringIntent.intent,
+                    Score = topScoringIntent.score.ToString(CultureInfo.InvariantCulture),
+                    Entities = this.result.Entities.ToString(Formatting.None),
+                };
+            }
         }
     }
 }

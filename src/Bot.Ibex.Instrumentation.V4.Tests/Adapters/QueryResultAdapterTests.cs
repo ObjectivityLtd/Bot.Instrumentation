@@ -20,7 +20,7 @@
             var adapter = new QueryResultAdapter(queryResult);
 
             // Act
-            var convertedQueryResult = adapter.ConvertQnAMakerResultsToQueryResult();
+            var convertedQueryResult = adapter.QueryResult;
 
             // Assert
             Assert.Equal(convertedQueryResult.KnowledgeBaseQuestion, string.Join(QuestionsSeparator.Separator, queryResult.Questions));

@@ -16,20 +16,18 @@
             this.queryResult = queryResult ?? throw new ArgumentNullException(nameof(queryResult));
         }
 
-        public QueryResult QueryResult => this.ConvertQnAMakerResultsToQueryResult();
-
-        private QueryResult ConvertQnAMakerResultsToQueryResult()
+        public QueryResult QueryResult
         {
-            var topScoreAnswer = this.queryResult.Answers.OrderByDescending(x => x.Score).First();
-            var result = new QueryResult
+            get
             {
-                KnowledgeBaseQuestion =
-                    string.Join(QuestionsSeparator.Separator, topScoreAnswer.Questions),
-                KnowledgeBaseAnswer = topScoreAnswer.Answer,
-                Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture),
-            };
-
-            return result;
+                var topScoreAnswer = this.queryResult.Answers.OrderByDescending(x => x.Score).First();
+                return new QueryResult
+                {
+                    KnowledgeBaseQuestion = string.Join(QuestionsSeparator.Separator, topScoreAnswer.Questions),
+                    KnowledgeBaseAnswer = topScoreAnswer.Answer,
+                    Score = topScoreAnswer.Score.ToString(CultureInfo.InvariantCulture),
+                };
+            }
         }
     }
 }

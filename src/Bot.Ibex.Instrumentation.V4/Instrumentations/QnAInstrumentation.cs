@@ -30,7 +30,7 @@
 
             var objActivity = new ActivityAdapter(activity);
             var queryResultAdapter = new QueryResultAdapter(queryResult);
-            var result = queryResultAdapter.ConvertQnAMakerResultsToQueryResult();
+            var result = queryResultAdapter.QueryResult;
 
             var qnaInstrumentation =
                 new Bot.Ibex.Instrumentation.Common.Instrumentations.QnAInstrumentation();

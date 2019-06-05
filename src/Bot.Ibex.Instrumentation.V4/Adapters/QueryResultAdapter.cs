@@ -14,18 +14,11 @@
             this.queryResult = queryResult ?? throw new ArgumentNullException(nameof(queryResult));
         }
 
-        public QueryResult QueryResult => this.ConvertQnAMakerResultsToQueryResult();
-
-        public QueryResult ConvertQnAMakerResultsToQueryResult()
+        public QueryResult QueryResult => new QueryResult
         {
-            var result = new QueryResult
-            {
-                KnowledgeBaseQuestion = string.Join(QuestionsSeparator.Separator, this.queryResult.Questions),
-                KnowledgeBaseAnswer = this.queryResult.Answer,
-                Score = this.queryResult.Score.ToString(CultureInfo.InvariantCulture),
-            };
-
-            return result;
-        }
+            KnowledgeBaseQuestion = string.Join(QuestionsSeparator.Separator, this.queryResult.Questions),
+            KnowledgeBaseAnswer = this.queryResult.Answer,
+            Score = this.queryResult.Score.ToString(CultureInfo.InvariantCulture),
+        };
     }
 }
