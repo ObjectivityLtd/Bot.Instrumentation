@@ -19,7 +19,7 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 environment:
-  namespace: Bot.Ibex.Instrumentation
+  namespace: Bot.Instrumentation
   common_module: Common
   cc: opencover
   codecov: tools\Codecov.1.5.0\tools\codecov.exe
