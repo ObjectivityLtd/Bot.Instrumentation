@@ -14,7 +14,7 @@ Instrumentation stores bot telemetry data in [Application Insights](https://docs
 
 ### ActivityInstrumentation
 
-This instrumentation provides basic bot telemetry data and is extreamy powerfull in conjunction with `DialogActivityLogger` which logs your dialogs activities.
+This instrumentation provides basic bot telemetry data and is especially useful in conjunction with `DialogActivityLogger` which logs your dialogs activities.
 
 #### Example
 
@@ -22,7 +22,7 @@ This instrumentation provides basic bot telemetry data and is extreamy powerfull
 
 Add the following code to your application start.
 
-It is being assument that [Autofac](https://autofac.org/) is being used as IoC container.
+It is being assumed that [Autofac](https://autofac.org/) is being used as IoC container.
 
 ```csharp
 TelemetryConfiguration.Active.InstrumentationKey = "<INSTRUMENTATION_KEY>"
@@ -158,7 +158,7 @@ private async Task HandleMessageSentiment(
 
 ### CustomInstrumentation
 
-Provides custom event instrumentation.
+Provides custom event instrumentation where additional custom properties can be sent to the telemetry.
 
 #### Example
 
