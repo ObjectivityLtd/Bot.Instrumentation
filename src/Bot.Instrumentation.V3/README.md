@@ -4,6 +4,44 @@
 
 Simplifies adding custom analytics for bots built with [Microsoft Bot Framework V3](https://dev.botframework.com) to leverage it with [Ibex Dashboard](https://github.com/Azure/ibex-dashboard).
 
+## Getting Started
+
+### Application insigths
+
+Instrumentation stores bot telemetry data in [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) thus it is required to obtain the _Instrumentation Key_ which identifies the resource the telemetry data is associated with.
+
+[Create an Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/create-new-resource) resource if you haven't already done that for your bot.
+
+### ActivityInstrumentation
+
+This instrumentation provides basic bot telemetry data and is extreamy powerfull in conjunction with `DialogActivityLogger` which logs your dialogs activities.
+
+#### Example
+
+##### Setup
+
+Add the following code to your application start.
+
+It is being assument that [Autofac](https://autofac.org/) is being used as IoC container.
+
+```csharp
+TelemetryConfiguration.Active.InstrumentationKey = "<INSTRUMENTATION_KEY>"
+var telemetry = new TelemetryClient(TelemetryConfiguration.Active);
+var settings = new InstrumentationSettings();
+
+builder.RegisterInstance(new ActivityInstrumentation(telemetry, settings))
+       .Keyed<IIntentInstrumentation>(FiberModule.Key_DoNotSerialize)
+       .As<IActivityInstrumentation>();
+
+builder.RegisterType<DialogActivityLogger>()
+       .AsImplementedInterfaces()
+       .InstancePerDependency();
+```
+
+* `<INSTRUMENTATION_KEY>` is an instrumentation key of Application Insights to be obtained once it is configured in Azure.
+
+## Additional instrumentations
+
 ### QnAInstrumentation
 
 Provides QnA Maker instrumentation.
@@ -13,33 +51,33 @@ Provides QnA Maker instrumentation.
 ##### Setup
 
 ```csharp
-var telemetryClient = new TelemetryClient();
-var instrumentationSettings = new InstrumentationSettings();
+TelemetryConfiguration.Active.InstrumentationKey = "<INSTRUMENTATION_KEY>"
+var telemetry = new TelemetryClient(TelemetryConfiguration.Active);
+var settings = new InstrumentationSettings();
 
-builder.Register(c => new QnAInstrumentation(telemetryClient, instrumentationSettings))
-	.Keyed<IQnAInstrumentation>(FiberModule.Key_DoNotSerialize)
-	.As<IQnAInstrumentation>();
+builder.RegisterInstance(new QnAInstrumentation(telemetry, settings))
+    .Keyed<IQnAInstrumentation>(FiberModule.Key_DoNotSerialize)
+    .As<IQnAInstrumentation>();
 ```
+
+* `<INSTRUMENTATION_KEY>` is an instrumentation key of Application Insights to be obtained once it is configured in Azure.
 
 ##### Usage
 
 ```csharp
-private async Task DispatchToQnAMakerAsync(
-    QnAMaker qnaMaker,
-    ITurnContext turnContext,
-    IQnAInstrumentation instrumentation,
-    CancellationToken cancellationToken = default(CancellationToken))
+private async Task HandleQnAMakerResults(
+    QnAMakerResults results,
+    IDialogContext context,
+    IQnAInstrumentation instrumentation)
 {
-    if (!string.IsNullOrEmpty(turnContext.Activity.Text))
+    if (results != null && results.Answers.Any())
     {
-        var results = await qnaMaker.GetAnswersAsync(turnContext)
-            .ConfigureAwait(false);
+        instrumentation.TrackEvent(context.Activity, results);
 
-        if (results.Any())
-        {
-            var result = results.First();
-            instrumentation.TrackEvent(turnContext.Activity, result);
-        }
+        var topScore = results.Answers
+                              .OrderByDescending(x => x.Score)
+                              .First();
+        await context.PostAsync(topScore.Answer);
     }
 }
 ```
@@ -53,27 +91,29 @@ Provides LUIS Intent instrumentation.
 ##### Setup
 
 ```csharp
-var telemetryClient = new TelemetryClient();
-var instrumentationSettings = new InstrumentationSettings();
+TelemetryConfiguration.Active.InstrumentationKey = "<INSTRUMENTATION_KEY>"
+var telemetry = new TelemetryClient(TelemetryConfiguration.Active);
+var settings = new InstrumentationSettings();
 
-builder.Register(c => new IntentInstrumentation(telemetryClient, instrumentationSettings))
-	.Keyed<IIntentInstrumentation>(FiberModule.Key_DoNotSerialize)
-	.As<IIntentInstrumentation>();
+builder.RegisterInstance(IntentInstrumentation(telemetry, settings))
+    .Keyed<IIntentInstrumentation>(FiberModule.Key_DoNotSerialize)
+    .As<IIntentInstrumentation>();
 ```
+
+* `<INSTRUMENTATION_KEY>` is an instrumentation key of Application Insights to be obtained once it is configured in Azure.
 
 ##### Usage
 
 ```csharp
-private async Task DispatchToQnAMakerAsync(
+private async Task HandleLuisResult(
     LuisResult result,
-    IDialogContext activity,
-    IIntentInstrumentation intentInstrumentation,
-    CancellationToken cancellationToken = default(CancellationToken))
+    IDialogContext context,
+    IIntentInstrumentation instrumentation)
 {
-	if (results.Any())
-	{
-		intentInstrumentation.TrackIntent(activity.Activity, result);
-	}
+    if (result != null)
+    {
+        instrumentation.TrackIntent(context.Activity, result);
+    }
 }
 ```
 
@@ -86,36 +126,33 @@ Provides sentiment instrumentation.
 ##### Setup
 
 ```csharp
+TelemetryConfiguration.Active.InstrumentationKey = "<INSTRUMENTATION_KEY>"
+var telemetry = new TelemetryClient(TelemetryConfiguration.Active);
+var settings = new InstrumentationSettings();
 var sentimentSettings = new SentimentClientSettings
 {
-	ApiSubscriptionKey = "<TEXT_ANALYTICS_SUBSCRIPTION_KEY>",
-	Endpoint = "<COGNITIVE_SERVICES_ENDPOINT_URI>"
+    ApiSubscriptionKey = "<TEXT_ANALYTICS_SUBSCRIPTION_KEY>",
+    Endpoint = "<COGNITIVE_SERVICES_ENDPOINT_URI>"
 };
-var sentimentClient = new SentimentClient(sentimentSettings);
-var instrumentationSettings = new InstrumentationSettings();
-var telemetryClient = new TelemetryClient();
+var sentiment = new SentimentClient(sentimentSettings);
 
-builder.Register(c => new SentimentInstrumentation(instrumentationSettings, telemetryClient, sentimentClient))
-	.Keyed<ISentimentInstrumentation>(FiberModule.Key_DoNotSerialize)
-	.As<ISentimentInstrumentation>();
+builder.RegisterInstance(new SentimentInstrumentation(settings, telemetry, sentiment))
+    .Keyed<ISentimentInstrumentation>(FiberModule.Key_DoNotSerialize)
+    .As<ISentimentInstrumentation>();
 ```
 
-* `<TEXT_ANALYTICS_SUBSCRIPTION_KEY>` is a subscription key of the Text Analytics to be obtained once it is configured in Azure.
-* `<COGNITIVE_SERVICES_ENDPOINT_URI>` is a supported endpoint of the Cognitive Services (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com)
 * `<INSTRUMENTATION_KEY>` is an instrumentation key of Application Insights to be obtained once it is configured in Azure.
+* `<TEXT_ANALYTICS_SUBSCRIPTION_KEY>` is a subscription key of the Text Analytics to be obtained once it is configured in Azure.
+* `<COGNITIVE_SERVICES_ENDPOINT_URI>` is a supported endpoint of the Cognitive Services (protocol and hostname, for example: <https://westus.api.cognitive.microsoft.com>)
 
 ##### Usage
 
 ```csharp
 private async Task HandleMessageSentiment(
-    IDialogContext turnContext,
+    IDialogContext context,
     ISentimentInstrumentation instrumentation)
 {
-    if (turnContext.Activity.IsIncomingMessage())
-    {
-        await this.sentimentInstrumentation.TrackMessageSentiment(context.Activity)
-            .ConfigureAwait(false);
-    }
+    await instrumentation.TrackMessageSentiment(context.Activity);
 }
 ```
 
@@ -128,13 +165,16 @@ Provides custom event instrumentation.
 ##### Setup
 
 ```csharp
-var telemetryClient = new TelemetryClient();
-var instrumentationSettings = new InstrumentationSettings();
+TelemetryConfiguration.Active.InstrumentationKey = "<INSTRUMENTATION_KEY>"
+var telemetry = new TelemetryClient(TelemetryConfiguration.Active);
+var settings = new InstrumentationSettings();
 
-builder.Register(c => new CustomInstrumentation(telemetryClient, instrumentationSettings))
-	.Keyed<ICustomInstrumentation>(FiberModule.Key_DoNotSerialize)
-	.As<ICustomInstrumentation>();
+builder.RegisterInstance(new CustomInstrumentation(telemetry, settings))
+    .Keyed<ICustomInstrumentation>(FiberModule.Key_DoNotSerialize)
+    .As<ICustomInstrumentation>();
 ```
+
+* `<INSTRUMENTATION_KEY>` is an instrumentation key of Application Insights to be obtained once it is configured in Azure.
 
 ##### Usage
 
@@ -144,41 +184,7 @@ private void TrackConversationRating(
     string rating,
     ICustomInstrumentation instrumentation)
 {
-    instrumentation.TrackCustomEvent(activity);
+    var properties = new Dictionary<string, string> { { "score", rating } };
+    instrumentation.TrackCustomEvent(activity, "ConversationRating", properties);
 }
 ```
-
-### ActivityInstrumentation
-
-Provides basic instrumentation.
-
-#### Example
-
-##### Setup
-
-```csharp
-var telemetryClient = new TelemetryClient();
-var instrumentationSettings = new InstrumentationSettings();
-
-builder.Register(c => new ActivityInstrumentation(telemetryClient, instrumentationSettings)).As<IActivityInstrumentation>();
-
-builder.RegisterType<DialogActivityLogger>().AsImplementedInterfaces().InstancePerDependency();
-```
-
-##### Usage
-
-In Application_Start() add:
-
-```csharp
-var appInsightsKey = WebConfigurationManager.AppSettings["<INSTRUMENTATION_KEY>"];
-if (!string.IsNullOrEmpty(appInsightsKey))
-{
-	TelemetryConfiguration.Active.InstrumentationKey = appInsightsKey;
-}
-else
-{
-	throw new ConfigurationErrorsException("Application Insights instrumentation key can not be null");
-}
-```
-
-* `<INSTRUMENTATION_KEY>` is an instrumentation key of Application Insights to be obtained once it is configured in Azure.
