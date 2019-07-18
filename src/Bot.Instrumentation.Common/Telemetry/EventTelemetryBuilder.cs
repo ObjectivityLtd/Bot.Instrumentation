@@ -11,25 +11,27 @@
     {
         private readonly IActivityAdapter activity;
         private readonly InstrumentationSettings settings;
-        private readonly IEnumerable<KeyValuePair<string, string>> properties;
+        private readonly IEnumerable<KeyValuePair<string, string>> additionalProperties;
 
-        public EventTelemetryBuilder(IActivityAdapter activity, InstrumentationSettings settings, IEnumerable<KeyValuePair<string, string>> properties = null)
+        public EventTelemetryBuilder(IActivityAdapter activity, InstrumentationSettings settings, IEnumerable<KeyValuePair<string, string>> additionalProperties = null)
         {
             this.activity = activity ?? throw new ArgumentNullException(nameof(activity));
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            this.properties = properties ?? Enumerable.Empty<KeyValuePair<string, string>>();
+            this.additionalProperties = additionalProperties ?? Enumerable.Empty<KeyValuePair<string, string>>();
         }
 
         public EventTelemetry Build()
         {
             var et = new EventTelemetry();
+            var properties = new Dictionary<string, string>();
+
             if (this.activity.TimeStampIso8601 != null)
             {
-                et.Properties.Add(BotConstants.TimestampProperty, this.activity.TimeStampIso8601);
+                properties.Add(BotConstants.TimestampProperty, this.activity.TimeStampIso8601);
             }
 
-            et.Properties.Add(BotConstants.TypeProperty, this.activity.Type);
-            et.Properties.Add(BotConstants.ChannelProperty, this.activity.ChannelId);
+            properties.Add(BotConstants.TypeProperty, this.activity.Type);
+            properties.Add(BotConstants.ChannelProperty, this.activity.ChannelId);
 
             switch (this.activity.Type)
             {
@@ -37,10 +39,10 @@
                     if (this.activity.ReplyToId == null)
                     {
                         et.Name = EventTypes.MessageReceived;
-                        et.Properties.Add(BotConstants.UserIdProperty, this.activity.ChannelAccount.Id);
+                        properties.Add(BotConstants.UserIdProperty, this.activity.ChannelAccount.Id);
                         if (!this.settings.OmitUsernameFromTelemetry)
                         {
-                            et.Properties.Add(BotConstants.UserNameProperty, this.activity.ChannelAccount.Name);
+                            properties.Add(BotConstants.UserNameProperty, this.activity.ChannelAccount.Name);
                         }
                     }
                     else
@@ -48,8 +50,8 @@
                         et.Name = EventTypes.MessageSent;
                     }
 
-                    et.Properties.Add(BotConstants.TextProperty, this.activity.MessageActivity.Text);
-                    et.Properties.Add(BotConstants.ConversationIdProperty, this.activity.MessageActivity.Id);
+                    properties.Add(BotConstants.TextProperty, this.activity.MessageActivity.Text);
+                    properties.Add(BotConstants.ConversationIdProperty, this.activity.MessageActivity.Id);
                     break;
                 case ActivityTypes.ConversationUpdate:
                     et.Name = EventTypes.ConversationUpdate;
@@ -62,7 +64,11 @@
                     break;
             }
 
-            foreach (var property in this.properties)
+            var eventProperties = this.additionalProperties.Concat(properties)
+                .GroupBy(kv => kv.Key)
+                .ToDictionary(g => g.Key, g => g.First().Value);
+
+            foreach (var property in eventProperties)
             {
                 et.Properties.Add(property);
             }

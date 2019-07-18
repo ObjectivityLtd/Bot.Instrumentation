@@ -71,6 +71,26 @@
         }
 
         [Theory(DisplayName =
+            "GIVEN additional property to replace original one WHEN Build is invoked THEN event telemetry with replaced property is being created")]
+        [AutoMockData]
+        public void GIVENAdditionalPropertyToReplaceOriginalOne_WHENBuildIsInvoked_THENEventTelemetryWithReplacedPropertyIsBeingCreated(
+            IActivityAdapter activity,
+            InstrumentationSettings settings,
+            string additionalPropertyValue)
+        {
+            // Arrange
+            var additionalProperties = new Dictionary<string, string> { { BotConstants.TypeProperty, additionalPropertyValue } };
+            var builder = new EventTelemetryBuilder(activity, settings, additionalProperties);
+
+            // Act
+            var eventTelemetry = builder.Build();
+
+            // Assert
+            activity.Type.Should().NotBe(additionalPropertyValue);
+            eventTelemetry.Properties.Should().Contain(additionalProperties);
+        }
+
+        [Theory(DisplayName =
             "GIVEN Message type activity and ReplyToId WHEN Build is invoked THEN event telemetry is being created")]
         [AutoData]
         public void GIVENMessageTypeActivityAndReplyToId_WHENBuildIsInvoked_THENEventTelemetryIsBeingCreated(
